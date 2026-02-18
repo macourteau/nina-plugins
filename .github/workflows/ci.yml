@@ -23,3 +23,6 @@ jobs:
 
       - name: Build
         run: dotnet build NINAUtilityPatterns/NINAUtilityPatterns.sln -c Release --no-restore
+
+      - name: Test
+        run: dotnet test NINAUtilityPatterns/NINAUtilityPatterns.sln -c Release --no-build --verbosity normal
