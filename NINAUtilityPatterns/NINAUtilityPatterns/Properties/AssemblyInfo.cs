@@ -4,10 +4,6 @@ using System.Runtime.InteropServices;
 // [MANDATORY] The following GUID is used as a unique identifier of the plugin.
 [assembly: Guid("77f3211e-3502-401b-a7fc-750fefecb70f")]
 
-// [MANDATORY] The assembly versioning
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-
 // [MANDATORY] The name of your plugin
 [assembly: AssemblyTitle("NINA Utility Patterns")]
 // [MANDATORY] A short description of your plugin
