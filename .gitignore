@@ -1,0 +1,30 @@
+# Claude Code local settings
+.claude/settings.local.json
+
+# Build outputs
+bin/
+obj/
+
+# NuGet
+*.nupkg
+packages/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
