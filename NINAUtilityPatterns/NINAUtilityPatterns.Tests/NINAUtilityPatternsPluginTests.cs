@@ -7,7 +7,6 @@ using NINA.WPF.Base.Interfaces.Mediator;
 using NINA.WPF.Base.Interfaces.ViewModel;
 using NUnit.Framework;
 using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace NINAUtilityPatterns.Tests;
 
@@ -70,6 +69,34 @@ public class NINAUtilityPatternsPluginTests {
     }
 
     [Test]
+    public void Constructor_ShouldSetUtcPreviewValuesInCorrectFormat() {
+        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+
+        var cdateutcPattern = registeredPatterns.First(p => p.Key == "$$CDATEUTC$$");
+        var ctimeutcPattern = registeredPatterns.First(p => p.Key == "$$CTIMEUTC$$");
+        var cdatetimeutcPattern = registeredPatterns.First(p => p.Key == "$$CDATETIMEUTC$$");
+
+        // UTC Date should be 8 digits (yyyyMMdd)
+        cdateutcPattern.Value.Should().MatchRegex(@"^\d{8}$");
+
+        // UTC Time should be 6 digits (HHmmss)
+        ctimeutcPattern.Value.Should().MatchRegex(@"^\d{6}$");
+
+        // UTC DateTime should be yyyyMMdd_HHmmss (15 chars with underscore)
+        cdatetimeutcPattern.Value.Should().MatchRegex(@"^\d{8}_\d{6}$");
+    }
+
+    [Test]
+    public void Constructor_ShouldSetDateMinus12PreviewValueInCorrectFormat() {
+        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+
+        var cdateminus12Pattern = registeredPatterns.First(p => p.Key == "$$CDATEMINUS12$$");
+
+        // Should be 8 digits (yyyyMMdd)
+        cdateminus12Pattern.Value.Should().MatchRegex(@"^\d{8}$");
+    }
+
+    [Test]
     public void Constructor_ShouldSetBinningPreviewValuesToOne() {
         var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
@@ -99,6 +126,24 @@ public class NINAUtilityPatternsPluginTests {
     }
 
     [Test]
+    public void Constructor_ShouldSetAllPatternsToSameCategory() {
+        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+
+        var categories = registeredPatterns.Select(p => p.Category).Distinct().ToList();
+        categories.Should().HaveCount(1);
+        categories.First().Should().Be("NINA Utility Patterns");
+    }
+
+    [Test]
+    public void Constructor_ShouldSetDescriptionsForAllPatterns() {
+        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+
+        foreach (var pattern in registeredPatterns) {
+            pattern.Description.Should().NotBeNullOrWhiteSpace($"Pattern {pattern.Key} should have a description");
+        }
+    }
+
+    [Test]
     public void ResolvePatterns_ShouldAddAllNinePatterns() {
         Func<object, BeforeFinalizeImageSavedEventArgs, Task>? resolveHandler = null;
         mockMediator
@@ -107,15 +152,13 @@ public class NINAUtilityPatternsPluginTests {
 
         var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
-        var addedPatterns = new List<ImagePattern>();
-        var mockEventArgs = new Mock<BeforeFinalizeImageSavedEventArgs>();
-        mockEventArgs
-            .Setup(e => e.AddImagePattern(It.IsAny<ImagePattern>()))
-            .Callback<ImagePattern>(p => addedPatterns.Add(p));
+        // Create real event args with mocked IRenderedImage
+        var mockRenderedImage = new Mock<IRenderedImage>();
+        var eventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
 
-        resolveHandler!.Invoke(this, mockEventArgs.Object);
+        resolveHandler!.Invoke(this, eventArgs);
 
-        addedPatterns.Should().HaveCount(9);
+        eventArgs.Patterns.Should().HaveCount(9);
     }
 
     [Test]
@@ -127,15 +170,12 @@ public class NINAUtilityPatternsPluginTests {
 
         var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
-        var addedPatterns = new List<ImagePattern>();
-        var mockEventArgs = new Mock<BeforeFinalizeImageSavedEventArgs>();
-        mockEventArgs
-            .Setup(e => e.AddImagePattern(It.IsAny<ImagePattern>()))
-            .Callback<ImagePattern>(p => addedPatterns.Add(p));
+        var mockRenderedImage = new Mock<IRenderedImage>();
+        var eventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
 
-        resolveHandler!.Invoke(this, mockEventArgs.Object);
+        resolveHandler!.Invoke(this, eventArgs);
 
-        var cdatePattern = addedPatterns.First(p => p.Key == "$$CDATE$$");
+        var cdatePattern = eventArgs.Patterns.First(p => p.Key == "$$CDATE$$");
         cdatePattern.Value.Should().MatchRegex(@"^\d{8}$");
 
         // Verify it's a valid date
@@ -152,15 +192,12 @@ public class NINAUtilityPatternsPluginTests {
 
         var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
-        var addedPatterns = new List<ImagePattern>();
-        var mockEventArgs = new Mock<BeforeFinalizeImageSavedEventArgs>();
-        mockEventArgs
-            .Setup(e => e.AddImagePattern(It.IsAny<ImagePattern>()))
-            .Callback<ImagePattern>(p => addedPatterns.Add(p));
+        var mockRenderedImage = new Mock<IRenderedImage>();
+        var eventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
 
-        resolveHandler!.Invoke(this, mockEventArgs.Object);
+        resolveHandler!.Invoke(this, eventArgs);
 
-        var ctimePattern = addedPatterns.First(p => p.Key == "$$CTIME$$");
+        var ctimePattern = eventArgs.Patterns.First(p => p.Key == "$$CTIME$$");
         ctimePattern.Value.Should().MatchRegex(@"^\d{6}$");
 
         // Verify it's a valid time
@@ -177,16 +214,13 @@ public class NINAUtilityPatternsPluginTests {
 
         var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
-        var addedPatterns = new List<ImagePattern>();
-        var mockEventArgs = new Mock<BeforeFinalizeImageSavedEventArgs>();
-        mockEventArgs
-            .Setup(e => e.AddImagePattern(It.IsAny<ImagePattern>()))
-            .Callback<ImagePattern>(p => addedPatterns.Add(p));
+        var mockRenderedImage = new Mock<IRenderedImage>();
+        var eventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
 
-        resolveHandler!.Invoke(this, mockEventArgs.Object);
+        resolveHandler!.Invoke(this, eventArgs);
 
-        var cdatePattern = addedPatterns.First(p => p.Key == "$$CDATE$$");
-        var cdateminus12Pattern = addedPatterns.First(p => p.Key == "$$CDATEMINUS12$$");
+        var cdatePattern = eventArgs.Patterns.First(p => p.Key == "$$CDATE$$");
+        var cdateminus12Pattern = eventArgs.Patterns.First(p => p.Key == "$$CDATEMINUS12$$");
 
         var currentDate = DateTime.ParseExact(cdatePattern.Value, "yyyyMMdd", CultureInfo.InvariantCulture);
         var shiftedDate = DateTime.ParseExact(cdateminus12Pattern.Value, "yyyyMMdd", CultureInfo.InvariantCulture);
@@ -212,7 +246,7 @@ public class NINAUtilityPatternsPluginTests {
 
         var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
-        // Create actual ImageMetaData with binning values
+        // Create ImageMetaData with binning values
         var metaData = new ImageMetaData {
             Camera = {
                 BinX = expectedBinX,
@@ -220,37 +254,26 @@ public class NINAUtilityPatternsPluginTests {
             }
         };
 
+        // Create mock IImageData with MetaData
         var mockImageData = new Mock<IImageData>();
         mockImageData.SetupGet(i => i.MetaData).Returns(metaData);
 
-        var mockCaptureEventArgs = new Mock<BeforeImageSavedEventArgs>();
-        mockCaptureEventArgs.SetupGet(e => e.Image).Returns(mockImageData.Object);
+        // Create real BeforeImageSavedEventArgs with mocked dependencies
+        var mockRenderedImage = new Mock<IRenderedImage>();
+        var prepareTask = Task.FromResult(mockRenderedImage.Object);
+        var captureEventArgs = new BeforeImageSavedEventArgs(mockImageData.Object, prepareTask);
 
         // Trigger capture
-        captureHandler!.Invoke(this, mockCaptureEventArgs.Object);
+        captureHandler!.Invoke(this, captureEventArgs);
 
         // Now resolve patterns
-        var addedPatterns = new List<ImagePattern>();
-        var mockResolveEventArgs = new Mock<BeforeFinalizeImageSavedEventArgs>();
-        mockResolveEventArgs
-            .Setup(e => e.AddImagePattern(It.IsAny<ImagePattern>()))
-            .Callback<ImagePattern>(p => addedPatterns.Add(p));
+        var resolveEventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
+        resolveHandler!.Invoke(this, resolveEventArgs);
 
-        resolveHandler!.Invoke(this, mockResolveEventArgs.Object);
-
-        var binxPattern = addedPatterns.First(p => p.Key == "$$BINX$$");
-        var binyPattern = addedPatterns.First(p => p.Key == "$$BINY$$");
+        var binxPattern = resolveEventArgs.Patterns.First(p => p.Key == "$$BINX$$");
+        var binyPattern = resolveEventArgs.Patterns.First(p => p.Key == "$$BINY$$");
 
         binxPattern.Value.Should().Be(expectedBinX.ToString());
         binyPattern.Value.Should().Be(expectedBinY.ToString());
-    }
-
-    [Test]
-    public void Constructor_ShouldSetAllPatternsToSameCategory() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
-
-        var categories = registeredPatterns.Select(p => p.Category).Distinct().ToList();
-        categories.Should().HaveCount(1);
-        categories.First().Should().Be("NINA Utility Patterns");
     }
 }
