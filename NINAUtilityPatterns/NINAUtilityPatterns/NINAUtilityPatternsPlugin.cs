@@ -28,11 +28,13 @@ namespace NINAUtilityPatterns {
         private readonly ImagePattern ctimeutcPattern;
         private readonly ImagePattern cdatetimeutcPattern;
 
-        // Compact binning
-        private readonly ImagePattern cbinPattern;
+        // Binning patterns
+        private readonly ImagePattern binxPattern;
+        private readonly ImagePattern binyPattern;
 
-        // Store binning value captured in BeforeImageSaved for use in BeforeFinalizeImageSaved
+        // Store binning values captured in BeforeImageSaved for use in BeforeFinalizeImageSaved
         private int lastBinX = 1;
+        private int lastBinY = 1;
 
         [ImportingConstructor]
         public NINAUtilityPatternsPlugin(IOptionsVM options, IImageSaveMediator imageSaveMediator) {
@@ -64,7 +66,10 @@ namespace NINAUtilityPatterns {
             cdatetimeutcPattern = new ImagePattern("$$CDATETIMEUTC$$", "Compact date+time (yyyyMMdd_HHmmss) in UTC", Category) {
                 Value = utcNow.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture)
             };
-            cbinPattern = new ImagePattern("$$CBIN$$", "Binning factor (assumes symmetric binning)", Category) {
+            binxPattern = new ImagePattern("$$BINX$$", "Horizontal binning factor", Category) {
+                Value = "1"
+            };
+            binyPattern = new ImagePattern("$$BINY$$", "Vertical binning factor", Category) {
                 Value = "1"
             };
 
@@ -76,7 +81,8 @@ namespace NINAUtilityPatterns {
             options.AddImagePattern(cdateutcPattern);
             options.AddImagePattern(ctimeutcPattern);
             options.AddImagePattern(cdatetimeutcPattern);
-            options.AddImagePattern(cbinPattern);
+            options.AddImagePattern(binxPattern);
+            options.AddImagePattern(binyPattern);
 
             // Hook into image saving events
             this.imageSaveMediator.BeforeImageSaved += CaptureMetadata;
@@ -92,6 +98,7 @@ namespace NINAUtilityPatterns {
         private Task CaptureMetadata(object sender, BeforeImageSavedEventArgs e) {
             // Capture binning from image metadata for use in pattern resolution
             lastBinX = e.Image.MetaData.Camera.BinX;
+            lastBinY = e.Image.MetaData.Camera.BinY;
             return Task.CompletedTask;
         }
 
@@ -131,9 +138,13 @@ namespace NINAUtilityPatterns {
                 Value = utcNow.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture)
             });
 
-            // Binning - use captured BinX value (assumes symmetric binning)
-            e.AddImagePattern(new ImagePattern(cbinPattern.Key, cbinPattern.Description, cbinPattern.Category) {
+            // Binning
+            e.AddImagePattern(new ImagePattern(binxPattern.Key, binxPattern.Description, binxPattern.Category) {
                 Value = lastBinX.ToString(CultureInfo.InvariantCulture)
+            });
+
+            e.AddImagePattern(new ImagePattern(binyPattern.Key, binyPattern.Description, binyPattern.Category) {
+                Value = lastBinY.ToString(CultureInfo.InvariantCulture)
             });
 
             return Task.CompletedTask;

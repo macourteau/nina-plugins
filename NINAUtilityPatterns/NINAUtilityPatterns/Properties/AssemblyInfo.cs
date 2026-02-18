@@ -10,10 +10,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Compact date/time and binning tokens for image file patterns")]
 
 // Your name
-[assembly: AssemblyCompany("macourteau")]
+[assembly: AssemblyCompany("Marc-Antoine Courteau")]
 // The product name that this plugin is part of
 [assembly: AssemblyProduct("NINA Utility Patterns")]
-[assembly: AssemblyCopyright("Copyright © 2026 macourteau")]
+[assembly: AssemblyCopyright("Copyright © 2026 Marc-Antoine Courteau")]
 
 // The minimum Version of N.I.N.A. that this plugin is compatible with
 [assembly: AssemblyMetadata("MinimumApplicationVersion", "3.0.0.2017")]
@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 // The url to the license
 [assembly: AssemblyMetadata("LicenseURL", "https://www.mozilla.org/en-US/MPL/2.0/")]
 // The repository where your plugin is hosted
-[assembly: AssemblyMetadata("Repository", "https://github.com/macourteau/nina_plugins")]
+[assembly: AssemblyMetadata("Repository", "https://github.com/macourteau/nina-plugins")]
 
 // [Optional] Common tags that quickly describe your plugin
 [assembly: AssemblyMetadata("Tags", "FilePatterns,DateTime,Binning,Utility")]
@@ -38,7 +38,8 @@ using System.Runtime.InteropServices;
 - $$CDATEUTC$$ - Compact date (yyyyMMdd) in UTC
 - $$CTIMEUTC$$ - Compact time (HHmmss) in UTC
 - $$CDATETIMEUTC$$ - Compact date+time (yyyyMMdd_HHmmss) in UTC
-- $$CBIN$$ - Binning factor (assumes symmetric binning)")]
+- $$BINX$$ - Horizontal binning factor
+- $$BINY$$ - Vertical binning factor")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.

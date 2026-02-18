@@ -13,7 +13,8 @@ A plugin for N.I.N.A. (Nighttime Imaging 'N' Astronomy) that provides compact da
 | `$$CDATEUTC$$` | `yyyyMMdd` | `20260218` | Compact date (UTC) |
 | `$$CTIMEUTC$$` | `HHmmss` | `020122` | Compact time (UTC) |
 | `$$CDATETIMEUTC$$` | `yyyyMMdd_HHmmss` | `20260218_020122` | Compact date+time (UTC) |
-| `$$CBIN$$` | `N` | `1` or `2` | Binning factor (assumes symmetric binning) |
+| `$$BINX$$` | `N` | `1` or `2` | Horizontal binning factor |
+| `$$BINY$$` | `N` | `1` or `2` | Vertical binning factor |
 
 ## Use Cases
 
@@ -30,7 +31,7 @@ The compact date/time tokens produce shorter filenames compared to NINA's built-
 
 ### Binning in Filenames
 
-The `$$CBIN$$` token provides just the binning factor number (e.g., `1`, `2`, `3`) rather than the full `1x1` format, useful when you want shorter filenames.
+The `$$BINX$$` and `$$BINY$$` tokens provide just the binning factor number (e.g., `1`, `2`, `3`), useful when you want shorter filenames or need to distinguish horizontal and vertical binning.
 
 ## Requirements
 
@@ -47,7 +48,7 @@ The `$$CBIN$$` token provides just the binning factor number (e.g., `1`, `2`, `3
 
 ```bash
 cd NINAUtilityPatterns/NINAUtilityPatterns
-dotnet build
+dotnet build -c Release
 ```
 
 The built DLL will be in `bin/Debug/net8.0-windows/` or `bin/Release/net8.0-windows/`.

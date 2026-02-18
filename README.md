@@ -17,7 +17,8 @@ Adds compact date/time and binning tokens for image file patterns:
 | `$$CDATEUTC$$` | `yyyyMMdd` | Compact date (UTC) |
 | `$$CTIMEUTC$$` | `HHmmss` | Compact time (UTC) |
 | `$$CDATETIMEUTC$$` | `yyyyMMdd_HHmmss` | Compact date+time (UTC) |
-| `$$CBIN$$` | `N` | Binning factor |
+| `$$BINX$$` | `N` | Horizontal binning factor |
+| `$$BINY$$` | `N` | Vertical binning factor |
 
 ## Installation
 
