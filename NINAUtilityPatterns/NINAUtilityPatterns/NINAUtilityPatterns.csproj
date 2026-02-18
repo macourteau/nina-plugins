@@ -13,6 +13,6 @@
     <FileVersion>$(Version).0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NINA.Plugin" Version="3.0.0.2017-beta" />
+    <PackageReference Include="NINA.Plugin" Version="3.2.0.9001" />
   </ItemGroup>
 </Project>
