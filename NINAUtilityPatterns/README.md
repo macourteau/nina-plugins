@@ -1,4 +1,4 @@
-# NINA Utility Patterns
+# Utility Patterns
 
 A plugin for N.I.N.A. (Nighttime Imaging 'N' Astronomy) that provides compact date/time and binning tokens for image file patterns.
 
@@ -24,7 +24,7 @@ The `$$CDATEMINUS12$$` token is useful for grouping images from a single night s
 
 ### Compact File Names
 
-The compact date/time tokens produce shorter filenames compared to NINA's built-in tokens:
+The compact date/time tokens produce shorter filenames compared to N.I.N.A.'s built-in tokens:
 
 - `$$DATE$$` produces `2026-02-17` (10 chars)
 - `$$CDATE$$` produces `20260217` (8 chars)
@@ -33,6 +33,16 @@ The compact date/time tokens produce shorter filenames compared to NINA's built-
 
 The `$$BINX$$` and `$$BINY$$` tokens provide just the binning factor number (e.g., `1`, `2`, `3`), useful when you want shorter filenames or need to distinguish horizontal and vertical binning.
 
+## Localization
+
+The plugin supports the following languages:
+
+- English (default)
+- French (Canada) - fr-CA
+- French (France) - fr-FR
+
+The language is automatically selected based on N.I.N.A.'s UI culture setting.
+
 ## Requirements
 
 - N.I.N.A. 3.0.0.2017 or later
@@ -40,8 +50,8 @@ The `$$BINX$$` and `$$BINY$$` tokens provide just the binning factor number (e.g
 ## Installation
 
 1. Build the project or download the release DLL
-2. Copy `NINAUtilityPatterns.dll` to `%localappdata%\NINA\Plugins\3.0.0\NINA Utility Patterns\`
-3. Restart NINA
+2. Copy `NINAUtilityPatterns.dll` to `%localappdata%\NINA\Plugins\3.0.0\Utility Patterns\`
+3. Restart N.I.N.A.
 4. The tokens will appear in Options > Imaging > File Patterns
 
 ## Building

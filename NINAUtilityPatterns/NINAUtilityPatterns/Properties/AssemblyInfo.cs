@@ -5,14 +5,14 @@ using System.Runtime.InteropServices;
 [assembly: Guid("77f3211e-3502-401b-a7fc-750fefecb70f")]
 
 // [MANDATORY] The name of your plugin
-[assembly: AssemblyTitle("NINA Utility Patterns")]
+[assembly: AssemblyTitle("Utility Patterns")]
 // [MANDATORY] A short description of your plugin
 [assembly: AssemblyDescription("Compact date/time and binning tokens for image file patterns")]
 
 // Your name
 [assembly: AssemblyCompany("Marc-Antoine Courteau")]
 // The product name that this plugin is part of
-[assembly: AssemblyProduct("NINA Utility Patterns")]
+[assembly: AssemblyProduct("Utility Patterns")]
 [assembly: AssemblyCopyright("Copyright © 2026 Marc-Antoine Courteau")]
 
 // The minimum Version of N.I.N.A. that this plugin is compatible with

@@ -131,7 +131,7 @@ public class NINAUtilityPatternsPluginTests {
 
         var categories = registeredPatterns.Select(p => p.Category).Distinct().ToList();
         categories.Should().HaveCount(1);
-        categories.First().Should().Be("NINA Utility Patterns");
+        categories.First().Should().Be("Utility Patterns");
     }
 
     [Test]

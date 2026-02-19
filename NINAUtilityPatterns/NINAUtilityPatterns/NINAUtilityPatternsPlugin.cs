@@ -3,6 +3,7 @@ using NINA.Plugin;
 using NINA.Plugin.Interfaces;
 using NINA.WPF.Base.Interfaces.Mediator;
 using NINA.WPF.Base.Interfaces.ViewModel;
+using NINAUtilityPatterns.Locale;
 using System;
 using System.ComponentModel.Composition;
 using System.Globalization;
@@ -11,8 +12,6 @@ using System.Threading.Tasks;
 namespace NINAUtilityPatterns {
     [Export(typeof(IPluginManifest))]
     public class NINAUtilityPatternsPlugin : PluginBase {
-        private const string Category = "NINA Utility Patterns";
-
         private readonly IImageSaveMediator imageSaveMediator;
 
         // Compact date/time patterns (local time)
@@ -45,31 +44,31 @@ namespace NINAUtilityPatterns {
             var utcNow = DateTime.UtcNow;
             var nowMinus12 = now.AddHours(-12);
 
-            cdatePattern = new ImagePattern("$$CDATE$$", "Compact date (yyyyMMdd) in local time", Category) {
+            cdatePattern = new ImagePattern("$$CDATE$$", Loc.CDateDescription, Loc.Category) {
                 Value = now.ToString("yyyyMMdd", CultureInfo.InvariantCulture)
             };
-            ctimePattern = new ImagePattern("$$CTIME$$", "Compact time (HHmmss) in local time", Category) {
+            ctimePattern = new ImagePattern("$$CTIME$$", Loc.CTimeDescription, Loc.Category) {
                 Value = now.ToString("HHmmss", CultureInfo.InvariantCulture)
             };
-            cdatetimePattern = new ImagePattern("$$CDATETIME$$", "Compact date+time (yyyyMMdd_HHmmss) in local time", Category) {
+            cdatetimePattern = new ImagePattern("$$CDATETIME$$", Loc.CDateTimeDescription, Loc.Category) {
                 Value = now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture)
             };
-            cdateminus12Pattern = new ImagePattern("$$CDATEMINUS12$$", "Compact date shifted back 12 hours", Category) {
+            cdateminus12Pattern = new ImagePattern("$$CDATEMINUS12$$", Loc.CDateMinus12Description, Loc.Category) {
                 Value = nowMinus12.ToString("yyyyMMdd", CultureInfo.InvariantCulture)
             };
-            cdateutcPattern = new ImagePattern("$$CDATEUTC$$", "Compact date (yyyyMMdd) in UTC", Category) {
+            cdateutcPattern = new ImagePattern("$$CDATEUTC$$", Loc.CDateUtcDescription, Loc.Category) {
                 Value = utcNow.ToString("yyyyMMdd", CultureInfo.InvariantCulture)
             };
-            ctimeutcPattern = new ImagePattern("$$CTIMEUTC$$", "Compact time (HHmmss) in UTC", Category) {
+            ctimeutcPattern = new ImagePattern("$$CTIMEUTC$$", Loc.CTimeUtcDescription, Loc.Category) {
                 Value = utcNow.ToString("HHmmss", CultureInfo.InvariantCulture)
             };
-            cdatetimeutcPattern = new ImagePattern("$$CDATETIMEUTC$$", "Compact date+time (yyyyMMdd_HHmmss) in UTC", Category) {
+            cdatetimeutcPattern = new ImagePattern("$$CDATETIMEUTC$$", Loc.CDateTimeUtcDescription, Loc.Category) {
                 Value = utcNow.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture)
             };
-            binxPattern = new ImagePattern("$$BINX$$", "Horizontal binning factor", Category) {
+            binxPattern = new ImagePattern("$$BINX$$", Loc.BinXDescription, Loc.Category) {
                 Value = "1"
             };
-            binyPattern = new ImagePattern("$$BINY$$", "Vertical binning factor", Category) {
+            binyPattern = new ImagePattern("$$BINY$$", Loc.BinYDescription, Loc.Category) {
                 Value = "1"
             };
 
