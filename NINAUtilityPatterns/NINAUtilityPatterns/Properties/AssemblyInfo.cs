@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // [MANDATORY] The name of your plugin
 [assembly: AssemblyTitle("Utility Patterns")]
 // [MANDATORY] A short description of your plugin
-[assembly: AssemblyDescription("Compact date/time and binning tokens for image file patterns")]
+[assembly: AssemblyDescription("Compact date/time, binning, and telescope position tokens for image file patterns")]
 
 // Your name
 [assembly: AssemblyCompany("Marc-Antoine Courteau")]
@@ -26,10 +26,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyMetadata("Repository", "https://github.com/macourteau/nina-plugins")]
 
 // [Optional] Common tags that quickly describe your plugin
-[assembly: AssemblyMetadata("Tags", "FilePatterns,DateTime,Binning,Utility")]
+[assembly: AssemblyMetadata("Tags", "FilePatterns,DateTime,Binning,Telescope,Utility")]
 
 // [Optional] An in-depth description of your plugin
-[assembly: AssemblyMetadata("LongDescription", @"Adds compact date/time and binning tokens for image file patterns:
+[assembly: AssemblyMetadata("LongDescription", @"Adds compact date/time, binning, and telescope position tokens for image file patterns:
 
 - $$CDATE$$ - Compact date (yyyyMMdd) in local time
 - $$CTIME$$ - Compact time (HHmmss) in local time
@@ -39,7 +39,12 @@ using System.Runtime.InteropServices;
 - $$CTIMEUTC$$ - Compact time (HHmmss) in UTC
 - $$CDATETIMEUTC$$ - Compact date+time (yyyyMMdd_HHmmss) in UTC
 - $$BINX$$ - Horizontal binning factor
-- $$BINY$$ - Vertical binning factor")]
+- $$BINY$$ - Vertical binning factor
+- $$ALT$$ - Telescope altitude in degrees (1 decimal place)
+- $$AZ$$ - Telescope azimuth in degrees (1 decimal place)
+- $$AIRMASS$$ - Airmass (1 decimal place)
+
+When the telescope is not connected, $$ALT$$, $$AZ$$, and $$AIRMASS$$ resolve to NA.")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.

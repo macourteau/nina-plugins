@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>معامل التجميع العمودي</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>ارتفاع التلسكوب بالدرجات (منزلة عشرية واحدة)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>سمت التلسكوب بالدرجات (منزلة عشرية واحدة)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>الكتلة الهوائية (منزلة عشرية واحدة)</value>
+  </data>
 </root>

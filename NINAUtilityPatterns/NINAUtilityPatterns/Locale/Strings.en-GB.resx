@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>Vertical binning factor</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>Telescope altitude in degrees (1 decimal place)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>Telescope azimuth in degrees (1 decimal place)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>Airmass (1 decimal place)</value>
+  </data>
 </root>

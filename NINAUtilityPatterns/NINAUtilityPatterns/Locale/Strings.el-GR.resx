@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>Κάθετος συντελεστής binning</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>Ύψος τηλεσκοπίου σε μοίρες (1 δεκαδικό)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>Αζιμούθιο τηλεσκοπίου σε μοίρες (1 δεκαδικό)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>Ατμοσφαιρική μάζα (1 δεκαδικό)</value>
+  </data>
 </root>

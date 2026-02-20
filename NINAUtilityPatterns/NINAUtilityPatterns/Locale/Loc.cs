@@ -29,5 +29,8 @@ namespace NINAUtilityPatterns.Locale {
         public static string CDateTimeUtcDescription => GetString("CDateTimeUtcDescription");
         public static string BinXDescription => GetString("BinXDescription");
         public static string BinYDescription => GetString("BinYDescription");
+        public static string AltitudeDescription => GetString("AltitudeDescription");
+        public static string AzimuthDescription => GetString("AzimuthDescription");
+        public static string AirmassDescription => GetString("AirmassDescription");
     }
 }

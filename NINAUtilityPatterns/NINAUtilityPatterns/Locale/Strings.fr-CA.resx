@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>Facteur de groupement vertical</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>Altitude du télescope en degrés (1 décimale)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>Azimut du télescope en degrés (1 décimale)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>Masse d'air (1 décimale)</value>
+  </data>
 </root>

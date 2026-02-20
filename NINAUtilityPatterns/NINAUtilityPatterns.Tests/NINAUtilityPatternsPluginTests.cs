@@ -28,10 +28,10 @@ public class NINAUtilityPatternsPluginTests {
     }
 
     [Test]
-    public void Constructor_ShouldRegisterAllNinePatterns() {
+    public void Constructor_ShouldRegisterAllTwelvePatterns() {
         var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
-        registeredPatterns.Should().HaveCount(9);
+        registeredPatterns.Should().HaveCount(12);
     }
 
     [Test]
@@ -48,6 +48,9 @@ public class NINAUtilityPatternsPluginTests {
         keys.Should().Contain("$$CDATETIMEUTC$$");
         keys.Should().Contain("$$BINX$$");
         keys.Should().Contain("$$BINY$$");
+        keys.Should().Contain("$$ALT$$");
+        keys.Should().Contain("$$AZ$$");
+        keys.Should().Contain("$$AIRMASS$$");
     }
 
     [Test]
@@ -144,7 +147,7 @@ public class NINAUtilityPatternsPluginTests {
     }
 
     [Test]
-    public void ResolvePatterns_ShouldAddAllNinePatterns() {
+    public void ResolvePatterns_ShouldAddAllTwelvePatterns() {
         Func<object, BeforeFinalizeImageSavedEventArgs, Task>? resolveHandler = null;
         mockMediator
             .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
@@ -158,7 +161,7 @@ public class NINAUtilityPatternsPluginTests {
 
         resolveHandler!.Invoke(this, eventArgs);
 
-        eventArgs.Patterns.Should().HaveCount(9);
+        eventArgs.Patterns.Should().HaveCount(12);
     }
 
     [Test]
@@ -275,5 +278,99 @@ public class NINAUtilityPatternsPluginTests {
 
         binxPattern.Value.Should().Be(expectedBinX.ToString());
         binyPattern.Value.Should().Be(expectedBinY.ToString());
+    }
+
+    [Test]
+    public void Constructor_ShouldSetTelescopePreviewValues() {
+        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+
+        var altPattern = registeredPatterns.First(p => p.Key == "$$ALT$$");
+        var azPattern = registeredPatterns.First(p => p.Key == "$$AZ$$");
+        var airmassPattern = registeredPatterns.First(p => p.Key == "$$AIRMASS$$");
+
+        altPattern.Value.Should().Be("45.0");
+        azPattern.Value.Should().Be("180.0");
+        airmassPattern.Value.Should().Be("1.4");
+    }
+
+    [Test]
+    public void ResolvePatterns_ShouldUseCapturedTelescopeValues() {
+        Func<object, BeforeImageSavedEventArgs, Task>? captureHandler = null;
+        Func<object, BeforeFinalizeImageSavedEventArgs, Task>? resolveHandler = null;
+
+        mockMediator
+            .SetupAdd(m => m.BeforeImageSaved += It.IsAny<Func<object, BeforeImageSavedEventArgs, Task>>())
+            .Callback<Func<object, BeforeImageSavedEventArgs, Task>>(h => captureHandler = h);
+        mockMediator
+            .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
+            .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
+
+        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+
+        var metaData = new ImageMetaData {
+            Telescope = {
+                Altitude = 44.67,
+                Azimuth = 180.34,
+                Airmass = 1.414
+            }
+        };
+
+        var mockImageData = new Mock<IImageData>();
+        mockImageData.SetupGet(i => i.MetaData).Returns(metaData);
+
+        var mockRenderedImage = new Mock<IRenderedImage>();
+        var prepareTask = Task.FromResult(mockRenderedImage.Object);
+        var captureEventArgs = new BeforeImageSavedEventArgs(mockImageData.Object, prepareTask);
+
+        captureHandler!.Invoke(this, captureEventArgs);
+
+        var resolveEventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
+        resolveHandler!.Invoke(this, resolveEventArgs);
+
+        var altPattern = resolveEventArgs.Patterns.First(p => p.Key == "$$ALT$$");
+        var azPattern = resolveEventArgs.Patterns.First(p => p.Key == "$$AZ$$");
+        var airmassPattern = resolveEventArgs.Patterns.First(p => p.Key == "$$AIRMASS$$");
+
+        altPattern.Value.Should().Be("44.7");
+        azPattern.Value.Should().Be("180.3");
+        airmassPattern.Value.Should().Be("1.4");
+    }
+
+    [Test]
+    public void ResolvePatterns_ShouldHandleNaNTelescopeValues() {
+        Func<object, BeforeImageSavedEventArgs, Task>? captureHandler = null;
+        Func<object, BeforeFinalizeImageSavedEventArgs, Task>? resolveHandler = null;
+
+        mockMediator
+            .SetupAdd(m => m.BeforeImageSaved += It.IsAny<Func<object, BeforeImageSavedEventArgs, Task>>())
+            .Callback<Func<object, BeforeImageSavedEventArgs, Task>>(h => captureHandler = h);
+        mockMediator
+            .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
+            .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
+
+        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+
+        // ImageMetaData defaults Telescope values to double.NaN
+        var metaData = new ImageMetaData();
+
+        var mockImageData = new Mock<IImageData>();
+        mockImageData.SetupGet(i => i.MetaData).Returns(metaData);
+
+        var mockRenderedImage = new Mock<IRenderedImage>();
+        var prepareTask = Task.FromResult(mockRenderedImage.Object);
+        var captureEventArgs = new BeforeImageSavedEventArgs(mockImageData.Object, prepareTask);
+
+        captureHandler!.Invoke(this, captureEventArgs);
+
+        var resolveEventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
+        resolveHandler!.Invoke(this, resolveEventArgs);
+
+        var altPattern = resolveEventArgs.Patterns.First(p => p.Key == "$$ALT$$");
+        var azPattern = resolveEventArgs.Patterns.First(p => p.Key == "$$AZ$$");
+        var airmassPattern = resolveEventArgs.Patterns.First(p => p.Key == "$$AIRMASS$$");
+
+        altPattern.Value.Should().Be("NA");
+        azPattern.Value.Should().Be("NA");
+        airmassPattern.Value.Should().Be("NA");
     }
 }

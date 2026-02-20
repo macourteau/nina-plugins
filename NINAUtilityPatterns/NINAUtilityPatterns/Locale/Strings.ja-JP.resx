@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>垂直ビニング係数</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>望遠鏡の高度（度、小数点以下1桁）</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>望遠鏡の方位角（度、小数点以下1桁）</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>エアマス（小数点以下1桁）</value>
+  </data>
 </root>

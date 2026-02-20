@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>수직 비닝 계수</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>망원경 고도 (도, 소수점 1자리)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>망원경 방위각 (도, 소수점 1자리)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>대기질량 (소수점 1자리)</value>
+  </data>
 </root>

@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>Vertikální faktor binningu</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>Výška dalekohledu ve stupních (1 desetinné místo)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>Azimut dalekohledu ve stupních (1 desetinné místo)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>Vzdušná hmotnost (1 desetinné místo)</value>
+  </data>
 </root>

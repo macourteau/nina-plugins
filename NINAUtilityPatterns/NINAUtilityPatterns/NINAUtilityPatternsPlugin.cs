@@ -31,9 +31,19 @@ namespace NINAUtilityPatterns {
         private readonly ImagePattern binxPattern;
         private readonly ImagePattern binyPattern;
 
+        // Telescope position patterns
+        private readonly ImagePattern altitudePattern;
+        private readonly ImagePattern azimuthPattern;
+        private readonly ImagePattern airmassPattern;
+
         // Store binning values captured in BeforeImageSaved for use in BeforeFinalizeImageSaved
         private int lastBinX = 1;
         private int lastBinY = 1;
+
+        // Store telescope position values captured in BeforeImageSaved for use in BeforeFinalizeImageSaved
+        private double lastAltitude = double.NaN;
+        private double lastAzimuth = double.NaN;
+        private double lastAirmass = double.NaN;
 
         [ImportingConstructor]
         public NINAUtilityPatternsPlugin(IOptionsVM options, IImageSaveMediator imageSaveMediator) {
@@ -71,6 +81,15 @@ namespace NINAUtilityPatterns {
             binyPattern = new ImagePattern("$$BINY$$", Loc.BinYDescription, Loc.Category) {
                 Value = "1"
             };
+            altitudePattern = new ImagePattern("$$ALT$$", Loc.AltitudeDescription, Loc.Category) {
+                Value = "45.0"
+            };
+            azimuthPattern = new ImagePattern("$$AZ$$", Loc.AzimuthDescription, Loc.Category) {
+                Value = "180.0"
+            };
+            airmassPattern = new ImagePattern("$$AIRMASS$$", Loc.AirmassDescription, Loc.Category) {
+                Value = "1.4"
+            };
 
             // Register all patterns in the Options > Imaging > File Patterns area
             options.AddImagePattern(cdatePattern);
@@ -82,6 +101,9 @@ namespace NINAUtilityPatterns {
             options.AddImagePattern(cdatetimeutcPattern);
             options.AddImagePattern(binxPattern);
             options.AddImagePattern(binyPattern);
+            options.AddImagePattern(altitudePattern);
+            options.AddImagePattern(azimuthPattern);
+            options.AddImagePattern(airmassPattern);
 
             // Hook into image saving events
             this.imageSaveMediator.BeforeImageSaved += CaptureMetadata;
@@ -98,6 +120,11 @@ namespace NINAUtilityPatterns {
             // Capture binning from image metadata for use in pattern resolution
             lastBinX = e.Image.MetaData.Camera.BinX;
             lastBinY = e.Image.MetaData.Camera.BinY;
+
+            // Capture telescope position from image metadata
+            lastAltitude = e.Image.MetaData.Telescope.Altitude;
+            lastAzimuth = e.Image.MetaData.Telescope.Azimuth;
+            lastAirmass = e.Image.MetaData.Telescope.Airmass;
             return Task.CompletedTask;
         }
 
@@ -146,7 +173,24 @@ namespace NINAUtilityPatterns {
                 Value = lastBinY.ToString(CultureInfo.InvariantCulture)
             });
 
+            // Telescope position
+            e.AddImagePattern(new ImagePattern(altitudePattern.Key, altitudePattern.Description, altitudePattern.Category) {
+                Value = FormatOneDecimal(lastAltitude)
+            });
+
+            e.AddImagePattern(new ImagePattern(azimuthPattern.Key, azimuthPattern.Description, azimuthPattern.Category) {
+                Value = FormatOneDecimal(lastAzimuth)
+            });
+
+            e.AddImagePattern(new ImagePattern(airmassPattern.Key, airmassPattern.Description, airmassPattern.Category) {
+                Value = FormatOneDecimal(lastAirmass)
+            });
+
             return Task.CompletedTask;
+        }
+
+        private static string FormatOneDecimal(double value) {
+            return double.IsNaN(value) ? "NA" : Math.Round(value, 1).ToString("F1", CultureInfo.InvariantCulture);
         }
     }
 }

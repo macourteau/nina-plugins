@@ -6,7 +6,7 @@ Plugins for [N.I.N.A.](https://nighttime-imaging.eu/) (Nighttime Imaging 'N' Ast
 
 ### NINAUtilityPatterns
 
-Adds compact date/time and binning tokens for image file patterns:
+Adds compact date/time, binning, and telescope position tokens for image file patterns:
 
 | Token | Format | Description |
 |-------|--------|-------------|
@@ -19,6 +19,9 @@ Adds compact date/time and binning tokens for image file patterns:
 | `$$CDATETIMEUTC$$` | `yyyyMMdd_HHmmss` | Compact date+time (UTC) |
 | `$$BINX$$` | `N` | Horizontal binning factor |
 | `$$BINY$$` | `N` | Vertical binning factor |
+| `$$ALT$$` | `N.N` | Telescope altitude in degrees |
+| `$$AZ$$` | `N.N` | Telescope azimuth in degrees |
+| `$$AIRMASS$$` | `N.N` | Airmass |
 
 ## Installation
 

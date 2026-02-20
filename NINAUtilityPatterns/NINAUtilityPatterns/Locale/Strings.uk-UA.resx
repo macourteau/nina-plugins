@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>Коефіцієнт вертикального бінінгу</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>Висота телескопа в градусах (1 десятковий знак)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>Азимут телескопа в градусах (1 десятковий знак)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>Повітряна маса (1 десятковий знак)</value>
+  </data>
 </root>

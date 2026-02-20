@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>Współczynnik binningu pionowego</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>Wysokość teleskopu w stopniach (1 miejsce po przecinku)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>Azymut teleskopu w stopniach (1 miejsce po przecinku)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>Masa powietrza (1 miejsce po przecinku)</value>
+  </data>
 </root>

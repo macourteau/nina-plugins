@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>垂直像素合并因子</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>望远镜高度角（度，保留1位小数）</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>望远镜方位角（度，保留1位小数）</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>大气质量（保留1位小数）</value>
+  </data>
 </root>

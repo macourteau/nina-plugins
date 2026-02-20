@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>Függőleges binning tényező</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>Távcső magassága fokban (1 tizedesjegy)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>Távcső azimutja fokban (1 tizedesjegy)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>Légköri tömeg (1 tizedesjegy)</value>
+  </data>
 </root>

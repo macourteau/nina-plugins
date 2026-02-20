@@ -1,6 +1,6 @@
 # Utility Patterns
 
-A plugin for N.I.N.A. (Nighttime Imaging 'N' Astronomy) that provides compact date/time and binning tokens for image file patterns.
+A plugin for N.I.N.A. (Nighttime Imaging 'N' Astronomy) that provides compact date/time, binning, and telescope position tokens for image file patterns.
 
 ## Tokens
 
@@ -15,6 +15,9 @@ A plugin for N.I.N.A. (Nighttime Imaging 'N' Astronomy) that provides compact da
 | `$$CDATETIMEUTC$$` | `yyyyMMdd_HHmmss` | `20260218_020122` | Compact date+time (UTC) |
 | `$$BINX$$` | `N` | `1` or `2` | Horizontal binning factor |
 | `$$BINY$$` | `N` | `1` or `2` | Vertical binning factor |
+| `$$ALT$$` | `N.N` | `45.2` or `NA` | Telescope altitude in degrees |
+| `$$AZ$$` | `N.N` | `180.5` or `NA` | Telescope azimuth in degrees |
+| `$$AIRMASS$$` | `N.N` | `1.4` or `NA` | Airmass |
 
 ## Use Cases
 
@@ -32,6 +35,16 @@ The compact date/time tokens produce shorter filenames compared to N.I.N.A.'s bu
 ### Binning in Filenames
 
 The `$$BINX$$` and `$$BINY$$` tokens provide just the binning factor number (e.g., `1`, `2`, `3`), useful when you want shorter filenames or need to distinguish horizontal and vertical binning.
+
+### Telescope Position in Filenames
+
+The `$$ALT$$`, `$$AZ$$`, and `$$AIRMASS$$` tokens capture the telescope's position at the time each image is saved. This is useful for:
+
+- Sorting images by altitude to identify frames taken through more atmosphere
+- Filtering by airmass for quality assessment
+- Organizing images by sky region using azimuth
+
+When the telescope is not connected, these tokens resolve to `NA`.
 
 ## Localization
 

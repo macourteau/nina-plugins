@@ -69,4 +69,13 @@
   <data name="BinYDescription" xml:space="preserve">
     <value>Binning faktore bertikala</value>
   </data>
+  <data name="AltitudeDescription" xml:space="preserve">
+    <value>Teleskopio-altuera graduetan (dezimal 1)</value>
+  </data>
+  <data name="AzimuthDescription" xml:space="preserve">
+    <value>Teleskopio-azimuta graduetan (dezimal 1)</value>
+  </data>
+  <data name="AirmassDescription" xml:space="preserve">
+    <value>Aire-masa (dezimal 1)</value>
+  </data>
 </root>
