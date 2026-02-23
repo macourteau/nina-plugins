@@ -18,11 +18,20 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore
+      - name: Restore (UtilityPatterns)
         run: dotnet restore NINAUtilityPatterns/NINAUtilityPatterns.sln
 
-      - name: Build
+      - name: Build (UtilityPatterns)
         run: dotnet build NINAUtilityPatterns/NINAUtilityPatterns.sln -c Release --no-restore
 
-      - name: Test
+      - name: Test (UtilityPatterns)
         run: dotnet test NINAUtilityPatterns/NINAUtilityPatterns.sln -c Release --no-build --verbosity normal
+
+      - name: Restore (SwitchCommands)
+        run: dotnet restore NINASwitchCommands/NINASwitchCommands.sln
+
+      - name: Build (SwitchCommands)
+        run: dotnet build NINASwitchCommands/NINASwitchCommands.sln -c Release --no-restore
+
+      - name: Test (SwitchCommands)
+        run: dotnet test NINASwitchCommands/NINASwitchCommands.sln -c Release --no-build --verbosity normal
