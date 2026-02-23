@@ -4,7 +4,15 @@
     <OutputType>Library</OutputType>
     <RootNamespace>NINAUtilityPatterns</RootNamespace>
     <AssemblyName>NINAUtilityPatterns</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- Selectively disable auto-generation for attributes defined in AssemblyInfo.cs,
+         while letting version attributes be auto-generated from the MSBuild properties
+         so that -p:Version= from the release workflow is reflected in the assembly. -->
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
