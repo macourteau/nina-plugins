@@ -48,13 +48,9 @@ When the telescope is not connected, these tokens resolve to `NA`.
 
 ## Localization
 
-The plugin supports the following languages:
+The plugin supports 28 locales. The language is automatically selected based on N.I.N.A.'s UI culture setting.
 
-- English (default)
-- French (Canada) - fr-CA
-- French (France) - fr-FR
-
-The language is automatically selected based on N.I.N.A.'s UI culture setting.
+Arabic (ar-SA), Basque (eu-ES), Catalan (ca-ES), Chinese Simplified (zh-CN), Chinese Traditional (zh-HK, zh-TW), Czech (cs-CZ), Danish (da-DK), Dutch (nl-NL), English (default, en-GB), French (fr-CA, fr-FR), Galician (gl-ES), German (de-DE), Greek (el-GR), Hungarian (hu-HU), Italian (it-IT), Japanese (ja-JP), Korean (ko-KR), Norwegian Bokmål (nb-NO), Polish (pl-PL), Portuguese (pt-PT), Russian (ru-RU), Spanish (es-ES), Swedish (sv-SE), Turkish (tr-TR), Ukrainian (uk-UA)
 
 ## Requirements
 

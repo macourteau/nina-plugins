@@ -14,7 +14,7 @@ This plugin provides a dedicated boolean toggle that directly manipulates the sw
 - Dropdown shows only boolean switches (Min=0, Max=1, Step=1)
 - Direct switch manipulation matching the Equipment panel's toggle behavior
 - Timeout detection with clear error messages
-- Localized validation messages (28 languages)
+- Localized validation messages (28 locales)
 
 ## Usage
 
@@ -26,11 +26,9 @@ This plugin provides a dedicated boolean toggle that directly manipulates the sw
 
 ## Localization
 
-The plugin UI label ("Switch") uses N.I.N.A.'s built-in localization. Validation and error messages support the following languages:
+The plugin UI label ("Switch") uses N.I.N.A.'s built-in localization. Validation and error messages support 28 locales. The language is automatically selected based on N.I.N.A.'s UI culture setting.
 
-English (default), French (Canada/France), German, Spanish, Italian, Portuguese, Dutch, Polish, Russian, Chinese (Simplified/Traditional/Hong Kong), Japanese, Korean, Swedish, Danish, Norwegian, Czech, Hungarian, Turkish, Greek, Ukrainian, Arabic, Catalan, Basque, and Galician.
-
-The language is automatically selected based on N.I.N.A.'s UI culture setting.
+Arabic (ar-SA), Basque (eu-ES), Catalan (ca-ES), Chinese Simplified (zh-CN), Chinese Traditional (zh-HK, zh-TW), Czech (cs-CZ), Danish (da-DK), Dutch (nl-NL), English (default, en-GB), French (fr-CA, fr-FR), Galician (gl-ES), German (de-DE), Greek (el-GR), Hungarian (hu-HU), Italian (it-IT), Japanese (ja-JP), Korean (ko-KR), Norwegian Bokmål (nb-NO), Polish (pl-PL), Portuguese (pt-PT), Russian (ru-RU), Spanish (es-ES), Swedish (sv-SE), Turkish (tr-TR), Ukrainian (uk-UA)
 
 ## Requirements
 
