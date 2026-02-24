@@ -2,9 +2,15 @@
 
 Plugins for [N.I.N.A.](https://nighttime-imaging.eu/) (Nighttime Imaging 'N' Astronomy).
 
-## Plugins
+## [SwitchCommands](SwitchCommands/)
 
-### UtilityPatterns
+Adds a "Set Switch" sequencer instruction for boolean switches (on/off). The built-in "Set Switch Value" instruction can fail for boolean switches due to its expression engine code path — this plugin directly manipulates the switch, replicating the Equipment panel's reliable toggle behavior.
+
+- Simple on/off checkbox control
+- Dropdown shows only boolean switches (Min=0, Max=1, Step=1)
+- Timeout detection with clear error messages
+
+## [UtilityPatterns](UtilityPatterns/)
 
 Adds compact date/time, binning, and telescope position tokens for image file patterns:
 
@@ -23,13 +29,7 @@ Adds compact date/time, binning, and telescope position tokens for image file pa
 | `$$CTIME$$` | `HHmmss` | Compact time (local) |
 | `$$CTIMEUTC$$` | `HHmmss` | Compact time (UTC) |
 
-### SwitchCommands
-
-Adds a "Set Switch" sequencer instruction for boolean switches (on/off). The built-in "Set Switch Value" instruction can fail for boolean switches due to its expression engine code path — this plugin directly manipulates the switch, replicating the Equipment panel's reliable toggle behavior.
-
-- Simple on/off checkbox control
-- Dropdown shows only boolean switches (Min=0, Max=1, Step=1)
-- Timeout detection with clear error messages
+---
 
 ## Installation
 
