@@ -1,0 +1,105 @@
+name: Auto Release
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      should_release: ${{ steps.check.outputs.should_release }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Determine release version
+        id: check
+        run: |
+          # Find latest semver tag
+          LAST_TAG=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
+          if [ -z "$LAST_TAG" ]; then
+            LAST_TAG="v0.0.0"
+          fi
+          echo "Last tag: $LAST_TAG"
+
+          # Check for commits since last tag
+          COMMIT_COUNT=$(git rev-list ${LAST_TAG}..HEAD --count)
+          if [ "$COMMIT_COUNT" -eq 0 ]; then
+            echo "No commits since $LAST_TAG"
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "$COMMIT_COUNT commits since $LAST_TAG"
+
+          # Parse conventional commits to determine bump level
+          BUMP="patch"
+          COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"%s")
+
+          if echo "$COMMITS" | grep -qE "^feat(\(.*\))?!:|BREAKING CHANGE"; then
+            BUMP="major"
+          elif echo "$COMMITS" | grep -qE "^feat(\(.*\))?:"; then
+            BUMP="minor"
+          fi
+
+          # Compute new version
+          VERSION="${LAST_TAG#v}"
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+          case $BUMP in
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            patch) PATCH=$((PATCH + 1)) ;;
+          esac
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+
+          echo "Bump: $BUMP -> v${NEW_VERSION}"
+          echo "should_release=true" >> "$GITHUB_OUTPUT"
+          echo "version=${NEW_VERSION}" >> "$GITHUB_OUTPUT"
+
+  ci:
+    needs: check
+    if: needs.check.outputs.should_release == 'true'
+    uses: ./.github/workflows/ci.yml
+
+  release:
+    needs: [check, ci]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore and build (UtilityPatterns)
+        run: |
+          dotnet restore UtilityPatterns/UtilityPatterns.sln
+          dotnet build UtilityPatterns/UtilityPatterns.sln -c Release --no-restore -p:Version=${{ needs.check.outputs.version }}
+
+      - name: Restore and build (SwitchCommands)
+        run: |
+          dotnet restore SwitchCommands/SwitchCommands.sln
+          dotnet build SwitchCommands/SwitchCommands.sln -c Release --no-restore -p:Version=${{ needs.check.outputs.version }}
+
+      - name: Create tag
+        run: |
+          git tag v${{ needs.check.outputs.version }}
+          git push origin v${{ needs.check.outputs.version }}
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.check.outputs.version }}
+          files: |
+            UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll
+            SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
