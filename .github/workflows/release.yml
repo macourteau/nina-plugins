@@ -18,6 +18,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v5
@@ -45,12 +47,31 @@ jobs:
       - name: Build (SwitchCommands)
         run: dotnet build SwitchCommands/SwitchCommands.sln -c Release --no-restore -p:Version=${{ steps.version.outputs.version }}
 
+      - name: Generate release notes
+        id: notes
+        shell: bash
+        run: |
+          CURRENT_TAG="${{ github.ref_name }}"
+          PREV_TAG=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | grep -v "^${CURRENT_TAG}$" | head -1)
+          if [ -n "$PREV_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"- %s (%h)" "${PREV_TAG}..${CURRENT_TAG}")
+          else
+            COMMITS=$(git log --pretty=format:"- %s (%h)" "${CURRENT_TAG}")
+          fi
+          {
+            echo "notes<<EOF"
+            echo "## What's Changed"
+            echo ""
+            echo "$COMMITS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
+          body: ${{ steps.notes.outputs.notes }}
           files: |
             UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll
             SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll
-          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -14,6 +14,7 @@ jobs:
     outputs:
       should_release: ${{ steps.check.outputs.should_release }}
       version: ${{ steps.check.outputs.version }}
+      notes: ${{ steps.check.outputs.notes }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -62,6 +63,16 @@ jobs:
           echo "should_release=true" >> "$GITHUB_OUTPUT"
           echo "version=${NEW_VERSION}" >> "$GITHUB_OUTPUT"
 
+          # Generate release notes
+          {
+            echo "notes<<EOF"
+            echo "## What's Changed"
+            echo ""
+            git log ${LAST_TAG}..HEAD --pretty=format:"- %s (%h)"
+            echo ""
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
   ci:
     needs: check
     if: needs.check.outputs.should_release == 'true'
@@ -100,6 +111,6 @@ jobs:
           files: |
             UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll
             SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll
-          generate_release_notes: true
+          body: ${{ needs.check.outputs.notes }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
