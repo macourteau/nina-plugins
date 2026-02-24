@@ -33,10 +33,12 @@ Adds compact date/time, binning, and telescope position tokens for image file pa
 
 ## Installation
 
-Download the DLL from [Releases](../../releases) and copy to:
+Download `NINAPlugins.zip` from [Releases](../../releases) and extract to:
 ```
-%localappdata%\NINA\Plugins\3.0.0\<PluginName>\
+%localappdata%\NINA\Plugins\3.0.0\
 ```
+
+The zip contains each plugin in its own subdirectory, ready to use. Individual DLLs are also available as separate downloads.
 
 ## Requirements
 

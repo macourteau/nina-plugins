@@ -99,6 +99,16 @@ jobs:
           dotnet restore SwitchCommands/SwitchCommands.sln
           dotnet build SwitchCommands/SwitchCommands.sln -c Release --no-restore -p:Version=${{ needs.check.outputs.version }}
 
+      - name: Package plugins zip
+        shell: pwsh
+        run: |
+          $staging = "staging"
+          New-Item -Path "$staging/Utility Patterns" -ItemType Directory
+          New-Item -Path "$staging/Switch Commands" -ItemType Directory
+          Copy-Item "UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll" "$staging/Utility Patterns/"
+          Copy-Item "SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll" "$staging/Switch Commands/"
+          Compress-Archive -Path "$staging/*" -DestinationPath "NINAPlugins.zip"
+
       - name: Create tag
         run: |
           git tag v${{ needs.check.outputs.version }}
@@ -109,6 +119,7 @@ jobs:
         with:
           tag_name: v${{ needs.check.outputs.version }}
           files: |
+            NINAPlugins.zip
             UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll
             SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll
           body: ${{ needs.check.outputs.notes }}
