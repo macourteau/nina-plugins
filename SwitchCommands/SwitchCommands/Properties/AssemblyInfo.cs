@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: InternalsVisibleTo("NINASwitchCommands.Tests")]
+[assembly: InternalsVisibleTo("SwitchCommands.Tests")]
 
 // [MANDATORY] The following GUID is used as a unique identifier of the plugin.
 [assembly: Guid("d4a2e9f7-6b3c-4d8e-a5f1-2c7b9e4d6a3f")]

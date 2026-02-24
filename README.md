@@ -4,7 +4,7 @@ Plugins for [N.I.N.A.](https://nighttime-imaging.eu/) (Nighttime Imaging 'N' Ast
 
 ## Plugins
 
-### NINAUtilityPatterns
+### UtilityPatterns
 
 Adds compact date/time, binning, and telescope position tokens for image file patterns:
 
@@ -23,7 +23,7 @@ Adds compact date/time, binning, and telescope position tokens for image file pa
 | `$$AZ$$` | `N.N` | Telescope azimuth in degrees |
 | `$$AIRMASS$$` | `N.N` | Airmass |
 
-### NINASwitchCommands
+### SwitchCommands
 
 Adds a "Set Switch" sequencer instruction for boolean switches (on/off). The built-in "Set Switch Value" instruction can fail for boolean switches due to its expression engine code path — this plugin directly manipulates the switch, replicating the Equipment panel's reliable toggle behavior.
 

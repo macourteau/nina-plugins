@@ -1,7 +1,7 @@
 using System.ComponentModel.Composition;
 using System.Windows;
 
-namespace NINASwitchCommands {
+namespace SwitchCommands {
     [Export(typeof(ResourceDictionary))]
     public partial class Datatemplates : ResourceDictionary {
         public Datatemplates() {

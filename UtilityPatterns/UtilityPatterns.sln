@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NINAUtilityPatterns", "NINAUtilityPatterns\NINAUtilityPatterns.csproj", "{2143D556-EEBD-468A-81D1-AE0F7568EBA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityPatterns", "UtilityPatterns\UtilityPatterns.csproj", "{2143D556-EEBD-468A-81D1-AE0F7568EBA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NINAUtilityPatterns.Tests", "NINAUtilityPatterns.Tests\NINAUtilityPatterns.Tests.csproj", "{C1D0BE59-3287-4438-8344-4FEB51D1CA08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityPatterns.Tests", "UtilityPatterns.Tests\UtilityPatterns.Tests.csproj", "{C1D0BE59-3287-4438-8344-4FEB51D1CA08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

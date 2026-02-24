@@ -39,14 +39,14 @@ The language is automatically selected based on N.I.N.A.'s UI culture setting.
 ## Installation
 
 1. Build the project or download the release DLL
-2. Copy `NINASwitchCommands.dll` to `%localappdata%\NINA\Plugins\3.0.0\Switch Commands\`
+2. Copy `SwitchCommands.dll` to `%localappdata%\NINA\Plugins\3.0.0\Switch Commands\`
 3. Restart N.I.N.A.
 4. The instruction will appear in the Advanced Sequencer under the Switch category
 
 ## Building
 
 ```bash
-cd NINASwitchCommands/NINASwitchCommands
+cd SwitchCommands/SwitchCommands
 dotnet build -c Release
 ```
 

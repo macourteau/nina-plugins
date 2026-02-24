@@ -5,7 +5,7 @@ using NINA.Equipment.Interfaces;
 using NINA.Equipment.Interfaces.Mediator;
 using NINA.Sequencer.SequenceItem;
 using NINA.Sequencer.Validations;
-using NINASwitchCommands.Locale;
+using SwitchCommands.Locale;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +15,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NINASwitchCommands {
+namespace SwitchCommands {
 
     [ExportMetadata("Name", "Set Switch")]
     [ExportMetadata("Description", "Sets a boolean switch on or off")]

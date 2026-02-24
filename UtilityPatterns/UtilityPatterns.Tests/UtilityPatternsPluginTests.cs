@@ -8,10 +8,10 @@ using NINA.WPF.Base.Interfaces.ViewModel;
 using NUnit.Framework;
 using System.Globalization;
 
-namespace NINAUtilityPatterns.Tests;
+namespace UtilityPatterns.Tests;
 
 [TestFixture]
-public class NINAUtilityPatternsPluginTests {
+public class UtilityPatternsPluginTests {
     private Mock<IOptionsVM> mockOptions = null!;
     private Mock<IImageSaveMediator> mockMediator = null!;
     private List<ImagePattern> registeredPatterns = null!;
@@ -29,14 +29,14 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldRegisterAllTwelvePatterns() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         registeredPatterns.Should().HaveCount(12);
     }
 
     [Test]
     public void Constructor_ShouldRegisterPatternsWithCorrectKeys() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var keys = registeredPatterns.Select(p => p.Key).ToList();
         keys.Should().Contain("$$CDATE$$");
@@ -55,7 +55,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldSetPreviewValuesInCorrectFormat() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var cdatePattern = registeredPatterns.First(p => p.Key == "$$CDATE$$");
         var ctimePattern = registeredPatterns.First(p => p.Key == "$$CTIME$$");
@@ -73,7 +73,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldSetUtcPreviewValuesInCorrectFormat() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var cdateutcPattern = registeredPatterns.First(p => p.Key == "$$CDATEUTC$$");
         var ctimeutcPattern = registeredPatterns.First(p => p.Key == "$$CTIMEUTC$$");
@@ -91,7 +91,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldSetDateMinus12PreviewValueInCorrectFormat() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var cdateminus12Pattern = registeredPatterns.First(p => p.Key == "$$CDATEMINUS12$$");
 
@@ -101,7 +101,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldSetBinningPreviewValuesToOne() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var binxPattern = registeredPatterns.First(p => p.Key == "$$BINX$$");
         var binyPattern = registeredPatterns.First(p => p.Key == "$$BINY$$");
@@ -112,7 +112,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldSubscribeToImageSaveEvents() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         mockMediator.VerifyAdd(m => m.BeforeImageSaved += It.IsAny<Func<object, BeforeImageSavedEventArgs, Task>>(), Times.Once);
         mockMediator.VerifyAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(), Times.Once);
@@ -120,7 +120,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public async Task Teardown_ShouldUnsubscribeFromEvents() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         await plugin.Teardown();
 
@@ -130,7 +130,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldSetAllPatternsToSameCategory() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var categories = registeredPatterns.Select(p => p.Category).Distinct().ToList();
         categories.Should().HaveCount(1);
@@ -139,7 +139,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldSetDescriptionsForAllPatterns() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         foreach (var pattern in registeredPatterns) {
             pattern.Description.Should().NotBeNullOrWhiteSpace($"Pattern {pattern.Key} should have a description");
@@ -153,7 +153,7 @@ public class NINAUtilityPatternsPluginTests {
             .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
             .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
 
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         // Create real event args with mocked IRenderedImage
         var mockRenderedImage = new Mock<IRenderedImage>();
@@ -171,7 +171,7 @@ public class NINAUtilityPatternsPluginTests {
             .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
             .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
 
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var mockRenderedImage = new Mock<IRenderedImage>();
         var eventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
@@ -193,7 +193,7 @@ public class NINAUtilityPatternsPluginTests {
             .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
             .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
 
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var mockRenderedImage = new Mock<IRenderedImage>();
         var eventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
@@ -215,7 +215,7 @@ public class NINAUtilityPatternsPluginTests {
             .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
             .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
 
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var mockRenderedImage = new Mock<IRenderedImage>();
         var eventArgs = new BeforeFinalizeImageSavedEventArgs(mockRenderedImage.Object);
@@ -247,7 +247,7 @@ public class NINAUtilityPatternsPluginTests {
             .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
             .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
 
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         // Create ImageMetaData with binning values
         var metaData = new ImageMetaData {
@@ -282,7 +282,7 @@ public class NINAUtilityPatternsPluginTests {
 
     [Test]
     public void Constructor_ShouldSetTelescopePreviewValues() {
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var altPattern = registeredPatterns.First(p => p.Key == "$$ALT$$");
         var azPattern = registeredPatterns.First(p => p.Key == "$$AZ$$");
@@ -305,7 +305,7 @@ public class NINAUtilityPatternsPluginTests {
             .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
             .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
 
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var metaData = new ImageMetaData {
             Telescope = {
@@ -348,7 +348,7 @@ public class NINAUtilityPatternsPluginTests {
             .SetupAdd(m => m.BeforeFinalizeImageSaved += It.IsAny<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>())
             .Callback<Func<object, BeforeFinalizeImageSavedEventArgs, Task>>(h => resolveHandler = h);
 
-        var plugin = new NINAUtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
+        var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         // ImageMetaData defaults Telescope values to double.NaN
         var metaData = new ImageMetaData();

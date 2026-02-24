@@ -7,7 +7,7 @@ using NINA.Equipment.Interfaces.Mediator;
 using NUnit.Framework;
 using System.Collections.ObjectModel;
 
-namespace NINASwitchCommands.Tests;
+namespace SwitchCommands.Tests;
 
 [TestFixture]
 public class SetSwitchTests {

@@ -3,15 +3,15 @@ using NINA.Plugin;
 using NINA.Plugin.Interfaces;
 using NINA.WPF.Base.Interfaces.Mediator;
 using NINA.WPF.Base.Interfaces.ViewModel;
-using NINAUtilityPatterns.Locale;
+using UtilityPatterns.Locale;
 using System;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace NINAUtilityPatterns {
+namespace UtilityPatterns {
     [Export(typeof(IPluginManifest))]
-    public class NINAUtilityPatternsPlugin : PluginBase {
+    public class UtilityPatternsPlugin : PluginBase {
         private readonly IImageSaveMediator imageSaveMediator;
 
         // Compact date/time patterns (local time)
@@ -46,7 +46,7 @@ namespace NINAUtilityPatterns {
         private double lastAirmass = double.NaN;
 
         [ImportingConstructor]
-        public NINAUtilityPatternsPlugin(IOptionsVM options, IImageSaveMediator imageSaveMediator) {
+        public UtilityPatternsPlugin(IOptionsVM options, IImageSaveMediator imageSaveMediator) {
             this.imageSaveMediator = imageSaveMediator;
 
             // Initialize patterns with current values for preview

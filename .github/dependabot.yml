@@ -1,7 +1,16 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "/NINAUtilityPatterns"
+    directory: "/UtilityPatterns"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    labels:
+      - "dependencies"
+
+  - package-ecosystem: "nuget"
+    directory: "/SwitchCommands"
     schedule:
       interval: "weekly"
     commit-message:

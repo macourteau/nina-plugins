@@ -15,6 +15,6 @@
     <PackageReference Include="FluentAssertions" Version="6.*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NINAUtilityPatterns\NINAUtilityPatterns.csproj" />
+    <ProjectReference Include="..\UtilityPatterns\UtilityPatterns.csproj" />
   </ItemGroup>
 </Project>

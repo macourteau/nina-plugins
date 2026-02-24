@@ -1,13 +1,13 @@
 using System.Globalization;
 using System.Resources;
 
-namespace NINAUtilityPatterns.Locale {
+namespace UtilityPatterns.Locale {
     /// <summary>
     /// Provides access to localized strings for the plugin.
     /// </summary>
     public static class Loc {
         private static readonly ResourceManager ResourceManager =
-            new ResourceManager("NINAUtilityPatterns.Locale.Strings", typeof(Loc).Assembly);
+            new ResourceManager("UtilityPatterns.Locale.Strings", typeof(Loc).Assembly);
 
         /// <summary>
         /// Gets a localized string by key, using the current UI culture.

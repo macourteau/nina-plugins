@@ -30,23 +30,23 @@ jobs:
           echo "Version: $version"
 
       - name: Restore (UtilityPatterns)
-        run: dotnet restore NINAUtilityPatterns/NINAUtilityPatterns.sln
+        run: dotnet restore UtilityPatterns/UtilityPatterns.sln
 
       - name: Build (UtilityPatterns)
-        run: dotnet build NINAUtilityPatterns/NINAUtilityPatterns.sln -c Release --no-restore -p:Version=${{ steps.version.outputs.version }}
+        run: dotnet build UtilityPatterns/UtilityPatterns.sln -c Release --no-restore -p:Version=${{ steps.version.outputs.version }}
 
       - name: Restore (SwitchCommands)
-        run: dotnet restore NINASwitchCommands/NINASwitchCommands.sln
+        run: dotnet restore SwitchCommands/SwitchCommands.sln
 
       - name: Build (SwitchCommands)
-        run: dotnet build NINASwitchCommands/NINASwitchCommands.sln -c Release --no-restore -p:Version=${{ steps.version.outputs.version }}
+        run: dotnet build SwitchCommands/SwitchCommands.sln -c Release --no-restore -p:Version=${{ steps.version.outputs.version }}
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            NINAUtilityPatterns/NINAUtilityPatterns/bin/Release/net8.0-windows/NINAUtilityPatterns.dll
-            NINASwitchCommands/NINASwitchCommands/bin/Release/net8.0-windows/NINASwitchCommands.dll
+            UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll
+            SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

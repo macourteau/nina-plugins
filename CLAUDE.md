@@ -3,8 +3,11 @@
 ## Build Commands
 
 ```bash
-cd NINAUtilityPatterns/NINAUtilityPatterns
-dotnet build -c Release
+# UtilityPatterns
+dotnet build UtilityPatterns/UtilityPatterns.sln -c Release
+
+# SwitchCommands
+dotnet build SwitchCommands/SwitchCommands.sln -c Release
 ```
 
 ## Commit Message Format
@@ -21,6 +24,12 @@ Examples:
 - `feat: Add $$CDATETIME$$ pattern token`
 - `fix: Resolve binning value not showing in preview`
 - `chore: Update NINA.Plugin to 3.1.0`
+
+## Documentation
+
+Documentation should describe the current state of the code — not when or why something changed. Avoid dated entries, changelogs, or language like "new" or "now" that highlights recent changes. Write as if reading the documentation years from now, when no part of the code is particularly newer than any other.
+
+Update documentation when the changes are relevant (e.g., adding a token, changing behavior), but do not update documentation just because code was touched.
 
 ## Releasing
 

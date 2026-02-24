@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>NINAUtilityPatterns</RootNamespace>
-    <AssemblyName>NINAUtilityPatterns</AssemblyName>
+    <RootNamespace>SwitchCommands</RootNamespace>
+    <AssemblyName>SwitchCommands</AssemblyName>
     <!-- Selectively disable auto-generation for attributes defined in AssemblyInfo.cs,
          while letting version attributes be auto-generated from the MSBuild properties
          so that -p:Version= from the release workflow is reflected in the assembly. -->

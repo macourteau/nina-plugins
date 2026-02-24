@@ -63,14 +63,14 @@ The language is automatically selected based on N.I.N.A.'s UI culture setting.
 ## Installation
 
 1. Build the project or download the release DLL
-2. Copy `NINAUtilityPatterns.dll` to `%localappdata%\NINA\Plugins\3.0.0\Utility Patterns\`
+2. Copy `UtilityPatterns.dll` to `%localappdata%\NINA\Plugins\3.0.0\Utility Patterns\`
 3. Restart N.I.N.A.
 4. The tokens will appear in Options > Imaging > File Patterns
 
 ## Building
 
 ```bash
-cd NINAUtilityPatterns/NINAUtilityPatterns
+cd UtilityPatterns/UtilityPatterns
 dotnet build -c Release
 ```
 
