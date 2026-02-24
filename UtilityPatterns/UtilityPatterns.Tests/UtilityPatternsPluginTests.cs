@@ -39,18 +39,18 @@ public class UtilityPatternsPluginTests {
         var plugin = new UtilityPatternsPlugin(mockOptions.Object, mockMediator.Object);
 
         var keys = registeredPatterns.Select(p => p.Key).ToList();
-        keys.Should().Contain("$$CDATE$$");
-        keys.Should().Contain("$$CTIME$$");
-        keys.Should().Contain("$$CDATETIME$$");
-        keys.Should().Contain("$$CDATEMINUS12$$");
-        keys.Should().Contain("$$CDATEUTC$$");
-        keys.Should().Contain("$$CTIMEUTC$$");
-        keys.Should().Contain("$$CDATETIMEUTC$$");
-        keys.Should().Contain("$$BINX$$");
-        keys.Should().Contain("$$BINY$$");
+        keys.Should().Contain("$$AIRMASS$$");
         keys.Should().Contain("$$ALT$$");
         keys.Should().Contain("$$AZ$$");
-        keys.Should().Contain("$$AIRMASS$$");
+        keys.Should().Contain("$$BINX$$");
+        keys.Should().Contain("$$BINY$$");
+        keys.Should().Contain("$$CDATE$$");
+        keys.Should().Contain("$$CDATEMINUS12$$");
+        keys.Should().Contain("$$CDATETIME$$");
+        keys.Should().Contain("$$CDATETIMEUTC$$");
+        keys.Should().Contain("$$CDATEUTC$$");
+        keys.Should().Contain("$$CTIME$$");
+        keys.Should().Contain("$$CTIMEUTC$$");
     }
 
     [Test]

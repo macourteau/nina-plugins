@@ -6,18 +6,18 @@ A plugin for N.I.N.A. (Nighttime Imaging 'N' Astronomy) that provides compact da
 
 | Token | Format | Example | Description |
 |-------|--------|---------|-------------|
-| `$$CDATE$$` | `yyyyMMdd` | `20260217` | Compact date (local time) |
-| `$$CTIME$$` | `HHmmss` | `210122` | Compact time (local time) |
-| `$$CDATETIME$$` | `yyyyMMdd_HHmmss` | `20260217_210122` | Compact date+time (local time) |
-| `$$CDATEMINUS12$$` | `yyyyMMdd` | `20260217` | Compact date shifted back 12 hours |
-| `$$CDATEUTC$$` | `yyyyMMdd` | `20260218` | Compact date (UTC) |
-| `$$CTIMEUTC$$` | `HHmmss` | `020122` | Compact time (UTC) |
-| `$$CDATETIMEUTC$$` | `yyyyMMdd_HHmmss` | `20260218_020122` | Compact date+time (UTC) |
-| `$$BINX$$` | `N` | `1` or `2` | Horizontal binning factor |
-| `$$BINY$$` | `N` | `1` or `2` | Vertical binning factor |
+| `$$AIRMASS$$` | `N.N` | `1.4` or `NA` | Airmass |
 | `$$ALT$$` | `N.N` | `45.2` or `NA` | Telescope altitude in degrees |
 | `$$AZ$$` | `N.N` | `180.5` or `NA` | Telescope azimuth in degrees |
-| `$$AIRMASS$$` | `N.N` | `1.4` or `NA` | Airmass |
+| `$$BINX$$` | `N` | `1` or `2` | Horizontal binning factor |
+| `$$BINY$$` | `N` | `1` or `2` | Vertical binning factor |
+| `$$CDATE$$` | `yyyyMMdd` | `20260217` | Compact date (local time) |
+| `$$CDATEMINUS12$$` | `yyyyMMdd` | `20260217` | Compact date shifted back 12 hours |
+| `$$CDATETIME$$` | `yyyyMMdd_HHmmss` | `20260217_210122` | Compact date+time (local time) |
+| `$$CDATETIMEUTC$$` | `yyyyMMdd_HHmmss` | `20260218_020122` | Compact date+time (UTC) |
+| `$$CDATEUTC$$` | `yyyyMMdd` | `20260218` | Compact date (UTC) |
+| `$$CTIME$$` | `HHmmss` | `210122` | Compact time (local time) |
+| `$$CTIMEUTC$$` | `HHmmss` | `020122` | Compact time (UTC) |
 
 ## Use Cases
 

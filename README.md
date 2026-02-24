@@ -10,18 +10,18 @@ Adds compact date/time, binning, and telescope position tokens for image file pa
 
 | Token | Format | Description |
 |-------|--------|-------------|
-| `$$CDATE$$` | `yyyyMMdd` | Compact date (local) |
-| `$$CTIME$$` | `HHmmss` | Compact time (local) |
-| `$$CDATETIME$$` | `yyyyMMdd_HHmmss` | Compact date+time (local) |
-| `$$CDATEMINUS12$$` | `yyyyMMdd` | Date shifted back 12 hours |
-| `$$CDATEUTC$$` | `yyyyMMdd` | Compact date (UTC) |
-| `$$CTIMEUTC$$` | `HHmmss` | Compact time (UTC) |
-| `$$CDATETIMEUTC$$` | `yyyyMMdd_HHmmss` | Compact date+time (UTC) |
-| `$$BINX$$` | `N` | Horizontal binning factor |
-| `$$BINY$$` | `N` | Vertical binning factor |
+| `$$AIRMASS$$` | `N.N` | Airmass |
 | `$$ALT$$` | `N.N` | Telescope altitude in degrees |
 | `$$AZ$$` | `N.N` | Telescope azimuth in degrees |
-| `$$AIRMASS$$` | `N.N` | Airmass |
+| `$$BINX$$` | `N` | Horizontal binning factor |
+| `$$BINY$$` | `N` | Vertical binning factor |
+| `$$CDATE$$` | `yyyyMMdd` | Compact date (local) |
+| `$$CDATEMINUS12$$` | `yyyyMMdd` | Date shifted back 12 hours |
+| `$$CDATETIME$$` | `yyyyMMdd_HHmmss` | Compact date+time (local) |
+| `$$CDATETIMEUTC$$` | `yyyyMMdd_HHmmss` | Compact date+time (UTC) |
+| `$$CDATEUTC$$` | `yyyyMMdd` | Compact date (UTC) |
+| `$$CTIME$$` | `HHmmss` | Compact time (local) |
+| `$$CTIMEUTC$$` | `HHmmss` | Compact time (UTC) |
 
 ### SwitchCommands
 
