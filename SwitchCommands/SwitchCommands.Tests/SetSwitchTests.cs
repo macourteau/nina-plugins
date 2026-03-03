@@ -319,6 +319,36 @@ public class SetSwitchTests {
     }
 
     [Test]
+    public async Task Execute_WhenSwitchAlreadyOn_ShouldSkipSetValue() {
+        var boolSwitch = CreateMockBooleanSwitch(0, "Heater", value: 1);
+        var info = CreateConnectedInfo(boolSwitch.Object);
+        mockMediator.Setup(m => m.GetInfo()).Returns(info);
+
+        var sut = new SetSwitch(mockMediator.Object);
+        sut.Validate();
+        sut.OnOff = true;
+
+        await sut.Execute(new Progress<ApplicationStatus>(), CancellationToken.None);
+
+        boolSwitch.Verify(s => s.SetValue(), Times.Never);
+    }
+
+    [Test]
+    public async Task Execute_WhenSwitchAlreadyOff_ShouldSkipSetValue() {
+        var boolSwitch = CreateMockBooleanSwitch(0, "Heater", value: 0);
+        var info = CreateConnectedInfo(boolSwitch.Object);
+        mockMediator.Setup(m => m.GetInfo()).Returns(info);
+
+        var sut = new SetSwitch(mockMediator.Object);
+        sut.Validate();
+        sut.OnOff = false;
+
+        await sut.Execute(new Progress<ApplicationStatus>(), CancellationToken.None);
+
+        boolSwitch.Verify(s => s.SetValue(), Times.Never);
+    }
+
+    [Test]
     public void Execute_WhenNoSwitchSelected_ShouldThrow() {
         var boolSwitch = CreateMockBooleanSwitch(0, "Heater");
         var info = CreateConnectedInfo(boolSwitch.Object);

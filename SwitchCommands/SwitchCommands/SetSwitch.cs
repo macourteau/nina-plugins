@@ -125,7 +125,17 @@ namespace SwitchCommands {
                 throw new SequenceEntityFailedException(Loc.NoSwitchSelected);
             }
 
-            targetSwitch.TargetValue = OnOff ? 1.0 : 0.0;
+            double targetValue = OnOff ? 1.0 : 0.0;
+
+            // If the switch is already at the target value, skip the SetValue call.
+            // Some switch drivers behave unexpectedly when SetValue is called with
+            // the current value (e.g., toggling or failing to report the value),
+            // which causes the confirmation loop below to time out.
+            if (Math.Abs(targetSwitch.Value - targetValue) <= SwitchTolerance) {
+                return;
+            }
+
+            targetSwitch.TargetValue = targetValue;
             targetSwitch.SetValue();
 
             // Wait briefly then poll once, matching SwitchVM.SetSwitchValue behavior.
