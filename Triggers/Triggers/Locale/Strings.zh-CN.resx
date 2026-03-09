@@ -130,7 +130,7 @@
     <value>校准位置的赤纬（度）。接近零的赤纬可提供最准确的导星器校准。</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>校准位置距子午线东或西的度数。正偏移将目标放置在子午线以东（GEM 上赤道仪柱的西侧），负偏移放置在以西。</value>
+    <value>校准位置距子午线的度数。校准目标会自动放置在与当前指向方向相同的子午线一侧，以避免赤道仪柱翻转。</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>勾选时，返回原始目标后执行迭代 plate-solve 居中，实现精确重新居中。未勾选时，执行直接回移。</value>

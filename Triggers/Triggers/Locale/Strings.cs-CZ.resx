@@ -130,7 +130,7 @@
     <value>Deklinace (ve stupních) pro kalibrační pozici. Deklinace blízko nuly poskytuje nejpřesnější kalibraci guideru.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Stupně východně nebo západně od meridiánu pro kalibrační pozici. Kladný posun umístí cíl východně od meridiánu (západní strana sloupku na GEM), záporný posun jej umístí západně.</value>
+    <value>Stupně od meridiánu pro kalibrační pozici. Kalibrační cíl je automaticky umístěn na stejnou stranu meridiánu jako aktuální směr zamíření, aby se zabránilo otočení sloupku.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Když je zaškrtnuto, provede iterativní centrování pomocí plate-solve po návratu k původnímu cíli pro přesné přecentrování. Když není zaškrtnuto, provede přímý přesun zpět.</value>

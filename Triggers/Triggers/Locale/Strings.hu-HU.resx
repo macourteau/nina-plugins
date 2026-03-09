@@ -130,7 +130,7 @@
     <value>Deklináció (fokban) a kalibrációs pozícióhoz. A nullához közeli deklináció biztosítja a legpontosabb guider kalibrációt.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Fokok keletre vagy nyugatra a meridiántól a kalibrációs pozícióhoz. Pozitív eltolás a célt a meridián keleti oldalára helyezi (GEM oszlopának nyugati oldala), negatív eltolás nyugatra.</value>
+    <value>Fokok a meridiántól a kalibrációs pozícióhoz. A kalibrációs cél automatikusan a meridián ugyanazon oldalára kerül, mint az aktuális mutatási irány, hogy elkerüljük az oszlop átfordulását.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Ha be van jelölve, iteratív plate-solve központosítást végez az eredeti célhoz való visszatérés után, pontos újraközépre állításhoz. Ha nincs bejelölve, közvetlen mozgással tér vissza.</value>

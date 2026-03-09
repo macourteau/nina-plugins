@@ -130,7 +130,7 @@
     <value>Declinació (en graus) per a la posició de calibració. Una declinació propera a zero proporciona la calibració més precisa del guiatge.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Graus a l'est o a l'oest del meridià per a la posició de calibració. Un desplaçament positiu col·loca l'objectiu a l'est del meridià (costat oest del pilar en un GEM), un desplaçament negatiu el col·loca a l'oest.</value>
+    <value>Graus des del meridià per a la posició de calibració. L'objectiu de calibració es col·loca automàticament al mateix costat del meridià que la direcció d'apuntat actual per evitar un gir del pilar.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Si està marcat, realitza un centratge iteratiu amb plate-solve després de tornar a l'objectiu original, per a un recentratge precís. Si no està marcat, realitza un desplaçament directe de retorn.</value>

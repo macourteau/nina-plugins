@@ -130,7 +130,7 @@
     <value>Deklinazioa (graduetan) kalibraziorako posiziorako. Zero gertukoaren deklinazioak gidariaren kalibraziorik zehatzena ematen du.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Graduak ekialdera edo mendebaldera meridianotik kalibraziorako posiziorako. Desplazamendu positiboak helburua meridianoaren ekialdean jartzen du (GEM bateko zutabearen mendebaldean), desplazamendu negatiboak mendebaldean.</value>
+    <value>Graduak meridianotik kalibraziorako posiziorako. Kalibrazio-helburua automatikoki meridianoaren alde berean jartzen da uneko seinalatze-norabidea bezala, zutabearen biraketa saihesteko.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Markatuta dagoenean, plate-solve bidezko zentratu iteratiboa egiten du jatorrizko helburura itzuli ondoren, birzentratu zehatzerako. Markatu gabe dagoenean, zuzeneko mugimendua egiten du itzultzeko.</value>

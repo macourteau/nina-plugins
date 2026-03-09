@@ -130,7 +130,7 @@
     <value>Déclinaison (en degrés) pour la position de calibration. Une déclinaison proche de zéro fournit la calibration la plus précise du guideur.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Degrés à l'est ou à l'ouest du méridien pour la position de calibration. Un décalage positif place la cible à l'est du méridien (côté ouest du pilier sur un GEM), un décalage négatif la place à l'ouest.</value>
+    <value>Degrés depuis le méridien pour la position de calibration. La cible de calibration est automatiquement placée du même côté du méridien que la direction de pointage actuelle pour éviter un retournement du pilier.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Si coché, effectue un centrage itératif par plate-solve après le retour à la cible d'origine, pour un recentrage précis. Si décoché, effectue un retour par déplacement direct.</value>

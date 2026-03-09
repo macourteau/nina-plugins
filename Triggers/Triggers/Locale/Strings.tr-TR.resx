@@ -130,7 +130,7 @@
     <value>Kalibrasyon konumu için deklinasyon (derece). Sıfıra yakın deklinasyon en doğru rehber kalibrasyonunu sağlar.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Kalibrasyon konumu için meridyenin doğusunda veya batısındaki derece. Pozitif ofset, hedefi meridyenin doğusuna (GEM üzerinde sütunun batı tarafı) yerleştirir, negatif ofset batıya yerleştirir.</value>
+    <value>Kalibrasyon konumu için meridyenden derece. Kalibrasyon hedefi, sütun dönüşünü önlemek için otomatik olarak meridyenin mevcut işaret yönüyle aynı tarafına yerleştirilir.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>İşaretlendiğinde, orijinal hedefe dönüşten sonra hassas yeniden merkezleme için yinelemeli plate-solve merkezleme gerçekleştirir. İşaretlenmediğinde, doğrudan geri hareket eder.</value>

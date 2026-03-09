@@ -130,7 +130,7 @@
     <value>Deklination (i grader) för kalibreringspositionen. Deklination nära noll ger den mest exakta guiderkalibreringen.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Grader öst eller väst om meridianen för kalibreringspositionen. En positiv förskjutning placerar målet öst om meridianen (västsidan av pelaren på en GEM), en negativ förskjutning placerar det väst.</value>
+    <value>Grader från meridianen för kalibreringspositionen. Kalibreringsmålet placeras automatiskt på samma sida av meridianen som den aktuella pekningsriktningen för att undvika en pelarvändning.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>När markerat utförs en iterativ plate-solve-centrering efter återkomst till det ursprungliga målet, för exakt omcentrering. När avmarkerat utförs en direkt svängning tillbaka.</value>

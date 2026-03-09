@@ -130,7 +130,7 @@
     <value>Declination (in degrees) for the calibration position. Near-zero declination provides the most accurate guider calibration.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Degrees east or west of the meridian for the calibration position. A positive offset places the target east of the meridian (west side of the pier on a GEM), a negative offset places it west.</value>
+    <value>Degrees from the meridian for the calibration position. The calibration target is automatically placed on the same side of the meridian as the current pointing direction to avoid a pier flip.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>When checked, performs an iterative plate-solve centering after returning to the original target, for precise re-centering. When unchecked, performs a blind slew back.</value>

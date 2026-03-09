@@ -130,7 +130,7 @@
     <value>Deklination (in Grad) für die Kalibrierungsposition. Eine Deklination nahe null liefert die genaueste Guider-Kalibrierung.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Grad östlich oder westlich des Meridians für die Kalibrierungsposition. Ein positiver Versatz platziert das Ziel östlich des Meridians (Westseite der Säule bei einem GEM), ein negativer Versatz platziert es westlich.</value>
+    <value>Grad vom Meridian für die Kalibrierungsposition. Das Kalibrierungsziel wird automatisch auf dieselbe Seite des Meridians wie die aktuelle Ausrichtungsrichtung platziert, um ein Schwenken der Säule zu vermeiden.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Wenn aktiviert, wird nach der Rückkehr zum ursprünglichen Ziel eine iterative Plate-solve-Zentrierung für präzise Neuzentrierung durchgeführt. Wenn deaktiviert, wird ein direkter Schwenk zurück durchgeführt.</value>

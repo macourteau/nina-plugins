@@ -205,9 +205,11 @@ namespace Triggers {
             monitor = new GuideErrorMonitor { WindowMinutes = WindowMinutes };
             var pixelScale = guiderMediator.GetInfo().PixelScale;
             monitor.Start(guiderMediator, pixelScale);
+            Logger.Info($"RecalibrateGuider initialized - axis: {RmsAxis}, threshold: {RmsThresholdArcsec} arcsec, window: {WindowMinutes} min, cooldown: {CooldownMinutes} min, pixel scale: {pixelScale} arcsec/px");
         }
 
         public override void SequenceBlockTeardown() {
+            Logger.Info("RecalibrateGuider shutting down");
             monitor?.Stop();
         }
 
@@ -219,6 +221,7 @@ namespace Triggers {
             if (lastCalibrationTime.HasValue) {
                 var elapsed = DateTime.UtcNow - lastCalibrationTime.Value;
                 if (elapsed.TotalMinutes < CooldownMinutes) {
+                    Logger.Debug($"RecalibrateGuider cooldown active - {elapsed.TotalMinutes:F1} of {CooldownMinutes:F1} min elapsed");
                     return false;
                 }
             }
@@ -236,7 +239,12 @@ namespace Triggers {
             CurrentRms = rms;
             RaisePropertyChanged(nameof(MonitorDataPoints));
 
-            return rms > RmsThresholdArcsec;
+            if (rms > RmsThresholdArcsec) {
+                Logger.Warning($"RecalibrateGuider triggered - {RmsAxis} RMS {rms:F2} arcsec exceeds threshold {RmsThresholdArcsec:F2} arcsec ({monitor.DataPoints} data points over {monitor.BufferSpanMinutes:F1} min)");
+                return true;
+            }
+
+            return false;
         }
 
         private double GetCurrentRmsValue() {
@@ -259,6 +267,8 @@ namespace Triggers {
         }
 
         private async Task ExecuteInPlace(IProgress<ApplicationStatus> progress, CancellationToken token) {
+            Logger.Info("RecalibrateGuider executing in-place calibration");
+
             progress?.Report(new ApplicationStatus { Status = PluginLoc.StoppingGuiding });
             await guiderMediator.StopGuiding(token);
 
@@ -267,18 +277,22 @@ namespace Triggers {
 
             progress?.Report(new ApplicationStatus { Status = PluginLoc.StartingCalibration });
             await guiderMediator.StartGuiding(forceCalibration: true, progress, token);
+
+            Logger.Info("RecalibrateGuider in-place calibration complete");
         }
 
         private async Task ExecuteWithSlew(IProgress<ApplicationStatus> progress, CancellationToken token) {
             var savedPosition = telescopeMediator.GetCurrentPosition();
+            Logger.Info($"RecalibrateGuider executing with slew - saved position RA: {savedPosition.RA:F4}h, Dec: {savedPosition.Dec:F4}°");
 
             progress?.Report(new ApplicationStatus { Status = PluginLoc.StoppingGuiding });
             await guiderMediator.StopGuiding(token);
 
-            // Compute and slew to calibration target
+            // Compute and slew to calibration target (on the same side of the meridian as the current pointing)
             var telescopeInfo = telescopeMediator.GetInfo();
             var calibrationTarget = CalibrationLocationCalculator.ComputeOptimalCalibrationTarget(
-                telescopeInfo.SiderealTime, MeridianOffsetDeg, CalibrationDec);
+                telescopeInfo.SiderealTime, savedPosition.RA, MeridianOffsetDeg, CalibrationDec);
+            Logger.Info($"RecalibrateGuider slewing to calibration position RA: {calibrationTarget.RA:F4}h, Dec: {calibrationTarget.Dec:F4}° (LST: {telescopeInfo.SiderealTime:F4}h, current RA: {savedPosition.RA:F4}h, meridian offset: {MeridianOffsetDeg}°)");
 
             progress?.Report(new ApplicationStatus { Status = PluginLoc.SlewingToCalibrationPosition });
             await telescopeMediator.SlewToCoordinatesAsync(calibrationTarget, token);
@@ -297,6 +311,7 @@ namespace Triggers {
 
             // Return to original position
             if (PlateSolveRecenter) {
+                Logger.Info("RecalibrateGuider returning to target with plate-solve centering");
                 progress?.Report(new ApplicationStatus { Status = PluginLoc.PlateSolveRecentering });
                 var centerItem = new Center(
                     profileService, telescopeMediator, imagingMediator, filterWheelMediator,
@@ -305,6 +320,7 @@ namespace Triggers {
                 centerItem.Coordinates = new InputCoordinates(savedPosition);
                 await centerItem.Execute(progress, token);
             } else {
+                Logger.Info("RecalibrateGuider returning to target with blind slew");
                 progress?.Report(new ApplicationStatus { Status = PluginLoc.ReturningToTarget });
                 await telescopeMediator.SlewToCoordinatesAsync(savedPosition, token);
             }
@@ -314,6 +330,8 @@ namespace Triggers {
 
             progress?.Report(new ApplicationStatus { Status = PluginLoc.ResumingGuiding });
             await guiderMediator.StartGuiding(forceCalibration: false, progress, token);
+
+            Logger.Info("RecalibrateGuider slew calibration complete, guiding resumed");
         }
 
         public override void AfterParentChanged() {

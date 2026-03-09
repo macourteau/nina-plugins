@@ -130,7 +130,7 @@
     <value>Declinação (em graus) para a posição de calibração. Uma declinação próxima de zero fornece a calibração mais precisa da guiagem.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Graus a este ou oeste do meridiano para a posição de calibração. Um desvio positivo coloca o alvo a este do meridiano (lado oeste do pilar num GEM), um desvio negativo coloca-o a oeste.</value>
+    <value>Graus a partir do meridiano para a posição de calibração. O alvo de calibração é colocado automaticamente no mesmo lado do meridiano que a direção de apontamento atual para evitar uma inversão do pilar.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Quando marcado, efetua uma centragem iterativa com plate-solve após regressar ao alvo original, para uma recentragem precisa. Quando desmarcado, efetua um deslocamento direto de regresso.</value>

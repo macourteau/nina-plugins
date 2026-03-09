@@ -130,7 +130,7 @@
     <value>キャリブレーション位置の赤緯（度）。ゼロに近い赤緯が最も正確なガイダーキャリブレーションを提供します。</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>キャリブレーション位置の子午線からの東西方向の角度。正のオフセットはターゲットを子午線の東（GEM のピアの西側）に配置し、負のオフセットは西に配置します。</value>
+    <value>キャリブレーション位置の子午線からの角度。キャリブレーションターゲットは、ピアの反転を避けるために、現在の指向方向と同じ子午線の側に自動的に配置されます。</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>チェック時、元のターゲットに戻った後に反復的な plate-solve センタリングを実行し、正確な再センタリングを行います。未チェック時、直接移動で戻ります。</value>

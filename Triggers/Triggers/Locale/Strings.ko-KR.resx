@@ -130,7 +130,7 @@
     <value>보정 위치의 적위(도). 0에 가까운 적위가 가장 정확한 가이더 보정을 제공합니다.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>보정 위치의 자오선에서 동쪽 또는 서쪽 방향 각도. 양수 오프셋은 대상을 자오선 동쪽(GEM 피어의 서쪽)에, 음수 오프셋은 서쪽에 배치합니다.</value>
+    <value>보정 위치의 자오선으로부터의 각도. 보정 대상은 피어 반전을 방지하기 위해 현재 지향 방향과 같은 자오선 쪽에 자동으로 배치됩니다.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>선택 시, 원래 대상으로 복귀한 후 반복적인 plate-solve 센터링을 수행하여 정밀하게 재센터링합니다. 미선택 시, 직접 이동으로 복귀합니다.</value>

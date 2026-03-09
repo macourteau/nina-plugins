@@ -130,7 +130,7 @@
     <value>Declinatie (in graden) voor de kalibratiepositie. Een declinatie dicht bij nul levert de meest nauwkeurige guider-kalibratie.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Graden oost of west van de meridiaan voor de kalibratiepositie. Een positieve offset plaatst het doel ten oosten van de meridiaan (westzijde van de pier bij een GEM), een negatieve offset plaatst het ten westen.</value>
+    <value>Graden vanaf de meridiaan voor de kalibratiepositie. Het kalibratiedoel wordt automatisch aan dezelfde kant van de meridiaan geplaatst als de huidige richtingsaanwijzing om een pieromkering te voorkomen.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Indien aangevinkt, voert een iteratieve plate-solve-centrering uit na terugkeer naar het oorspronkelijke doel, voor nauwkeurige hercentrering. Indien niet aangevinkt, wordt een directe verplaatsing terug uitgevoerd.</value>

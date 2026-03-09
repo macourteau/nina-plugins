@@ -130,7 +130,7 @@
     <value>Declinazione (in gradi) per la posizione di calibrazione. Una declinazione vicina a zero fornisce la calibrazione più accurata della guida.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Gradi a est o a ovest del meridiano per la posizione di calibrazione. Un offset positivo posiziona l'obiettivo a est del meridiano (lato ovest del pilastro su un GEM), un offset negativo lo posiziona a ovest.</value>
+    <value>Gradi dal meridiano per la posizione di calibrazione. L'obiettivo di calibrazione viene posizionato automaticamente sullo stesso lato del meridiano della direzione di puntamento corrente per evitare un ribaltamento del pilastro.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Se selezionato, esegue un centraggio iterativo con plate-solve dopo il ritorno all'obiettivo originale, per una ricentratura precisa. Se non selezionato, esegue uno spostamento diretto di ritorno.</value>

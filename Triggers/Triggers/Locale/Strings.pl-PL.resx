@@ -130,7 +130,7 @@
     <value>Deklinacja (w stopniach) dla pozycji kalibracji. Deklinacja bliska zeru zapewnia najdokładniejszą kalibrację guidera.</value>
   </data>
   <data name="TooltipMeridianOffset" xml:space="preserve">
-    <value>Stopnie na wschód lub zachód od południka dla pozycji kalibracji. Dodatnie przesunięcie umieszcza cel na wschód od południka (zachodnia strona filara na GEM), ujemne przesunięcie umieszcza go na zachód.</value>
+    <value>Stopnie od południka dla pozycji kalibracji. Cel kalibracji jest automatycznie umieszczany po tej samej stronie południka co bieżący kierunek celowania, aby uniknąć obrotu filara.</value>
   </data>
   <data name="TooltipPlateSolveRecenter" xml:space="preserve">
     <value>Gdy zaznaczone, wykonuje iteracyjne centrowanie przez plate-solve po powrocie do pierwotnego celu, dla precyzyjnego ponownego centrowania. Gdy odznaczone, wykonuje bezpośrednie przesunięcie z powrotem.</value>
