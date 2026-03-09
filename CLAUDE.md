@@ -8,6 +8,9 @@ dotnet build UtilityPatterns/UtilityPatterns.sln -c Release
 
 # SwitchCommands
 dotnet build SwitchCommands/SwitchCommands.sln -c Release
+
+# Triggers
+dotnet build Triggers/Triggers.sln -c Release
 ```
 
 ## Commit Message Format

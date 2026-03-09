@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Triggers</RootNamespace>
+    <AssemblyName>Triggers</AssemblyName>
+    <!-- Selectively disable auto-generation for attributes defined in AssemblyInfo.cs,
+         while letting version attributes be auto-generated from the MSBuild properties
+         so that -p:Version= from the release workflow is reflected in the assembly. -->
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>$(Version).0</AssemblyVersion>
+    <FileVersion>$(Version).0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NINA.Plugin" Version="3.2.0.9001" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Locale\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Update="Locale\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

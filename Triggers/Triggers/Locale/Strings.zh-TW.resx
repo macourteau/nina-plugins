@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecalibrateGuiderName" xml:space="preserve">
+    <value>重新校準導星器</value>
+  </data>
+  <data name="RecalibrateGuiderDescription" xml:space="preserve">
+    <value>當 RMS 誤差超過閾值時重新校準導星器</value>
+  </data>
+  <data name="GuiderNotConnected" xml:space="preserve">
+    <value>導星器未連接</value>
+  </data>
+  <data name="TelescopeNotConnected" xml:space="preserve">
+    <value>望遠鏡未連接</value>
+  </data>
+  <data name="InvalidRmsThreshold" xml:space="preserve">
+    <value>RMS 閾值必須大於零</value>
+  </data>
+  <data name="InvalidWindowMinutes" xml:space="preserve">
+    <value>時間窗口必須大於零</value>
+  </data>
+  <data name="StoppingGuiding" xml:space="preserve">
+    <value>正在停止導星</value>
+  </data>
+  <data name="ClearingCalibration" xml:space="preserve">
+    <value>正在清除導星器校準</value>
+  </data>
+  <data name="StartingCalibration" xml:space="preserve">
+    <value>正在開始導星器校準</value>
+  </data>
+  <data name="SlewingToCalibrationPosition" xml:space="preserve">
+    <value>正在移動到校準位置</value>
+  </data>
+  <data name="ReturningToTarget" xml:space="preserve">
+    <value>正在返回目標</value>
+  </data>
+  <data name="PlateSolveRecentering" xml:space="preserve">
+    <value>正在透過 plate-solve 重新置中到目標</value>
+  </data>
+  <data name="SelectingGuideStar" xml:space="preserve">
+    <value>正在選擇導星</value>
+  </data>
+  <data name="ResumingGuiding" xml:space="preserve">
+    <value>正在恢復導星</value>
+  </data>
+  <data name="LblWhen" xml:space="preserve">
+    <value>當</value>
+  </data>
+  <data name="LblRmsOver" xml:space="preserve">
+    <value>RMS 在</value>
+  </data>
+  <data name="LblMinExceeds" xml:space="preserve">
+    <value>分鐘內超過</value>
+  </data>
+  <data name="LblCurrent" xml:space="preserve">
+    <value>目前：</value>
+  </data>
+  <data name="LblSlewToOptimal" xml:space="preserve">
+    <value>移動到最佳校準位置</value>
+  </data>
+  <data name="LblDec" xml:space="preserve">
+    <value>Dec：</value>
+  </data>
+  <data name="LblMeridianOffset" xml:space="preserve">
+    <value>子午線偏移：</value>
+  </data>
+  <data name="LblPlateSolveRecenter" xml:space="preserve">
+    <value>返回時透過 plate-solve 重新置中</value>
+  </data>
+  <data name="LblCooldown" xml:space="preserve">
+    <value>冷卻時間：</value>
+  </data>
+  <data name="LblMin" xml:space="preserve">
+    <value>分鐘</value>
+  </data>
+  <data name="LblDataPoints" xml:space="preserve">
+    <value>資料點</value>
+  </data>
+  <data name="TooltipRmsAxis" xml:space="preserve">
+    <value>要監控的導星誤差軸：總計（RA + Dec 合計）、僅 RA 或僅 Dec</value>
+  </data>
+  <data name="TooltipWindowMinutes" xml:space="preserve">
+    <value>用於計算 RMS 誤差的滾動時間窗口持續時間（分鐘）。觸發器會等待此窗口填滿後再進行評估。</value>
+  </data>
+  <data name="TooltipRmsThreshold" xml:space="preserve">
+    <value>RMS 誤差閾值（角秒）。當 RMS 超過此值時觸發重新校準。</value>
+  </data>
+  <data name="TooltipSlewToOptimal" xml:space="preserve">
+    <value>勾選時，將望遠鏡移動到子午線附近的最佳位置進行校準，然後返回。未勾選時，在原位校準。</value>
+  </data>
+  <data name="TooltipCalibrationDec" xml:space="preserve">
+    <value>校準位置的赤緯（度）。接近零的赤緯可提供最準確的導星器校準。</value>
+  </data>
+  <data name="TooltipMeridianOffset" xml:space="preserve">
+    <value>校準位置距子午線東或西的度數。正偏移將目標放置在子午線以東（GEM 上赤道儀柱的西側），負偏移放置在以西。</value>
+  </data>
+  <data name="TooltipPlateSolveRecenter" xml:space="preserve">
+    <value>勾選時，返回原始目標後執行迭代 plate-solve 置中，實現精確重新置中。未勾選時，執行直接回移。</value>
+  </data>
+  <data name="TooltipCooldown" xml:space="preserve">
+    <value>重新校準後再次觸發前的最短等待時間（分鐘），以防止過度重新校準。</value>
+  </data>
+</root>

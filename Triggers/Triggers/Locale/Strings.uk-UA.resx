@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecalibrateGuiderName" xml:space="preserve">
+    <value>Перекалібрування гіда</value>
+  </data>
+  <data name="RecalibrateGuiderDescription" xml:space="preserve">
+    <value>Перекалібровує гід, коли помилка RMS перевищує порогове значення</value>
+  </data>
+  <data name="GuiderNotConnected" xml:space="preserve">
+    <value>Гід не підключено</value>
+  </data>
+  <data name="TelescopeNotConnected" xml:space="preserve">
+    <value>Телескоп не підключено</value>
+  </data>
+  <data name="InvalidRmsThreshold" xml:space="preserve">
+    <value>Порогове значення RMS повинно бути більше нуля</value>
+  </data>
+  <data name="InvalidWindowMinutes" xml:space="preserve">
+    <value>Часове вікно повинно бути більше нуля</value>
+  </data>
+  <data name="StoppingGuiding" xml:space="preserve">
+    <value>Зупинка гідування</value>
+  </data>
+  <data name="ClearingCalibration" xml:space="preserve">
+    <value>Очищення калібрування гіда</value>
+  </data>
+  <data name="StartingCalibration" xml:space="preserve">
+    <value>Запуск калібрування гіда</value>
+  </data>
+  <data name="SlewingToCalibrationPosition" xml:space="preserve">
+    <value>Переміщення до позиції калібрування</value>
+  </data>
+  <data name="ReturningToTarget" xml:space="preserve">
+    <value>Повернення до цілі</value>
+  </data>
+  <data name="PlateSolveRecentering" xml:space="preserve">
+    <value>Повторне центрування за plate-solve на ціль</value>
+  </data>
+  <data name="SelectingGuideStar" xml:space="preserve">
+    <value>Вибір направляючої зірки</value>
+  </data>
+  <data name="ResumingGuiding" xml:space="preserve">
+    <value>Відновлення гідування</value>
+  </data>
+  <data name="LblWhen" xml:space="preserve">
+    <value>Коли</value>
+  </data>
+  <data name="LblRmsOver" xml:space="preserve">
+    <value>RMS за</value>
+  </data>
+  <data name="LblMinExceeds" xml:space="preserve">
+    <value>хв перевищує</value>
+  </data>
+  <data name="LblCurrent" xml:space="preserve">
+    <value>Поточний:</value>
+  </data>
+  <data name="LblSlewToOptimal" xml:space="preserve">
+    <value>Перемістити до оптимальної позиції для калібрування</value>
+  </data>
+  <data name="LblDec" xml:space="preserve">
+    <value>Dec:</value>
+  </data>
+  <data name="LblMeridianOffset" xml:space="preserve">
+    <value>Зміщення від меридіана:</value>
+  </data>
+  <data name="LblPlateSolveRecenter" xml:space="preserve">
+    <value>Plate-solve для центрування при поверненні</value>
+  </data>
+  <data name="LblCooldown" xml:space="preserve">
+    <value>Час очікування:</value>
+  </data>
+  <data name="LblMin" xml:space="preserve">
+    <value>хв</value>
+  </data>
+  <data name="LblDataPoints" xml:space="preserve">
+    <value>точок даних</value>
+  </data>
+  <data name="TooltipRmsAxis" xml:space="preserve">
+    <value>Вісь помилки гідування для моніторингу: Загальна (RA + Dec разом), лише RA або лише Dec</value>
+  </data>
+  <data name="TooltipWindowMinutes" xml:space="preserve">
+    <value>Тривалість ковзного часового вікна (у хвилинах) для розрахунку помилки RMS. Тригер чекає заповнення цього вікна перед оцінкою.</value>
+  </data>
+  <data name="TooltipRmsThreshold" xml:space="preserve">
+    <value>Порогове значення помилки RMS у кутових секундах. Перекалібрування спрацьовує, коли RMS перевищує це значення.</value>
+  </data>
+  <data name="TooltipSlewToOptimal" xml:space="preserve">
+    <value>Якщо позначено, переміщує телескоп до оптимальної позиції поблизу меридіана для калібрування, потім повертається. Якщо не позначено, калібрує на місці.</value>
+  </data>
+  <data name="TooltipCalibrationDec" xml:space="preserve">
+    <value>Схилення (у градусах) для позиції калібрування. Схилення поблизу нуля забезпечує найточніше калібрування гіда.</value>
+  </data>
+  <data name="TooltipMeridianOffset" xml:space="preserve">
+    <value>Градуси на схід або захід від меридіана для позиції калібрування. Позитивне зміщення розміщує ціль на схід від меридіана (західна сторона колони на GEM), негативне — на захід.</value>
+  </data>
+  <data name="TooltipPlateSolveRecenter" xml:space="preserve">
+    <value>Якщо позначено, виконує ітеративне центрування за plate-solve після повернення до початкової цілі для точного повторного центрування. Якщо не позначено, виконує пряме переміщення назад.</value>
+  </data>
+  <data name="TooltipCooldown" xml:space="preserve">
+    <value>Мінімальний час (у хвилинах) очікування після перекалібрування перед повторним спрацюванням, для запобігання надмірним перекалібруванням.</value>
+  </data>
+</root>

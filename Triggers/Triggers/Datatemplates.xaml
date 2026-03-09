@@ -1,0 +1,129 @@
+<ResourceDictionary
+    x:Class="Triggers.Datatemplates"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Triggers"
+    xmlns:loc="clr-namespace:Triggers.Locale"
+    xmlns:ns="clr-namespace:NINA.Core.Locale;assembly=NINA.Core"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:view="clr-namespace:NINA.View.Sequencer;assembly=NINA.Sequencer">
+
+    <ObjectDataProvider
+        x:Key="RmsAxisOptions"
+        MethodName="GetValues"
+        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="local:RmsAxisOption" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+    <DataTemplate DataType="{x:Type local:RecalibrateGuider}">
+        <view:SequenceBlockView>
+            <view:SequenceBlockView.SequenceItemContent>
+                <StackPanel Orientation="Vertical">
+                    <!-- Row 1: When [Axis] RMS over [window] min exceeds [threshold] arcsec -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
+                        <TextBlock VerticalAlignment="Center" Text="{x:Static loc:Loc.LblWhen}" />
+                        <ComboBox
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            ToolTip="{x:Static loc:Loc.TooltipRmsAxis}"
+                            ItemsSource="{Binding Source={StaticResource RmsAxisOptions}}"
+                            SelectedItem="{Binding RmsAxis}" />
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{x:Static loc:Loc.LblRmsOver}" />
+                        <TextBox
+                            Margin="5,0,0,0"
+                            MinWidth="40"
+                            VerticalAlignment="Center"
+                            ToolTip="{x:Static loc:Loc.TooltipWindowMinutes}"
+                            Text="{Binding WindowMinutes}" />
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{x:Static loc:Loc.LblMinExceeds}" />
+                        <TextBox
+                            Margin="5,0,0,0"
+                            MinWidth="40"
+                            VerticalAlignment="Center"
+                            ToolTip="{x:Static loc:Loc.TooltipRmsThreshold}"
+                            Text="{Binding RmsThresholdArcsec}" />
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="arcsec" />
+                    </StackPanel>
+
+                    <!-- Row 2: Current RMS display -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
+                        <TextBlock VerticalAlignment="Center" Text="{x:Static loc:Loc.LblCurrent}" />
+                        <TextBlock
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="{Binding CurrentRms, StringFormat={}{0:F2}}" />
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="arcsec" />
+                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="(" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding MonitorDataPoints}" />
+                        <TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Text="{x:Static loc:Loc.LblDataPoints}" />
+                        <TextBlock VerticalAlignment="Center" Text=")" />
+                    </StackPanel>
+
+                    <!-- Row 3: Slew to optimal checkbox -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,2"
+                        ToolTip="{x:Static loc:Loc.TooltipSlewToOptimal}">
+                        <CheckBox
+                            VerticalAlignment="Center"
+                            IsChecked="{Binding SlewToOptimal}" />
+                        <TextBlock
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="{x:Static loc:Loc.LblSlewToOptimal}" />
+                    </StackPanel>
+
+                    <!-- Row 4: Dec and Meridian offset (visible when slew checked) -->
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="20,0,0,2"
+                        Visibility="{Binding SlewToOptimal, Converter={StaticResource BoolToVis}}">
+                        <TextBlock VerticalAlignment="Center" Text="{x:Static loc:Loc.LblDec}" />
+                        <TextBox
+                            Margin="5,0,0,0"
+                            MinWidth="40"
+                            VerticalAlignment="Center"
+                            ToolTip="{x:Static loc:Loc.TooltipCalibrationDec}"
+                            Text="{Binding CalibrationDec}" />
+                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" Text="°" />
+                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{x:Static loc:Loc.LblMeridianOffset}" />
+                        <TextBox
+                            Margin="5,0,0,0"
+                            MinWidth="40"
+                            VerticalAlignment="Center"
+                            ToolTip="{x:Static loc:Loc.TooltipMeridianOffset}"
+                            Text="{Binding MeridianOffsetDeg}" />
+                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" Text="°" />
+                    </StackPanel>
+
+                    <!-- Row 5: Plate-solve recenter checkbox (visible when slew checked) -->
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,2"
+                        ToolTip="{x:Static loc:Loc.TooltipPlateSolveRecenter}"
+                        Visibility="{Binding SlewToOptimal, Converter={StaticResource BoolToVis}}">
+                        <CheckBox
+                            VerticalAlignment="Center"
+                            IsChecked="{Binding PlateSolveRecenter}" />
+                        <TextBlock
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="{x:Static loc:Loc.LblPlateSolveRecenter}" />
+                    </StackPanel>
+
+                    <!-- Row 6: Cooldown -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0"
+                        ToolTip="{x:Static loc:Loc.TooltipCooldown}">
+                        <TextBlock VerticalAlignment="Center" Text="{x:Static loc:Loc.LblCooldown}" />
+                        <TextBox
+                            Margin="5,0,0,0"
+                            MinWidth="40"
+                            VerticalAlignment="Center"
+                            Text="{Binding CooldownMinutes}" />
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{x:Static loc:Loc.LblMin}" />
+                    </StackPanel>
+                </StackPanel>
+            </view:SequenceBlockView.SequenceItemContent>
+        </view:SequenceBlockView>
+    </DataTemplate>
+</ResourceDictionary>

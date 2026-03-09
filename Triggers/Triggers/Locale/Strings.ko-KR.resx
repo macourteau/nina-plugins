@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecalibrateGuiderName" xml:space="preserve">
+    <value>가이더 재보정</value>
+  </data>
+  <data name="RecalibrateGuiderDescription" xml:space="preserve">
+    <value>RMS 오차가 임계값을 초과할 때 가이더를 재보정합니다</value>
+  </data>
+  <data name="GuiderNotConnected" xml:space="preserve">
+    <value>가이더가 연결되지 않았습니다</value>
+  </data>
+  <data name="TelescopeNotConnected" xml:space="preserve">
+    <value>망원경이 연결되지 않았습니다</value>
+  </data>
+  <data name="InvalidRmsThreshold" xml:space="preserve">
+    <value>RMS 임계값은 0보다 커야 합니다</value>
+  </data>
+  <data name="InvalidWindowMinutes" xml:space="preserve">
+    <value>시간 창은 0보다 커야 합니다</value>
+  </data>
+  <data name="StoppingGuiding" xml:space="preserve">
+    <value>가이딩 중지 중</value>
+  </data>
+  <data name="ClearingCalibration" xml:space="preserve">
+    <value>가이더 보정 지우기 중</value>
+  </data>
+  <data name="StartingCalibration" xml:space="preserve">
+    <value>가이더 보정 시작 중</value>
+  </data>
+  <data name="SlewingToCalibrationPosition" xml:space="preserve">
+    <value>보정 위치로 이동 중</value>
+  </data>
+  <data name="ReturningToTarget" xml:space="preserve">
+    <value>대상으로 복귀 중</value>
+  </data>
+  <data name="PlateSolveRecentering" xml:space="preserve">
+    <value>plate-solve로 대상에 재센터링 중</value>
+  </data>
+  <data name="SelectingGuideStar" xml:space="preserve">
+    <value>가이드 별 선택 중</value>
+  </data>
+  <data name="ResumingGuiding" xml:space="preserve">
+    <value>가이딩 재개 중</value>
+  </data>
+  <data name="LblWhen" xml:space="preserve">
+    <value>조건</value>
+  </data>
+  <data name="LblRmsOver" xml:space="preserve">
+    <value>RMS</value>
+  </data>
+  <data name="LblMinExceeds" xml:space="preserve">
+    <value>분 동안 초과</value>
+  </data>
+  <data name="LblCurrent" xml:space="preserve">
+    <value>현재:</value>
+  </data>
+  <data name="LblSlewToOptimal" xml:space="preserve">
+    <value>보정 최적 위치로 이동</value>
+  </data>
+  <data name="LblDec" xml:space="preserve">
+    <value>Dec:</value>
+  </data>
+  <data name="LblMeridianOffset" xml:space="preserve">
+    <value>자오선 오프셋:</value>
+  </data>
+  <data name="LblPlateSolveRecenter" xml:space="preserve">
+    <value>복귀 시 plate-solve로 재센터링</value>
+  </data>
+  <data name="LblCooldown" xml:space="preserve">
+    <value>대기 시간:</value>
+  </data>
+  <data name="LblMin" xml:space="preserve">
+    <value>분</value>
+  </data>
+  <data name="LblDataPoints" xml:space="preserve">
+    <value>데이터 포인트</value>
+  </data>
+  <data name="TooltipRmsAxis" xml:space="preserve">
+    <value>모니터링할 가이딩 오차 축: 전체 (RA + Dec 결합), RA만 또는 Dec만</value>
+  </data>
+  <data name="TooltipWindowMinutes" xml:space="preserve">
+    <value>RMS 오차를 계산하는 데 사용되는 롤링 시간 창의 길이(분). 트리거는 이 창이 채워질 때까지 기다린 후 평가합니다.</value>
+  </data>
+  <data name="TooltipRmsThreshold" xml:space="preserve">
+    <value>RMS 오차 임계값(각초). RMS가 이 값을 초과하면 재보정이 트리거됩니다.</value>
+  </data>
+  <data name="TooltipSlewToOptimal" xml:space="preserve">
+    <value>선택 시, 보정을 위해 망원경을 자오선 근처의 최적 위치로 이동한 후 복귀합니다. 미선택 시, 현재 위치에서 보정합니다.</value>
+  </data>
+  <data name="TooltipCalibrationDec" xml:space="preserve">
+    <value>보정 위치의 적위(도). 0에 가까운 적위가 가장 정확한 가이더 보정을 제공합니다.</value>
+  </data>
+  <data name="TooltipMeridianOffset" xml:space="preserve">
+    <value>보정 위치의 자오선에서 동쪽 또는 서쪽 방향 각도. 양수 오프셋은 대상을 자오선 동쪽(GEM 피어의 서쪽)에, 음수 오프셋은 서쪽에 배치합니다.</value>
+  </data>
+  <data name="TooltipPlateSolveRecenter" xml:space="preserve">
+    <value>선택 시, 원래 대상으로 복귀한 후 반복적인 plate-solve 센터링을 수행하여 정밀하게 재센터링합니다. 미선택 시, 직접 이동으로 복귀합니다.</value>
+  </data>
+  <data name="TooltipCooldown" xml:space="preserve">
+    <value>재보정 후 다시 트리거되기 전까지의 최소 대기 시간(분). 과도한 재보정을 방지합니다.</value>
+  </data>
+</root>

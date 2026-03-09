@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecalibrateGuiderName" xml:space="preserve">
+    <value>ガイダーの再キャリブレーション</value>
+  </data>
+  <data name="RecalibrateGuiderDescription" xml:space="preserve">
+    <value>RMS エラーがしきい値を超えた場合にガイダーを再キャリブレーションします</value>
+  </data>
+  <data name="GuiderNotConnected" xml:space="preserve">
+    <value>ガイダーが接続されていません</value>
+  </data>
+  <data name="TelescopeNotConnected" xml:space="preserve">
+    <value>望遠鏡が接続されていません</value>
+  </data>
+  <data name="InvalidRmsThreshold" xml:space="preserve">
+    <value>RMS しきい値はゼロより大きくなければなりません</value>
+  </data>
+  <data name="InvalidWindowMinutes" xml:space="preserve">
+    <value>時間ウィンドウはゼロより大きくなければなりません</value>
+  </data>
+  <data name="StoppingGuiding" xml:space="preserve">
+    <value>ガイドを停止中</value>
+  </data>
+  <data name="ClearingCalibration" xml:space="preserve">
+    <value>ガイダーキャリブレーションを消去中</value>
+  </data>
+  <data name="StartingCalibration" xml:space="preserve">
+    <value>ガイダーキャリブレーションを開始中</value>
+  </data>
+  <data name="SlewingToCalibrationPosition" xml:space="preserve">
+    <value>キャリブレーション位置へ移動中</value>
+  </data>
+  <data name="ReturningToTarget" xml:space="preserve">
+    <value>ターゲットへ戻り中</value>
+  </data>
+  <data name="PlateSolveRecentering" xml:space="preserve">
+    <value>plate-solve によるターゲットへの再センタリング中</value>
+  </data>
+  <data name="SelectingGuideStar" xml:space="preserve">
+    <value>ガイド星を選択中</value>
+  </data>
+  <data name="ResumingGuiding" xml:space="preserve">
+    <value>ガイドを再開中</value>
+  </data>
+  <data name="LblWhen" xml:space="preserve">
+    <value>条件</value>
+  </data>
+  <data name="LblRmsOver" xml:space="preserve">
+    <value>RMS</value>
+  </data>
+  <data name="LblMinExceeds" xml:space="preserve">
+    <value>分間で超過</value>
+  </data>
+  <data name="LblCurrent" xml:space="preserve">
+    <value>現在：</value>
+  </data>
+  <data name="LblSlewToOptimal" xml:space="preserve">
+    <value>キャリブレーションの最適位置へ移動</value>
+  </data>
+  <data name="LblDec" xml:space="preserve">
+    <value>Dec：</value>
+  </data>
+  <data name="LblMeridianOffset" xml:space="preserve">
+    <value>子午線オフセット：</value>
+  </data>
+  <data name="LblPlateSolveRecenter" xml:space="preserve">
+    <value>戻り時に plate-solve で再センタリング</value>
+  </data>
+  <data name="LblCooldown" xml:space="preserve">
+    <value>クールダウン：</value>
+  </data>
+  <data name="LblMin" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="LblDataPoints" xml:space="preserve">
+    <value>データポイント</value>
+  </data>
+  <data name="TooltipRmsAxis" xml:space="preserve">
+    <value>監視するガイドエラー軸：合計（RA + Dec 合算）、RA のみ、または Dec のみ</value>
+  </data>
+  <data name="TooltipWindowMinutes" xml:space="preserve">
+    <value>RMS エラーの計算に使用するローリング時間ウィンドウの長さ（分）。トリガーはこのウィンドウが埋まるまで待機してから評価します。</value>
+  </data>
+  <data name="TooltipRmsThreshold" xml:space="preserve">
+    <value>RMS エラーしきい値（秒角）。RMS がこの値を超えると再キャリブレーションがトリガーされます。</value>
+  </data>
+  <data name="TooltipSlewToOptimal" xml:space="preserve">
+    <value>チェック時、キャリブレーションのために望遠鏡を子午線付近の最適位置に移動し、その後戻ります。未チェック時、その場でキャリブレーションします。</value>
+  </data>
+  <data name="TooltipCalibrationDec" xml:space="preserve">
+    <value>キャリブレーション位置の赤緯（度）。ゼロに近い赤緯が最も正確なガイダーキャリブレーションを提供します。</value>
+  </data>
+  <data name="TooltipMeridianOffset" xml:space="preserve">
+    <value>キャリブレーション位置の子午線からの東西方向の角度。正のオフセットはターゲットを子午線の東（GEM のピアの西側）に配置し、負のオフセットは西に配置します。</value>
+  </data>
+  <data name="TooltipPlateSolveRecenter" xml:space="preserve">
+    <value>チェック時、元のターゲットに戻った後に反復的な plate-solve センタリングを実行し、正確な再センタリングを行います。未チェック時、直接移動で戻ります。</value>
+  </data>
+  <data name="TooltipCooldown" xml:space="preserve">
+    <value>再キャリブレーション後、再度トリガーされるまでの最小待機時間（分）。過度な再キャリブレーションを防止します。</value>
+  </data>
+</root>

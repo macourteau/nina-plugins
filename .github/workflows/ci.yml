@@ -36,3 +36,12 @@ jobs:
 
       - name: Test (SwitchCommands)
         run: dotnet test SwitchCommands/SwitchCommands.sln -c Release --no-build --verbosity normal
+
+      - name: Restore (Triggers)
+        run: dotnet restore Triggers/Triggers.sln
+
+      - name: Build (Triggers)
+        run: dotnet build Triggers/Triggers.sln -c Release --no-restore
+
+      - name: Test (Triggers)
+        run: dotnet test Triggers/Triggers.sln -c Release --no-build --verbosity normal

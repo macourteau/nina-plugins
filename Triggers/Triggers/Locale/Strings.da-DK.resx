@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecalibrateGuiderName" xml:space="preserve">
+    <value>Genkalibrer guider</value>
+  </data>
+  <data name="RecalibrateGuiderDescription" xml:space="preserve">
+    <value>Genkalibrerer guideren, når RMS-fejlen overstiger en tærskel</value>
+  </data>
+  <data name="GuiderNotConnected" xml:space="preserve">
+    <value>Guider ikke forbundet</value>
+  </data>
+  <data name="TelescopeNotConnected" xml:space="preserve">
+    <value>Teleskop ikke forbundet</value>
+  </data>
+  <data name="InvalidRmsThreshold" xml:space="preserve">
+    <value>RMS-tærskelværdien skal være større end nul</value>
+  </data>
+  <data name="InvalidWindowMinutes" xml:space="preserve">
+    <value>Tidsvinduet skal være større end nul</value>
+  </data>
+  <data name="StoppingGuiding" xml:space="preserve">
+    <value>Stopper guidning</value>
+  </data>
+  <data name="ClearingCalibration" xml:space="preserve">
+    <value>Rydder guiderkalibrering</value>
+  </data>
+  <data name="StartingCalibration" xml:space="preserve">
+    <value>Starter guiderkalibrering</value>
+  </data>
+  <data name="SlewingToCalibrationPosition" xml:space="preserve">
+    <value>Drejer til kalibreringsposition</value>
+  </data>
+  <data name="ReturningToTarget" xml:space="preserve">
+    <value>Vender tilbage til målet</value>
+  </data>
+  <data name="PlateSolveRecentering" xml:space="preserve">
+    <value>Gencentrering med plate-solve på målet</value>
+  </data>
+  <data name="SelectingGuideStar" xml:space="preserve">
+    <value>Vælger guidestjerne</value>
+  </data>
+  <data name="ResumingGuiding" xml:space="preserve">
+    <value>Genoptager guidning</value>
+  </data>
+  <data name="LblWhen" xml:space="preserve">
+    <value>Når</value>
+  </data>
+  <data name="LblRmsOver" xml:space="preserve">
+    <value>RMS over</value>
+  </data>
+  <data name="LblMinExceeds" xml:space="preserve">
+    <value>min overstiger</value>
+  </data>
+  <data name="LblCurrent" xml:space="preserve">
+    <value>Aktuel:</value>
+  </data>
+  <data name="LblSlewToOptimal" xml:space="preserve">
+    <value>Drej til optimal position for kalibrering</value>
+  </data>
+  <data name="LblDec" xml:space="preserve">
+    <value>Dec:</value>
+  </data>
+  <data name="LblMeridianOffset" xml:space="preserve">
+    <value>Meridianforskydning:</value>
+  </data>
+  <data name="LblPlateSolveRecenter" xml:space="preserve">
+    <value>Plate-solve for gencentrering ved tilbagekomst</value>
+  </data>
+  <data name="LblCooldown" xml:space="preserve">
+    <value>Ventetid:</value>
+  </data>
+  <data name="LblMin" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="LblDataPoints" xml:space="preserve">
+    <value>datapunkter</value>
+  </data>
+  <data name="TooltipRmsAxis" xml:space="preserve">
+    <value>Guidningsfejlakse at overvåge: Total (RA + Dec kombineret), kun RA eller kun Dec</value>
+  </data>
+  <data name="TooltipWindowMinutes" xml:space="preserve">
+    <value>Varighed af det rullende tidsvindue (i minutter) brugt til at beregne RMS-fejl. Udløseren venter, til dette vindue er fyldt, før evaluering.</value>
+  </data>
+  <data name="TooltipRmsThreshold" xml:space="preserve">
+    <value>RMS-fejltærskelværdi i buesekunder. Genkalibrering udløses, når RMS overstiger denne værdi.</value>
+  </data>
+  <data name="TooltipSlewToOptimal" xml:space="preserve">
+    <value>Når markeret drejer teleskopet til en optimal position nær meridianen for kalibrering og vender derefter tilbage. Når ikke markeret kalibreres på stedet.</value>
+  </data>
+  <data name="TooltipCalibrationDec" xml:space="preserve">
+    <value>Deklination (i grader) for kalibreringspositionen. Deklination tæt på nul giver den mest nøjagtige guiderkalibrering.</value>
+  </data>
+  <data name="TooltipMeridianOffset" xml:space="preserve">
+    <value>Grader øst eller vest for meridianen for kalibreringspositionen. En positiv forskydning placerer målet øst for meridianen (vestsiden af søjlen på en GEM), en negativ forskydning placerer det vest.</value>
+  </data>
+  <data name="TooltipPlateSolveRecenter" xml:space="preserve">
+    <value>Når markeret udføres en iterativ plate-solve-centrering efter tilbagekomst til det oprindelige mål, for præcis gencentrering. Når ikke markeret udføres en direkte drejning tilbage.</value>
+  </data>
+  <data name="TooltipCooldown" xml:space="preserve">
+    <value>Minimum tid (i minutter) at vente efter en genkalibrering, før udløsning igen, for at forhindre overdrevne genkalibreringe.</value>
+  </data>
+</root>

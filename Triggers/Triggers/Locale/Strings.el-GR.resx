@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecalibrateGuiderName" xml:space="preserve">
+    <value>Επανακαλιμπράρισμα οδηγού</value>
+  </data>
+  <data name="RecalibrateGuiderDescription" xml:space="preserve">
+    <value>Επανακαλιμπράρει τον οδηγό όταν το σφάλμα RMS υπερβεί ένα κατώφλι</value>
+  </data>
+  <data name="GuiderNotConnected" xml:space="preserve">
+    <value>Ο οδηγός δεν είναι συνδεδεμένος</value>
+  </data>
+  <data name="TelescopeNotConnected" xml:space="preserve">
+    <value>Το τηλεσκόπιο δεν είναι συνδεδεμένο</value>
+  </data>
+  <data name="InvalidRmsThreshold" xml:space="preserve">
+    <value>Το κατώφλι RMS πρέπει να είναι μεγαλύτερο από μηδέν</value>
+  </data>
+  <data name="InvalidWindowMinutes" xml:space="preserve">
+    <value>Το χρονικό παράθυρο πρέπει να είναι μεγαλύτερο από μηδέν</value>
+  </data>
+  <data name="StoppingGuiding" xml:space="preserve">
+    <value>Διακοπή καθοδήγησης</value>
+  </data>
+  <data name="ClearingCalibration" xml:space="preserve">
+    <value>Εκκαθάριση καλιμπραρίσματος οδηγού</value>
+  </data>
+  <data name="StartingCalibration" xml:space="preserve">
+    <value>Έναρξη καλιμπραρίσματος οδηγού</value>
+  </data>
+  <data name="SlewingToCalibrationPosition" xml:space="preserve">
+    <value>Μετακίνηση στη θέση καλιμπραρίσματος</value>
+  </data>
+  <data name="ReturningToTarget" xml:space="preserve">
+    <value>Επιστροφή στον στόχο</value>
+  </data>
+  <data name="PlateSolveRecentering" xml:space="preserve">
+    <value>Επανακεντράρισμα με plate-solve στον στόχο</value>
+  </data>
+  <data name="SelectingGuideStar" xml:space="preserve">
+    <value>Επιλογή αστέρα οδηγού</value>
+  </data>
+  <data name="ResumingGuiding" xml:space="preserve">
+    <value>Συνέχιση καθοδήγησης</value>
+  </data>
+  <data name="LblWhen" xml:space="preserve">
+    <value>Όταν</value>
+  </data>
+  <data name="LblRmsOver" xml:space="preserve">
+    <value>RMS σε</value>
+  </data>
+  <data name="LblMinExceeds" xml:space="preserve">
+    <value>λεπ. υπερβεί</value>
+  </data>
+  <data name="LblCurrent" xml:space="preserve">
+    <value>Τρέχον:</value>
+  </data>
+  <data name="LblSlewToOptimal" xml:space="preserve">
+    <value>Μετακίνηση σε βέλτιστη θέση για καλιμπράρισμα</value>
+  </data>
+  <data name="LblDec" xml:space="preserve">
+    <value>Dec:</value>
+  </data>
+  <data name="LblMeridianOffset" xml:space="preserve">
+    <value>Μετατόπιση μεσημβρινού:</value>
+  </data>
+  <data name="LblPlateSolveRecenter" xml:space="preserve">
+    <value>Plate-solve για επανακεντράρισμα κατά την επιστροφή</value>
+  </data>
+  <data name="LblCooldown" xml:space="preserve">
+    <value>Χρόνος αναμονής:</value>
+  </data>
+  <data name="LblMin" xml:space="preserve">
+    <value>λεπ.</value>
+  </data>
+  <data name="LblDataPoints" xml:space="preserve">
+    <value>σημεία δεδομένων</value>
+  </data>
+  <data name="TooltipRmsAxis" xml:space="preserve">
+    <value>Άξονας σφάλματος καθοδήγησης προς παρακολούθηση: Σύνολο (RA + Dec μαζί), μόνο RA ή μόνο Dec</value>
+  </data>
+  <data name="TooltipWindowMinutes" xml:space="preserve">
+    <value>Διάρκεια του κυλιόμενου χρονικού παραθύρου (σε λεπτά) που χρησιμοποιείται για τον υπολογισμό του σφάλματος RMS. Η σκανδάλη περιμένει να γεμίσει αυτό το παράθυρο πριν αξιολογήσει.</value>
+  </data>
+  <data name="TooltipRmsThreshold" xml:space="preserve">
+    <value>Κατώφλι σφάλματος RMS σε δευτερόλεπτα τόξου. Η επανακαλιμπράρισμα ενεργοποιείται όταν το RMS υπερβεί αυτήν την τιμή.</value>
+  </data>
+  <data name="TooltipSlewToOptimal" xml:space="preserve">
+    <value>Όταν είναι επιλεγμένο, μετακινεί το τηλεσκόπιο σε βέλτιστη θέση κοντά στον μεσημβρινό για καλιμπράρισμα και μετά επιστρέφει. Όταν δεν είναι επιλεγμένο, καλιμπράρει επιτόπου.</value>
+  </data>
+  <data name="TooltipCalibrationDec" xml:space="preserve">
+    <value>Απόκλιση (σε μοίρες) για τη θέση καλιμπραρίσματος. Απόκλιση κοντά στο μηδέν παρέχει το πιο ακριβές καλιμπράρισμα οδηγού.</value>
+  </data>
+  <data name="TooltipMeridianOffset" xml:space="preserve">
+    <value>Μοίρες ανατολικά ή δυτικά του μεσημβρινού για τη θέση καλιμπραρίσματος. Θετική μετατόπιση τοποθετεί τον στόχο ανατολικά του μεσημβρινού (δυτική πλευρά του πυλώνα σε GEM), αρνητική μετατόπιση τον τοποθετεί δυτικά.</value>
+  </data>
+  <data name="TooltipPlateSolveRecenter" xml:space="preserve">
+    <value>Όταν είναι επιλεγμένο, εκτελεί επαναληπτικό κεντράρισμα με plate-solve μετά την επιστροφή στον αρχικό στόχο, για ακριβές επανακεντράρισμα. Όταν δεν είναι επιλεγμένο, εκτελεί απευθείας μετακίνηση πίσω.</value>
+  </data>
+  <data name="TooltipCooldown" xml:space="preserve">
+    <value>Ελάχιστος χρόνος (σε λεπτά) αναμονής μετά από επανακαλιμπράρισμα πριν ενεργοποιηθεί ξανά, για αποφυγή υπερβολικών επανακαλιμπραρισμάτων.</value>
+  </data>
+</root>

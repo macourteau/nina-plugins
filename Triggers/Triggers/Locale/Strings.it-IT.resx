@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecalibrateGuiderName" xml:space="preserve">
+    <value>Ricalibra guida</value>
+  </data>
+  <data name="RecalibrateGuiderDescription" xml:space="preserve">
+    <value>Ricalibra la guida quando l'errore RMS supera una soglia</value>
+  </data>
+  <data name="GuiderNotConnected" xml:space="preserve">
+    <value>Guida non connessa</value>
+  </data>
+  <data name="TelescopeNotConnected" xml:space="preserve">
+    <value>Telescopio non connesso</value>
+  </data>
+  <data name="InvalidRmsThreshold" xml:space="preserve">
+    <value>La soglia RMS deve essere maggiore di zero</value>
+  </data>
+  <data name="InvalidWindowMinutes" xml:space="preserve">
+    <value>La finestra temporale deve essere maggiore di zero</value>
+  </data>
+  <data name="StoppingGuiding" xml:space="preserve">
+    <value>Arresto della guida</value>
+  </data>
+  <data name="ClearingCalibration" xml:space="preserve">
+    <value>Cancellazione della calibrazione della guida</value>
+  </data>
+  <data name="StartingCalibration" xml:space="preserve">
+    <value>Avvio della calibrazione della guida</value>
+  </data>
+  <data name="SlewingToCalibrationPosition" xml:space="preserve">
+    <value>Spostamento alla posizione di calibrazione</value>
+  </data>
+  <data name="ReturningToTarget" xml:space="preserve">
+    <value>Ritorno all'obiettivo</value>
+  </data>
+  <data name="PlateSolveRecentering" xml:space="preserve">
+    <value>Ricentratura con plate-solve sull'obiettivo</value>
+  </data>
+  <data name="SelectingGuideStar" xml:space="preserve">
+    <value>Selezione della stella guida</value>
+  </data>
+  <data name="ResumingGuiding" xml:space="preserve">
+    <value>Ripresa della guida</value>
+  </data>
+  <data name="LblWhen" xml:space="preserve">
+    <value>Quando</value>
+  </data>
+  <data name="LblRmsOver" xml:space="preserve">
+    <value>RMS su</value>
+  </data>
+  <data name="LblMinExceeds" xml:space="preserve">
+    <value>min supera</value>
+  </data>
+  <data name="LblCurrent" xml:space="preserve">
+    <value>Attuale:</value>
+  </data>
+  <data name="LblSlewToOptimal" xml:space="preserve">
+    <value>Vai alla posizione ottimale per la calibrazione</value>
+  </data>
+  <data name="LblDec" xml:space="preserve">
+    <value>Dec:</value>
+  </data>
+  <data name="LblMeridianOffset" xml:space="preserve">
+    <value>Offset dal meridiano:</value>
+  </data>
+  <data name="LblPlateSolveRecenter" xml:space="preserve">
+    <value>Plate-solve per ricentrare al ritorno</value>
+  </data>
+  <data name="LblCooldown" xml:space="preserve">
+    <value>Tempo di attesa:</value>
+  </data>
+  <data name="LblMin" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="LblDataPoints" xml:space="preserve">
+    <value>punti dati</value>
+  </data>
+  <data name="TooltipRmsAxis" xml:space="preserve">
+    <value>Asse dell'errore di guida da monitorare: Totale (RA + Dec combinati), solo RA o solo Dec</value>
+  </data>
+  <data name="TooltipWindowMinutes" xml:space="preserve">
+    <value>Durata della finestra temporale mobile (in minuti) utilizzata per calcolare l'errore RMS. Il trigger attende che questa finestra sia piena prima di valutare.</value>
+  </data>
+  <data name="TooltipRmsThreshold" xml:space="preserve">
+    <value>Soglia di errore RMS in secondi d'arco. La ricalibrazione si attiva quando l'RMS supera questo valore.</value>
+  </data>
+  <data name="TooltipSlewToOptimal" xml:space="preserve">
+    <value>Se selezionato, sposta il telescopio in una posizione ottimale vicino al meridiano per la calibrazione, poi ritorna. Se non selezionato, calibra sul posto.</value>
+  </data>
+  <data name="TooltipCalibrationDec" xml:space="preserve">
+    <value>Declinazione (in gradi) per la posizione di calibrazione. Una declinazione vicina a zero fornisce la calibrazione più accurata della guida.</value>
+  </data>
+  <data name="TooltipMeridianOffset" xml:space="preserve">
+    <value>Gradi a est o a ovest del meridiano per la posizione di calibrazione. Un offset positivo posiziona l'obiettivo a est del meridiano (lato ovest del pilastro su un GEM), un offset negativo lo posiziona a ovest.</value>
+  </data>
+  <data name="TooltipPlateSolveRecenter" xml:space="preserve">
+    <value>Se selezionato, esegue un centraggio iterativo con plate-solve dopo il ritorno all'obiettivo originale, per una ricentratura precisa. Se non selezionato, esegue uno spostamento diretto di ritorno.</value>
+  </data>
+  <data name="TooltipCooldown" xml:space="preserve">
+    <value>Tempo minimo (in minuti) da attendere dopo una ricalibrazione prima di attivarsi nuovamente, per evitare ricalibrazioni eccessive.</value>
+  </data>
+</root>
