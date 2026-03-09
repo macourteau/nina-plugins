@@ -22,7 +22,7 @@ flowchart TD
     F -- Yes --> Z[Skip]
     F -- No --> G{Guider connected?}
     G -- No --> Z
-    G -- Yes --> H{Buffer spans\nfull time window?}
+    G -- Yes --> H{Buffer spans<br/>full time window?}
     H -- No --> Z[Skip]
     H -- Yes --> I{RMS > threshold?}
     I -- No --> Z
@@ -42,26 +42,26 @@ flowchart TD
     subgraph inplace["In-Place Mode"]
         direction TB
         IP1[Stop guiding] --> IP2[Clear calibration]
-        IP2 --> IP3[Start guiding\nwith forced calibration]
-        IP3 --> IP4[Reset RMS monitor\nand start cooldown]
+        IP2 --> IP3[Start guiding<br/>with forced calibration]
+        IP3 --> IP4[Reset RMS monitor<br/>and start cooldown]
     end
 
     subgraph slew["Slew-to-Optimal Mode"]
         direction TB
         S1[Save current position] --> S2[Stop guiding]
-        S2 --> S3[Compute calibration target\non same side of meridian]
+        S2 --> S3[Compute calibration target<br/>on same side of meridian]
         S3 --> S4[Slew to calibration target]
         S4 --> S5[Select guide star]
         S5 --> S6[Clear calibration]
-        S6 --> S7[Start guiding\nwith forced calibration]
+        S6 --> S7[Start guiding<br/>with forced calibration]
         S7 --> S8[Stop guiding]
-        S8 --> S9{Plate-solve\nre-center?}
-        S9 -- Yes --> S10[Plate-solve center\non saved position]
-        S9 -- No --> S11[Blind slew to\nsaved position]
+        S8 --> S9{Plate-solve<br/>re-center?}
+        S9 -- Yes --> S10[Plate-solve center<br/>on saved position]
+        S9 -- No --> S11[Blind slew to<br/>saved position]
         S10 --> S12[Select guide star]
         S11 --> S12
         S12 --> S13[Resume guiding]
-        S13 --> S14[Reset RMS monitor\nand start cooldown]
+        S13 --> S14[Reset RMS monitor<br/>and start cooldown]
     end
 ```
 
