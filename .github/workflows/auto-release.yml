@@ -9,119 +9,75 @@ permissions:
   contents: write
 
 jobs:
-  check:
+  auto-release:
     runs-on: ubuntu-latest
-    outputs:
-      should_release: ${{ steps.check.outputs.should_release }}
-      version: ${{ steps.check.outputs.version }}
-      notes: ${{ steps.check.outputs.notes }}
+
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Determine release version
-        id: check
+      - name: Check and tag changed plugins
         run: |
-          # Find latest semver tag
-          LAST_TAG=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
-          if [ -z "$LAST_TAG" ]; then
-            LAST_TAG="v0.0.0"
-          fi
-          echo "Last tag: $LAST_TAG"
+          declare -A PLUGIN_DIRS
+          PLUGIN_DIRS[utilitypatterns]="UtilityPatterns"
+          PLUGIN_DIRS[switchcommands]="SwitchCommands"
+          PLUGIN_DIRS[triggers]="Triggers"
 
-          # Check for commits since last tag
-          COMMIT_COUNT=$(git rev-list ${LAST_TAG}..HEAD --count)
-          if [ "$COMMIT_COUNT" -eq 0 ]; then
-            echo "No commits since $LAST_TAG"
-            echo "should_release=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          echo "$COMMIT_COUNT commits since $LAST_TAG"
+          for PREFIX in "${!PLUGIN_DIRS[@]}"; do
+            DIR="${PLUGIN_DIRS[$PREFIX]}"
 
-          # Parse conventional commits to determine bump level
-          BUMP="patch"
-          COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"%s")
+            # Skip if plugin directory doesn't exist
+            if [ ! -d "$DIR" ]; then
+              echo "$PREFIX: directory not found, skipping"
+              continue
+            fi
 
-          if echo "$COMMITS" | grep -qE "^feat(\(.*\))?!:|BREAKING CHANGE"; then
-            BUMP="major"
-          elif echo "$COMMITS" | grep -qE "^feat(\(.*\))?:"; then
-            BUMP="minor"
-          fi
+            # Skip if plugin has no solution file
+            if ! ls "$DIR"/*.sln 1>/dev/null 2>&1; then
+              echo "$PREFIX: no solution file found, skipping"
+              continue
+            fi
 
-          # Compute new version
-          VERSION="${LAST_TAG#v}"
-          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-          case $BUMP in
-            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
-            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
-            patch) PATCH=$((PATCH + 1)) ;;
-          esac
-          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+            # Find latest tag for this plugin
+            LAST_TAG=$(git tag --sort=-v:refname -l "${PREFIX}/v*" | head -1)
+            if [ -z "$LAST_TAG" ]; then
+              LAST_TAG_REF="$(git rev-list --max-parents=0 HEAD)"
+              LAST_VERSION="0.0.0"
+            else
+              LAST_TAG_REF="$LAST_TAG"
+              LAST_VERSION="${LAST_TAG##*/v}"
+            fi
 
-          echo "Bump: $BUMP -> v${NEW_VERSION}"
-          echo "should_release=true" >> "$GITHUB_OUTPUT"
-          echo "version=${NEW_VERSION}" >> "$GITHUB_OUTPUT"
+            # Check for commits that touched this plugin's directory
+            COMMIT_COUNT=$(git log "${LAST_TAG_REF}..HEAD" --oneline -- "$DIR/" | wc -l)
+            if [ "$COMMIT_COUNT" -eq 0 ]; then
+              echo "$PREFIX: no changes since ${LAST_TAG:-initial commit}"
+              continue
+            fi
+            echo "$PREFIX: $COMMIT_COUNT commit(s) since ${LAST_TAG:-initial commit}"
 
-          # Generate release notes
-          {
-            echo "notes<<EOF"
-            echo "## What's Changed"
-            echo ""
-            git log ${LAST_TAG}..HEAD --pretty=format:"- %s (%h)"
-            echo ""
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+            # Determine bump level from commit messages touching this directory
+            BUMP="patch"
+            MESSAGES=$(git log "${LAST_TAG_REF}..HEAD" --pretty=format:"%s" -- "$DIR/")
 
-  ci:
-    needs: check
-    if: needs.check.outputs.should_release == 'true'
-    uses: ./.github/workflows/ci.yml
+            if echo "$MESSAGES" | grep -qE "^feat(\(.*\))?!:|BREAKING CHANGE"; then
+              BUMP="major"
+            elif echo "$MESSAGES" | grep -qE "^feat(\(.*\))?:"; then
+              BUMP="minor"
+            fi
 
-  release:
-    needs: [check, ci]
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v6
+            # Compute new version
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$LAST_VERSION"
+            case $BUMP in
+              major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+              minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+              patch) PATCH=$((PATCH + 1)) ;;
+            esac
+            NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+            NEW_TAG="${PREFIX}/v${NEW_VERSION}"
 
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Restore and build (UtilityPatterns)
-        run: |
-          dotnet restore UtilityPatterns/UtilityPatterns.sln
-          dotnet build UtilityPatterns/UtilityPatterns.sln -c Release --no-restore -p:Version=${{ needs.check.outputs.version }}
-
-      - name: Restore and build (SwitchCommands)
-        run: |
-          dotnet restore SwitchCommands/SwitchCommands.sln
-          dotnet build SwitchCommands/SwitchCommands.sln -c Release --no-restore -p:Version=${{ needs.check.outputs.version }}
-
-      - name: Package plugins zip
-        shell: pwsh
-        run: |
-          $staging = "staging"
-          New-Item -Path "$staging/Utility Patterns" -ItemType Directory
-          New-Item -Path "$staging/Switch Commands" -ItemType Directory
-          Copy-Item "UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll" "$staging/Utility Patterns/"
-          Copy-Item "SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll" "$staging/Switch Commands/"
-          Compress-Archive -Path "$staging/*" -DestinationPath "NINAPlugins.zip"
-
-      - name: Create tag
-        run: |
-          git tag v${{ needs.check.outputs.version }}
-          git push origin v${{ needs.check.outputs.version }}
-
-      - name: Create release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ needs.check.outputs.version }}
-          files: |
-            NINAPlugins.zip
-            UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll
-            SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll
-          body: ${{ needs.check.outputs.notes }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            echo "$PREFIX: ${LAST_TAG:-v0.0.0} -> $NEW_TAG ($BUMP bump)"
+            git tag "$NEW_TAG"
+            git push origin "$NEW_TAG"
+          done

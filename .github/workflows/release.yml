@@ -3,7 +3,9 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*'
+      - 'utilitypatterns/v*'
+      - 'switchcommands/v*'
+      - 'triggers/v*'
 
 permissions:
   contents: write
@@ -26,48 +28,61 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Extract version from tag
-        id: version
-        shell: pwsh
+      - name: Parse tag
+        id: tag
+        shell: bash
         run: |
-          $tag = "${{ github.ref_name }}"
-          $version = $tag.TrimStart('v')
-          echo "version=$version" >> $env:GITHUB_OUTPUT
-          echo "Version: $version"
+          TAG="${{ github.ref_name }}"
+          PREFIX="${TAG%%/v*}"
+          VERSION="${TAG##*/v}"
+          echo "prefix=$PREFIX" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Restore (UtilityPatterns)
-        run: dotnet restore UtilityPatterns/UtilityPatterns.sln
+          case "$PREFIX" in
+            utilitypatterns)
+              echo "sln=UtilityPatterns/UtilityPatterns.sln" >> "$GITHUB_OUTPUT"
+              echo "dll=UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll" >> "$GITHUB_OUTPUT"
+              echo "dir=UtilityPatterns" >> "$GITHUB_OUTPUT"
+              echo "display_name=Utility Patterns" >> "$GITHUB_OUTPUT"
+              ;;
+            switchcommands)
+              echo "sln=SwitchCommands/SwitchCommands.sln" >> "$GITHUB_OUTPUT"
+              echo "dll=SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll" >> "$GITHUB_OUTPUT"
+              echo "dir=SwitchCommands" >> "$GITHUB_OUTPUT"
+              echo "display_name=Switch Commands" >> "$GITHUB_OUTPUT"
+              ;;
+            triggers)
+              echo "sln=Triggers/Triggers.sln" >> "$GITHUB_OUTPUT"
+              echo "dll=Triggers/Triggers/bin/Release/net8.0-windows/Triggers.dll" >> "$GITHUB_OUTPUT"
+              echo "dir=Triggers" >> "$GITHUB_OUTPUT"
+              echo "display_name=Triggers" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "::error::Unknown plugin prefix: $PREFIX"
+              exit 1
+              ;;
+          esac
 
-      - name: Build (UtilityPatterns)
-        run: dotnet build UtilityPatterns/UtilityPatterns.sln -c Release --no-restore -p:Version=${{ steps.version.outputs.version }}
-
-      - name: Restore (SwitchCommands)
-        run: dotnet restore SwitchCommands/SwitchCommands.sln
-
-      - name: Build (SwitchCommands)
-        run: dotnet build SwitchCommands/SwitchCommands.sln -c Release --no-restore -p:Version=${{ steps.version.outputs.version }}
-
-      - name: Package plugins zip
-        shell: pwsh
+      - name: Build plugin
         run: |
-          $staging = "staging"
-          New-Item -Path "$staging/Utility Patterns" -ItemType Directory
-          New-Item -Path "$staging/Switch Commands" -ItemType Directory
-          Copy-Item "UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll" "$staging/Utility Patterns/"
-          Copy-Item "SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll" "$staging/Switch Commands/"
-          Compress-Archive -Path "$staging/*" -DestinationPath "NINAPlugins.zip"
+          dotnet restore ${{ steps.tag.outputs.sln }}
+          dotnet build ${{ steps.tag.outputs.sln }} -c Release --no-restore -p:Version=${{ steps.tag.outputs.version }}
 
       - name: Generate release notes
         id: notes
         shell: bash
         run: |
           CURRENT_TAG="${{ github.ref_name }}"
-          PREV_TAG=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | grep -v "^${CURRENT_TAG}$" | head -1)
+          PREFIX="${{ steps.tag.outputs.prefix }}"
+          DIR="${{ steps.tag.outputs.dir }}"
+
+          PREV_TAG=$(git tag --sort=-v:refname -l "${PREFIX}/v*" | grep -v "^${CURRENT_TAG}$" | head -1)
           if [ -n "$PREV_TAG" ]; then
-            COMMITS=$(git log --pretty=format:"- %s (%h)" "${PREV_TAG}..${CURRENT_TAG}")
+            COMMITS=$(git log --pretty=format:"- %s (%h)" "${PREV_TAG}..${CURRENT_TAG}" -- "${DIR}/")
           else
-            COMMITS=$(git log --pretty=format:"- %s (%h)" "${CURRENT_TAG}")
+            COMMITS=$(git log --pretty=format:"- %s (%h)" "${CURRENT_TAG}" -- "${DIR}/")
           fi
+
           {
             echo "notes<<EOF"
             echo "## What's Changed"
@@ -79,10 +94,9 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
+          name: "${{ steps.tag.outputs.display_name }} v${{ steps.tag.outputs.version }}"
           body: ${{ steps.notes.outputs.notes }}
           files: |
-            NINAPlugins.zip
-            UtilityPatterns/UtilityPatterns/bin/Release/net8.0-windows/UtilityPatterns.dll
-            SwitchCommands/SwitchCommands/bin/Release/net8.0-windows/SwitchCommands.dll
+            ${{ steps.tag.outputs.dll }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

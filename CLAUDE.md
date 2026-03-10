@@ -33,10 +33,16 @@ Update documentation when the changes are relevant (e.g., adding a token, changi
 
 ## Releasing
 
+Each plugin is versioned independently using per-plugin tags.
+
 1. Commit changes to main
-2. Create and push a version tag:
+2. Create and push a plugin-specific version tag:
    ```bash
-   git tag v1.0.1
-   git push origin v1.0.1
+   git tag utilitypatterns/v1.5.0
+   git push origin utilitypatterns/v1.5.0
    ```
-3. GitHub Actions builds and creates the release automatically
+3. GitHub Actions builds that plugin and creates the release automatically
+
+Tag prefixes: `utilitypatterns`, `switchcommands`, `triggers`
+
+A daily auto-release workflow also detects per-plugin changes and creates tags automatically.
