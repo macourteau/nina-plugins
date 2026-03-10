@@ -64,14 +64,13 @@ public class RecalibrateGuiderTests {
     }
 
     /// <summary>
-    /// Populates the monitor with data spanning longer than the configured window,
-    /// with high RMS values that exceed a typical threshold.
-    /// Uses a very short window so tests don't need real delays.
+    /// Populates the monitor with data that exceeds a typical RMS threshold.
+    /// Uses a large monitor window to prevent trimming, then sets a tiny
+    /// WindowMinutes on the sut so BufferSpanMinutes exceeds the threshold.
     /// </summary>
     private void PopulateMonitorAboveThreshold(RecalibrateGuider sut, double rmsValue = 5.0) {
-        // Set a tiny window so we can exceed it immediately in tests
-        sut.WindowMinutes = 0.0000001;
-        sut.monitor.WindowMinutes = 0.0000001;
+        // Use a large window while adding data so nothing gets trimmed
+        sut.monitor.WindowMinutes = 60.0;
 
         for (int i = 0; i < 20; i++) {
             var step = new Mock<NINA.Core.Interfaces.IGuideStep>();
@@ -79,11 +78,14 @@ public class RecalibrateGuiderTests {
             step.SetupGet(s => s.DECDistanceRaw).Returns(i % 2 == 0 ? rmsValue : -rmsValue);
             sut.monitor.OnGuideEvent(null!, step.Object);
         }
+
+        // Set a tiny window so BufferSpanMinutes (oldest point to now) exceeds it
+        sut.WindowMinutes = 0;
+        sut.monitor.WindowMinutes = 60.0;
     }
 
     private void PopulateMonitorBelowThreshold(RecalibrateGuider sut) {
-        sut.WindowMinutes = 0.0000001;
-        sut.monitor.WindowMinutes = 0.0000001;
+        sut.monitor.WindowMinutes = 60.0;
 
         for (int i = 0; i < 20; i++) {
             var step = new Mock<NINA.Core.Interfaces.IGuideStep>();
@@ -91,6 +93,9 @@ public class RecalibrateGuiderTests {
             step.SetupGet(s => s.DECDistanceRaw).Returns(i % 2 == 0 ? 0.1 : -0.1);
             sut.monitor.OnGuideEvent(null!, step.Object);
         }
+
+        sut.WindowMinutes = 0;
+        sut.monitor.WindowMinutes = 60.0;
     }
 
     // --- ShouldTrigger tests ---
@@ -200,9 +205,8 @@ public class RecalibrateGuiderTests {
         var sut = CreateSut();
         sut.RmsAxis = RmsAxisOption.RA;
         sut.RmsThresholdArcsec = 3.0;
-        sut.WindowMinutes = 0.0000001;
-        sut.monitor.WindowMinutes = 0.0000001;
         sut.monitor.Start(mockGuider.Object, 1.0);
+        sut.monitor.WindowMinutes = 60.0;
 
         // Add points with high RA but low Dec
         for (int i = 0; i < 20; i++) {
@@ -211,6 +215,8 @@ public class RecalibrateGuiderTests {
             step.SetupGet(s => s.DECDistanceRaw).Returns(0.01);
             sut.monitor.OnGuideEvent(null!, step.Object);
         }
+
+        sut.WindowMinutes = 0;
 
         var nextItem = CreateLightExposureItem();
         sut.ShouldTrigger(null!, nextItem.Object).Should().BeTrue();
