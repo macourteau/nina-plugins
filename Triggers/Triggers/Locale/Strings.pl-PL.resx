@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Minimalny czas (w minutach) oczekiwania po rekalibracji przed ponownym wyzwoleniem, aby zapobiec nadmiernym rekalibracjom.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Stabilizacja ditheringu:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Liczba sekund ignorowania zdarzeń guidera po zakończeniu ditheringu. Klatki guidera po ditheringu niosą resztkowy błąd stabilizacji, który może zawyżać RMS.</value>
+  </data>
 </root>

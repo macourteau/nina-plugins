@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Minimum time (in minutes) to wait after a recalibration before triggering again, preventing excessive recalibrations.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Dither settle:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Seconds to ignore guide events after a dither completes. Post-dither guide frames carry residual settling error that can inflate the RMS.</value>
+  </data>
 </root>

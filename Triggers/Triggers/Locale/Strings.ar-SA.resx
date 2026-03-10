@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>الحد الأدنى للوقت (بالدقائق) للانتظار بعد إعادة المعايرة قبل التشغيل مرة أخرى، لمنع إعادة المعايرة المفرطة.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>استقرار الديثر:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>ث</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>عدد الثواني لتجاهل أحداث الدليل بعد اكتمال الديثر. إطارات الدليل بعد الديثر تحمل خطأ استقرار متبقي يمكن أن يضخّم قيمة RMS.</value>
+  </data>
 </root>

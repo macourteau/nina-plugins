@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Tiempo mínimo (en minutos) de espera después de una recalibración antes de activarse de nuevo, para evitar recalibraciones excesivas.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Estabilización del dithering:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Segundos para ignorar eventos de guiado después de completar un dithering. Los fotogramas de guiado posteriores al dithering llevan error de estabilización residual que puede inflar el RMS.</value>
+  </data>
 </root>

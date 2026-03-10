@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Ελάχιστος χρόνος (σε λεπτά) αναμονής μετά από επανακαλιμπράρισμα πριν ενεργοποιηθεί ξανά, για αποφυγή υπερβολικών επανακαλιμπραρισμάτων.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Σταθεροποίηση dither:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>δ</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Δευτερόλεπτα αγνόησης συμβάντων οδήγησης μετά την ολοκλήρωση ενός dither. Τα καρέ οδήγησης μετά το dither φέρουν υπολειπόμενο σφάλμα σταθεροποίησης που μπορεί να διογκώσει το RMS.</value>
+  </data>
 </root>

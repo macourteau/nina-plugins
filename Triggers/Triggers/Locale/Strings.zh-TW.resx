@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>重新校準後再次觸發前的最短等待時間（分鐘），以防止過度重新校準。</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>抖動穩定：</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>抖動完成後忽略導星事件的秒數。抖動後的導星幀攜帶殘餘穩定誤差，可能會使 RMS 虛高。</value>
+  </data>
 </root>

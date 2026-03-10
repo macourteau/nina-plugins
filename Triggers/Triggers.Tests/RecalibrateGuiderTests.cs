@@ -374,6 +374,7 @@ public class RecalibrateGuiderTests {
         sut.CooldownMinutes = 60.0;
         sut.CalibrationDec = 20.0;
         sut.MeridianOffsetDeg = 10.0;
+        sut.DitherSettleSeconds = 15.0;
 
         var clone = (RecalibrateGuider)sut.Clone();
 
@@ -385,6 +386,7 @@ public class RecalibrateGuiderTests {
         clone.CooldownMinutes.Should().Be(60.0);
         clone.CalibrationDec.Should().Be(20.0);
         clone.MeridianOffsetDeg.Should().Be(10.0);
+        clone.DitherSettleSeconds.Should().Be(15.0);
     }
 
     [Test]

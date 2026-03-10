@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Mindestzeit (in Minuten), die nach einer Neukalibrierung gewartet wird, bevor erneut ausgelöst wird, um übermäßige Neukalibrierungen zu vermeiden.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Dither-Beruhigung:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Sekunden, in denen Guide-Ereignisse nach Abschluss eines Dithers ignoriert werden. Guide-Frames nach dem Dithering tragen einen restlichen Beruhigungsfehler, der den RMS-Wert aufblähen kann.</value>
+  </data>
 </root>

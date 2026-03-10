@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>重新校准后再次触发前的最短等待时间（分钟），以防止过度重新校准。</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>抖动稳定：</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>抖动完成后忽略导星事件的秒数。抖动后的导星帧携带残余稳定误差，可能会使 RMS 虚高。</value>
+  </data>
 </root>

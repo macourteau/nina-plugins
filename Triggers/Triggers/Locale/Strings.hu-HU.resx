@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Minimális várakozási idő (percben) egy újrakalibrálás után az újbóli indítás előtt, a túlzott újrakalibrálások elkerülése érdekében.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Dither stabilizálás:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>mp</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Ennyi másodpercig figyelmen kívül hagyja a guider eseményeket a dither befejezése után. A dither utáni guider képkockák maradék stabilizálási hibát hordoznak, ami felduzzaszthatja az RMS-t.</value>
+  </data>
 </root>

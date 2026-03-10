@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Minimální čas (v minutách) čekání po překalibraci před opětovným spuštěním, aby se zabránilo nadměrným překalibracím.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Ustálení ditheringu:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Počet sekund ignorování událostí guideru po dokončení ditheringu. Snímky guideru po ditheringu nesou reziduální chybu ustálení, která může nafouknout RMS.</value>
+  </data>
 </root>

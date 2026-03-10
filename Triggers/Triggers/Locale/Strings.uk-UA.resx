@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Мінімальний час (у хвилинах) очікування після перекалібрування перед повторним спрацюванням, для запобігання надмірним перекалібруванням.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Стабілізація дизерингу:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>с</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Кількість секунд ігнорування подій гіда після завершення дизерингу. Кадри гіда після дизерингу несуть залишкову похибку стабілізації, яка може завищувати RMS.</value>
+  </data>
 </root>

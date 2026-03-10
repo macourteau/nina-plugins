@@ -28,3 +28,5 @@ packages/
 # Windows
 Thumbs.db
 desktop.ini
+
+logs/

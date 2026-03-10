@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Aşırı yeniden kalibrasyonları önlemek için bir yeniden kalibrasyondan sonra tekrar tetiklenmeden önce beklenecek minimum süre (dakika).</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Dither dengelenmesi:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>sn</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Bir dither tamamlandıktan sonra rehber olaylarını yok saymak için saniye sayısı. Dither sonrası rehber kareleri, RMS'yi şişirebilecek artık dengelenme hatası taşır.</value>
+  </data>
 </root>

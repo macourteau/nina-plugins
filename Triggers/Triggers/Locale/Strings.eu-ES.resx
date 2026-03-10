@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Gutxieneko denbora (minututan) birkalibrazioaren ostean berriz aktibatu aurretik itxaroteko, gehiegizko birkalibrazioak saihesteko.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Dither egonkortzea:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Segundoak gida-gertaerak alde batera uzteko dither bat osatu ondoren. Dither ondorengo gida-fotogramek egonkortze-errore hondarrak daramatzate, RMS-a handitu dezaketenak.</value>
+  </data>
 </root>

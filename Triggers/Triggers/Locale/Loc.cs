@@ -49,5 +49,8 @@ namespace Triggers.Locale {
         public static string TooltipMeridianOffset => GetString("TooltipMeridianOffset");
         public static string TooltipPlateSolveRecenter => GetString("TooltipPlateSolveRecenter");
         public static string TooltipCooldown => GetString("TooltipCooldown");
+        public static string LblDitherSettle => GetString("LblDitherSettle");
+        public static string LblSec => GetString("LblSec");
+        public static string TooltipDitherSettle => GetString("TooltipDitherSettle");
     }
 }

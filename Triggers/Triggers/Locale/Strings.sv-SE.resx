@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>Minsta tid (i minuter) att vänta efter en omkalibrering innan utlösning igen, för att förhindra överdriven omkalibrering.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>Dither-stabilisering:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>Sekunder att ignorera guiderhändelser efter att en dither har slutförts. Guiderbilder efter dithering bär kvarvarande stabiliseringsfel som kan blåsa upp RMS-värdet.</value>
+  </data>
 </root>

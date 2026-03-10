@@ -138,4 +138,13 @@
   <data name="TooltipCooldown" xml:space="preserve">
     <value>재보정 후 다시 트리거되기 전까지의 최소 대기 시간(분). 과도한 재보정을 방지합니다.</value>
   </data>
+  <data name="LblDitherSettle" xml:space="preserve">
+    <value>디더 안정화:</value>
+  </data>
+  <data name="LblSec" xml:space="preserve">
+    <value>초</value>
+  </data>
+  <data name="TooltipDitherSettle" xml:space="preserve">
+    <value>디더 완료 후 가이드 이벤트를 무시할 초 수. 디더 후 가이드 프레임에는 RMS를 부풀릴 수 있는 잔여 안정화 오차가 포함됩니다.</value>
+  </data>
 </root>

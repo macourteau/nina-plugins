@@ -4,6 +4,8 @@ using NINA.Core.Interfaces;
 using NINA.Equipment.Equipment.MyGuider;
 using NINA.Equipment.Interfaces.Mediator;
 using NUnit.Framework;
+using System;
+using System.Threading.Tasks;
 
 namespace Triggers.Tests;
 
@@ -139,14 +141,15 @@ public class GuideErrorMonitorTests {
     }
 
     [Test]
-    public void BufferSpanMinutes_SinglePoint_ReturnsZero() {
+    public void BufferSpanMinutes_SinglePoint_ReturnsPositiveSpan() {
         var monitor = new GuideErrorMonitor();
         var mockMediator = new Mock<IGuiderMediator>();
 
         monitor.Start(mockMediator.Object, 1.0);
         monitor.OnGuideEvent(null!, CreateGuideStep(1.0, 1.0).Object);
 
-        monitor.BufferSpanMinutes.Should().Be(0);
+        // With a single point, span is time from that point to now (>= 0)
+        monitor.BufferSpanMinutes.Should().BeGreaterThanOrEqualTo(0);
     }
 
     [Test]
@@ -180,17 +183,18 @@ public class GuideErrorMonitorTests {
     }
 
     [Test]
-    public void Start_ShouldSubscribeToGuideEvent() {
+    public void Start_ShouldSubscribeToGuideEventAndAfterDither() {
         var monitor = new GuideErrorMonitor();
         var mockMediator = new Mock<IGuiderMediator>();
 
         monitor.Start(mockMediator.Object, 1.0);
 
         mockMediator.VerifyAdd(m => m.GuideEvent += It.IsAny<EventHandler<IGuideStep>>(), Times.Once);
+        mockMediator.VerifyAdd(m => m.AfterDither += It.IsAny<Func<object, EventArgs, Task>>(), Times.Once);
     }
 
     [Test]
-    public void Stop_ShouldUnsubscribeFromGuideEvent() {
+    public void Stop_ShouldUnsubscribeFromGuideEventAndAfterDither() {
         var monitor = new GuideErrorMonitor();
         var mockMediator = new Mock<IGuiderMediator>();
 
@@ -198,5 +202,71 @@ public class GuideErrorMonitorTests {
         monitor.Stop();
 
         mockMediator.VerifyRemove(m => m.GuideEvent -= It.IsAny<EventHandler<IGuideStep>>(), Times.Once);
+        mockMediator.VerifyRemove(m => m.AfterDither -= It.IsAny<Func<object, EventArgs, Task>>(), Times.Once);
+    }
+
+    [Test]
+    public void GuideEventsAfterDither_DuringGracePeriod_ShouldBeIgnored() {
+        var monitor = new GuideErrorMonitor { DitherSettleSeconds = 10.0 };
+        var mockMediator = new Mock<IGuiderMediator>();
+
+        monitor.Start(mockMediator.Object, 1.0);
+
+        // Add a baseline data point
+        monitor.OnGuideEvent(null!, CreateGuideStep(0.1, 0.1).Object);
+        monitor.DataPoints.Should().Be(1);
+
+        // Simulate dither
+        monitor.OnAfterDither(null!, EventArgs.Empty);
+
+        // Guide event during grace period should be ignored
+        monitor.OnGuideEvent(null!, CreateGuideStep(10.0, 10.0).Object);
+        monitor.DataPoints.Should().Be(1);
+    }
+
+    [Test]
+    public void GuideEventsAfterDither_AfterGracePeriod_ShouldBeRecorded() {
+        var monitor = new GuideErrorMonitor { DitherSettleSeconds = 0.01 }; // 10ms grace period
+        var mockMediator = new Mock<IGuiderMediator>();
+
+        monitor.Start(mockMediator.Object, 1.0);
+
+        monitor.OnAfterDither(null!, EventArgs.Empty);
+        Thread.Sleep(50); // Wait past grace period
+
+        monitor.OnGuideEvent(null!, CreateGuideStep(1.0, 1.0).Object);
+        monitor.DataPoints.Should().Be(1);
+    }
+
+    [Test]
+    public void GuideEventsWithoutDither_ShouldAlwaysBeRecorded() {
+        var monitor = new GuideErrorMonitor { DitherSettleSeconds = 10.0 };
+        var mockMediator = new Mock<IGuiderMediator>();
+
+        monitor.Start(mockMediator.Object, 1.0);
+
+        // Without any dither event, guide events should always be recorded
+        monitor.OnGuideEvent(null!, CreateGuideStep(1.0, 1.0).Object);
+        monitor.OnGuideEvent(null!, CreateGuideStep(2.0, 2.0).Object);
+        monitor.DataPoints.Should().Be(2);
+    }
+
+    [Test]
+    public void Clear_ShouldResetDitherState() {
+        var monitor = new GuideErrorMonitor { DitherSettleSeconds = 60.0 };
+        var mockMediator = new Mock<IGuiderMediator>();
+
+        monitor.Start(mockMediator.Object, 1.0);
+
+        // Simulate dither - events would be ignored
+        monitor.OnAfterDither(null!, EventArgs.Empty);
+        monitor.OnGuideEvent(null!, CreateGuideStep(1.0, 1.0).Object);
+        monitor.DataPoints.Should().Be(0);
+
+        // Clear should reset dither state
+        monitor.Clear();
+
+        monitor.OnGuideEvent(null!, CreateGuideStep(1.0, 1.0).Object);
+        monitor.DataPoints.Should().Be(1);
     }
 }

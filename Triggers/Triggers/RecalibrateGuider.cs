@@ -84,7 +84,8 @@ namespace Triggers {
                 PlateSolveRecenter = PlateSolveRecenter,
                 CooldownMinutes = CooldownMinutes,
                 CalibrationDec = CalibrationDec,
-                MeridianOffsetDeg = MeridianOffsetDeg
+                MeridianOffsetDeg = MeridianOffsetDeg,
+                DitherSettleSeconds = DitherSettleSeconds
             };
         }
 
@@ -104,6 +105,9 @@ namespace Triggers {
         public double RmsThresholdArcsec {
             get => rmsThresholdArcsec;
             set {
+                if (rmsThresholdArcsec != value) {
+                    Logger.Info($"RecalibrateGuider RmsThresholdArcsec changed from {rmsThresholdArcsec:F2} to {value:F2}");
+                }
                 rmsThresholdArcsec = value;
                 RaisePropertyChanged();
             }
@@ -115,6 +119,9 @@ namespace Triggers {
         public double WindowMinutes {
             get => windowMinutes;
             set {
+                if (windowMinutes != value) {
+                    Logger.Info($"RecalibrateGuider WindowMinutes changed from {windowMinutes:F1} to {value:F1}");
+                }
                 windowMinutes = value;
                 if (monitor != null) {
                     monitor.WindowMinutes = value;
@@ -129,8 +136,12 @@ namespace Triggers {
         public RmsAxisOption RmsAxis {
             get => rmsAxis;
             set {
+                if (rmsAxis != value) {
+                    Logger.Info($"RecalibrateGuider RmsAxis changed from {rmsAxis} to {value}");
+                }
                 rmsAxis = value;
                 RaisePropertyChanged();
+                CurrentRms = GetCurrentRmsValue();
             }
         }
 
@@ -140,6 +151,9 @@ namespace Triggers {
         public bool SlewToOptimal {
             get => slewToOptimal;
             set {
+                if (slewToOptimal != value) {
+                    Logger.Info($"RecalibrateGuider SlewToOptimal changed from {slewToOptimal} to {value}");
+                }
                 slewToOptimal = value;
                 RaisePropertyChanged();
             }
@@ -162,6 +176,9 @@ namespace Triggers {
         public double CooldownMinutes {
             get => cooldownMinutes;
             set {
+                if (cooldownMinutes != value) {
+                    Logger.Info($"RecalibrateGuider CooldownMinutes changed from {cooldownMinutes:F1} to {value:F1}");
+                }
                 cooldownMinutes = value;
                 RaisePropertyChanged();
             }
@@ -189,6 +206,23 @@ namespace Triggers {
             }
         }
 
+        private double ditherSettleSeconds = 10.0;
+
+        [JsonProperty]
+        public double DitherSettleSeconds {
+            get => ditherSettleSeconds;
+            set {
+                if (ditherSettleSeconds != value) {
+                    Logger.Info($"RecalibrateGuider DitherSettleSeconds changed from {ditherSettleSeconds:F1} to {value:F1}");
+                }
+                ditherSettleSeconds = value;
+                if (monitor != null) {
+                    monitor.DitherSettleSeconds = value;
+                }
+                RaisePropertyChanged();
+            }
+        }
+
         private double currentRms;
 
         public double CurrentRms {
@@ -202,19 +236,35 @@ namespace Triggers {
         public int MonitorDataPoints => monitor?.DataPoints ?? 0;
 
         public override void SequenceBlockInitialize() {
-            monitor = new GuideErrorMonitor { WindowMinutes = WindowMinutes };
+            monitor = new GuideErrorMonitor { WindowMinutes = WindowMinutes, DitherSettleSeconds = DitherSettleSeconds };
+            monitor.PropertyChanged += OnMonitorPropertyChanged;
             var pixelScale = guiderMediator.GetInfo().PixelScale;
             monitor.Start(guiderMediator, pixelScale);
-            Logger.Info($"RecalibrateGuider initialized - axis: {RmsAxis}, threshold: {RmsThresholdArcsec} arcsec, window: {WindowMinutes} min, cooldown: {CooldownMinutes} min, pixel scale: {pixelScale} arcsec/px");
+            Logger.Info($"RecalibrateGuider initialized - axis: {RmsAxis}, threshold: {RmsThresholdArcsec} arcsec, window: {WindowMinutes} min, cooldown: {CooldownMinutes} min, dither settle: {DitherSettleSeconds} s, pixel scale: {pixelScale} arcsec/px");
         }
 
         public override void SequenceBlockTeardown() {
             Logger.Info("RecalibrateGuider shutting down");
-            monitor?.Stop();
+            if (monitor != null) {
+                monitor.PropertyChanged -= OnMonitorPropertyChanged;
+                monitor.Stop();
+            }
+        }
+
+        private void OnMonitorPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
+            if (e.PropertyName == nameof(GuideErrorMonitor.RmsTotal)
+                || e.PropertyName == nameof(GuideErrorMonitor.RmsRA)
+                || e.PropertyName == nameof(GuideErrorMonitor.RmsDec)) {
+                CurrentRms = GetCurrentRmsValue();
+            }
+            if (e.PropertyName == nameof(GuideErrorMonitor.DataPoints)) {
+                RaisePropertyChanged(nameof(MonitorDataPoints));
+            }
         }
 
         public override bool ShouldTrigger(ISequenceItem previousItem, ISequenceItem nextItem) {
-            if (!(nextItem is IExposureItem exposureItem) || exposureItem.ImageType != "LIGHT") {
+            if (nextItem is not IExposureItem exposureItem || exposureItem.ImageType != "LIGHT") {
+                Logger.Debug($"RecalibrateGuider: skipping {nextItem?.GetType().Name ?? "null"} (not a LIGHT exposure)");
                 return false;
             }
 
@@ -228,10 +278,14 @@ namespace Triggers {
 
             var guiderInfo = guiderMediator.GetInfo();
             if (!guiderInfo.Connected) {
+                Logger.Debug($"RecalibrateGuider: guider not connected");
                 return false;
             }
 
-            if (monitor == null || monitor.BufferSpanMinutes < WindowMinutes) {
+            if (monitor == null) {
+                Logger.Debug($"RecalibrateGuider: no monitor");
+            } else if (monitor.BufferSpanMinutes < WindowMinutes) {
+                Logger.Debug($"RecalibrateGuider: have {monitor.BufferSpanMinutes:F1} minutes, need at least {WindowMinutes:F1} minutes");
                 return false;
             }
 
@@ -244,6 +298,7 @@ namespace Triggers {
                 return true;
             }
 
+            Logger.Debug($"RecalibrateGuider: {RmsAxis} RMS {rms:F2} arcsec below threshold {RmsThresholdArcsec:F2} arcsec");
             return false;
         }
 
@@ -256,14 +311,16 @@ namespace Triggers {
         }
 
         public override async Task Execute(ISequenceContainer context, IProgress<ApplicationStatus> progress, CancellationToken token) {
-            if (SlewToOptimal) {
-                await ExecuteWithSlew(progress, token);
-            } else {
-                await ExecuteInPlace(progress, token);
+            try {
+                if (SlewToOptimal) {
+                    await ExecuteWithSlew(progress, token);
+                } else {
+                    await ExecuteInPlace(progress, token);
+                }
+            } finally {
+                monitor?.Clear();
+                lastCalibrationTime = DateTime.UtcNow;
             }
-
-            monitor?.Clear();
-            lastCalibrationTime = DateTime.UtcNow;
         }
 
         private async Task ExecuteInPlace(IProgress<ApplicationStatus> progress, CancellationToken token) {
@@ -285,31 +342,54 @@ namespace Triggers {
             var savedPosition = telescopeMediator.GetCurrentPosition();
             Logger.Info($"RecalibrateGuider executing with slew - saved position RA: {savedPosition.RA:F4}h, Dec: {savedPosition.Dec:F4}°");
 
-            progress?.Report(new ApplicationStatus { Status = PluginLoc.StoppingGuiding });
-            await guiderMediator.StopGuiding(token);
+            bool slewedAway = false;
 
-            // Compute and slew to calibration target (on the same side of the meridian as the current pointing)
-            var telescopeInfo = telescopeMediator.GetInfo();
-            var calibrationTarget = CalibrationLocationCalculator.ComputeOptimalCalibrationTarget(
-                telescopeInfo.SiderealTime, savedPosition.RA, MeridianOffsetDeg, CalibrationDec);
-            Logger.Info($"RecalibrateGuider slewing to calibration position RA: {calibrationTarget.RA:F4}h, Dec: {calibrationTarget.Dec:F4}° (LST: {telescopeInfo.SiderealTime:F4}h, current RA: {savedPosition.RA:F4}h, meridian offset: {MeridianOffsetDeg}°)");
+            try {
+                progress?.Report(new ApplicationStatus { Status = PluginLoc.StoppingGuiding });
+                await guiderMediator.StopGuiding(token);
 
-            progress?.Report(new ApplicationStatus { Status = PluginLoc.SlewingToCalibrationPosition });
-            await telescopeMediator.SlewToCoordinatesAsync(calibrationTarget, token);
+                // Compute and slew to calibration target (on the same side of the meridian as the current pointing)
+                var telescopeInfo = telescopeMediator.GetInfo();
+                var calibrationTarget = CalibrationLocationCalculator.ComputeOptimalCalibrationTarget(
+                    telescopeInfo.SiderealTime, savedPosition.RA, MeridianOffsetDeg, CalibrationDec);
+                Logger.Info($"RecalibrateGuider slewing to calibration position RA: {calibrationTarget.RA:F4}h, Dec: {calibrationTarget.Dec:F4}° (LST: {telescopeInfo.SiderealTime:F4}h, current RA: {savedPosition.RA:F4}h, meridian offset: {MeridianOffsetDeg}°)");
 
-            progress?.Report(new ApplicationStatus { Status = PluginLoc.SelectingGuideStar });
-            await guiderMediator.AutoSelectGuideStar(token);
+                progress?.Report(new ApplicationStatus { Status = PluginLoc.SlewingToCalibrationPosition });
+                await telescopeMediator.SlewToCoordinatesAsync(calibrationTarget, token);
+                slewedAway = true;
 
-            progress?.Report(new ApplicationStatus { Status = PluginLoc.ClearingCalibration });
-            await guiderMediator.ClearCalibration(token);
+                progress?.Report(new ApplicationStatus { Status = PluginLoc.SelectingGuideStar });
+                await guiderMediator.AutoSelectGuideStar(token);
 
-            progress?.Report(new ApplicationStatus { Status = PluginLoc.StartingCalibration });
-            await guiderMediator.StartGuiding(forceCalibration: true, progress, token);
+                progress?.Report(new ApplicationStatus { Status = PluginLoc.ClearingCalibration });
+                await guiderMediator.ClearCalibration(token);
 
-            progress?.Report(new ApplicationStatus { Status = PluginLoc.StoppingGuiding });
-            await guiderMediator.StopGuiding(token);
+                progress?.Report(new ApplicationStatus { Status = PluginLoc.StartingCalibration });
+                await guiderMediator.StartGuiding(forceCalibration: true, progress, token);
 
-            // Return to original position
+                progress?.Report(new ApplicationStatus { Status = PluginLoc.StoppingGuiding });
+                await guiderMediator.StopGuiding(token);
+
+                // Return to original position
+                await ReturnToTarget(savedPosition, progress, token);
+
+                Logger.Info("RecalibrateGuider slew calibration complete, guiding resumed");
+            } catch (Exception ex) {
+                if (slewedAway) {
+                    Logger.Error($"RecalibrateGuider failed during calibration, attempting to return to target: {ex.Message}");
+                    try {
+                        progress?.Report(new ApplicationStatus { Status = PluginLoc.ReturningToTarget });
+                        await telescopeMediator.SlewToCoordinatesAsync(savedPosition, CancellationToken.None);
+                        Logger.Info("RecalibrateGuider returned to target after error");
+                    } catch (Exception returnEx) {
+                        Logger.Error($"RecalibrateGuider failed to return to target: {returnEx.Message}");
+                    }
+                }
+                throw;
+            }
+        }
+
+        private async Task ReturnToTarget(Coordinates savedPosition, IProgress<ApplicationStatus> progress, CancellationToken token) {
             if (PlateSolveRecenter) {
                 Logger.Info("RecalibrateGuider returning to target with plate-solve centering");
                 progress?.Report(new ApplicationStatus { Status = PluginLoc.PlateSolveRecentering });
@@ -330,8 +410,6 @@ namespace Triggers {
 
             progress?.Report(new ApplicationStatus { Status = PluginLoc.ResumingGuiding });
             await guiderMediator.StartGuiding(forceCalibration: false, progress, token);
-
-            Logger.Info("RecalibrateGuider slew calibration complete, guiding resumed");
         }
 
         public override void AfterParentChanged() {
