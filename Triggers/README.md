@@ -10,23 +10,25 @@ Monitors guiding RMS error and automatically recalibrates the guider when the er
 
 #### How It Works
 
-The trigger subscribes to guide events (e.g., from PHD2) and maintains a rolling time window of guiding error data. Before each light exposure, it evaluates the RMS error over that window and initiates recalibration if the threshold is exceeded.
+The trigger subscribes to guide events (e.g., from PHD2) and maintains a rolling time window of guiding error data. Post-dither guide events are ignored for a configurable settle period to prevent residual settle error from inflating the RMS. Before each light exposure, it evaluates the RMS error over that window and initiates recalibration if the threshold is exceeded.
 
 ```mermaid
 flowchart TD
-    A[Guide event received] --> B[Record RA/Dec error with timestamp]
-    B --> C[Trim entries older than time window]
-    C --> D[Update rolling RMS]
+    A[Guide event received] --> B{Post-dither<br/>grace period?}
+    B -- Yes --> Z2[Discard]
+    B -- No --> C[Record RA/Dec error<br/>with timestamp]
+    C --> D[Trim entries older<br/>than time window]
+    D --> E[Update rolling RMS]
 
-    E[Before each light exposure] --> F{Cooldown active?}
-    F -- Yes --> Z[Skip]
-    F -- No --> G{Guider connected?}
-    G -- No --> Z
-    G -- Yes --> H{Buffer spans<br/>full time window?}
-    H -- No --> Z[Skip]
-    H -- Yes --> I{RMS > threshold?}
-    I -- No --> Z
-    I -- Yes --> J[Execute recalibration]
+    F[Before each light exposure] --> G{Cooldown active?}
+    G -- Yes --> Z[Skip]
+    G -- No --> H{Guider connected?}
+    H -- No --> Z
+    H -- Yes --> I{Buffer spans<br/>full time window?}
+    I -- No --> Z[Skip]
+    I -- Yes --> J{RMS > threshold?}
+    J -- No --> Z
+    J -- Yes --> K[Execute recalibration]
 ```
 
 #### Calibration Modes
@@ -62,6 +64,12 @@ flowchart TD
         S11 --> S12
         S12 --> S13[Resume guiding]
         S13 --> S14[Reset RMS monitor<br/>and start cooldown]
+
+        S4 -. error .-> SE[Best-effort blind slew<br/>back to saved position]
+        S5 -. error .-> SE
+        S6 -. error .-> SE
+        S7 -. error .-> SE
+        S8 -. error .-> SE
     end
 ```
 
@@ -77,6 +85,7 @@ flowchart TD
 | **Meridian offset** | 5° | Degrees from the meridian for the calibration position (slew mode only). The calibration target is automatically placed on the same side of the meridian as the current pointing direction to avoid a pier flip. |
 | **Plate-solve re-center** | On | When enabled, uses iterative plate-solve centering after returning to the original target (slew mode only). When disabled, returns with a blind slew. |
 | **Cooldown** | 30 min | Minimum time to wait after a recalibration before triggering again. |
+| **Dither settle** | 10 s | Time after a dither to ignore guide events. Post-dither guide frames carry residual settle error that would inflate the RMS. |
 
 #### Tips
 

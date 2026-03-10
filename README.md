@@ -10,6 +10,12 @@ Adds a "Set Switch" sequencer instruction for boolean switches (on/off). The bui
 - Dropdown shows only boolean switches (Min=0, Max=1, Step=1)
 - Timeout detection with clear error messages
 
+## [Triggers](Triggers/)
+
+Provides sequencer triggers for automated equipment management during imaging sessions.
+
+- **Recalibrate Guider** — monitors guiding RMS error over a rolling time window and automatically recalibrates the guider when the error exceeds a threshold. Supports in-place calibration or slewing to an optimal sky position near the meridian. Filters post-dither guide events to prevent settle error from inflating the RMS.
+
 ## [UtilityPatterns](UtilityPatterns/)
 
 Adds compact date/time, binning, and telescope position tokens for image file patterns:
@@ -33,12 +39,12 @@ Adds compact date/time, binning, and telescope position tokens for image file pa
 
 ## Installation
 
-Download `NINAPlugins.zip` from [Releases](../../releases) and extract to:
+Download the plugin DLL from [Releases](../../releases) and copy it to a subdirectory under:
 ```
 %localappdata%\NINA\Plugins\3.0.0\
 ```
 
-The zip contains each plugin in its own subdirectory, ready to use. Individual DLLs are also available as separate downloads.
+Each plugin is released independently (e.g., `Triggers.dll` → `Triggers/`, `SwitchCommands.dll` → `Switch Commands/`).
 
 ## Requirements
 
