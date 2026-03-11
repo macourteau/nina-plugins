@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
 
 jobs:
@@ -80,4 +81,7 @@ jobs:
             echo "$PREFIX: ${LAST_TAG:-v0.0.0} -> $NEW_TAG ($BUMP bump)"
             git tag "$NEW_TAG"
             git push origin "$NEW_TAG"
+            gh workflow run release.yml --ref "$NEW_TAG" -f tag="$NEW_TAG"
           done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

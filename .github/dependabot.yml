@@ -18,6 +18,15 @@ updates:
     labels:
       - "dependencies"
 
+  - package-ecosystem: "nuget"
+    directory: "/Triggers"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    labels:
+      - "dependencies"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
