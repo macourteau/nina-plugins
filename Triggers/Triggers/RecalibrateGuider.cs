@@ -329,6 +329,9 @@ namespace Triggers {
             progress?.Report(new ApplicationStatus { Status = PluginLoc.StoppingGuiding });
             await guiderMediator.StopGuiding(token);
 
+            progress?.Report(new ApplicationStatus { Status = PluginLoc.SelectingGuideStar });
+            await guiderMediator.AutoSelectGuideStar(token);
+
             progress?.Report(new ApplicationStatus { Status = PluginLoc.ClearingCalibration });
             await guiderMediator.ClearCalibration(token);
 

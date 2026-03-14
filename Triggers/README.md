@@ -43,7 +43,8 @@ The trigger supports two calibration modes: in-place and slew-to-optimal.
 flowchart TD
     subgraph inplace["In-Place Mode"]
         direction TB
-        IP1[Stop guiding] --> IP2[Clear calibration]
+        IP1[Stop guiding] --> IP1b[Select guide star]
+        IP1b --> IP2[Clear calibration]
         IP2 --> IP3[Start guiding<br/>with forced calibration]
         IP3 --> IP4[Reset RMS monitor<br/>and start cooldown]
     end

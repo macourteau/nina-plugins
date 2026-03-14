@@ -234,6 +234,9 @@ public class RecalibrateGuiderTests {
         mockGuider.Setup(g => g.StopGuiding(It.IsAny<CancellationToken>()))
             .Callback(() => callOrder.Add("StopGuiding"))
             .ReturnsAsync(true);
+        mockGuider.Setup(g => g.AutoSelectGuideStar(It.IsAny<CancellationToken>()))
+            .Callback(() => callOrder.Add("AutoSelectGuideStar"))
+            .ReturnsAsync(true);
         mockGuider.Setup(g => g.ClearCalibration(It.IsAny<CancellationToken>()))
             .Callback(() => callOrder.Add("ClearCalibration"))
             .ReturnsAsync(true);
@@ -243,7 +246,7 @@ public class RecalibrateGuiderTests {
 
         await sut.Execute(null!, new Progress<ApplicationStatus>(), CancellationToken.None);
 
-        callOrder.Should().ContainInOrder("StopGuiding", "ClearCalibration", "StartGuiding");
+        callOrder.Should().ContainInOrder("StopGuiding", "AutoSelectGuideStar", "ClearCalibration", "StartGuiding");
         sut.lastCalibrationTime.Should().NotBeNull();
     }
 
@@ -255,6 +258,7 @@ public class RecalibrateGuiderTests {
         PopulateMonitorAboveThreshold(sut);
 
         mockGuider.Setup(g => g.StopGuiding(It.IsAny<CancellationToken>())).ReturnsAsync(true);
+        mockGuider.Setup(g => g.AutoSelectGuideStar(It.IsAny<CancellationToken>())).ReturnsAsync(true);
         mockGuider.Setup(g => g.ClearCalibration(It.IsAny<CancellationToken>())).ReturnsAsync(true);
         mockGuider.Setup(g => g.StartGuiding(true, It.IsAny<IProgress<ApplicationStatus>>(), It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
