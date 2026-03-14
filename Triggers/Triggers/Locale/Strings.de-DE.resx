@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Sekunden, in denen Guide-Ereignisse nach Abschluss eines Dithers ignoriert werden. Guide-Frames nach dem Dithering tragen einen restlichen Beruhigungsfehler, der den RMS-Wert aufblähen kann.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

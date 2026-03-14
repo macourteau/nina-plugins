@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Δευτερόλεπτα αγνόησης συμβάντων οδήγησης μετά την ολοκλήρωση ενός dither. Τα καρέ οδήγησης μετά το dither φέρουν υπολειπόμενο σφάλμα σταθεροποίησης που μπορεί να διογκώσει το RMS.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Bir dither tamamlandıktan sonra rehber olaylarını yok saymak için saniye sayısı. Dither sonrası rehber kareleri, RMS'yi şişirebilecek artık dengelenme hatası taşır.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Segundos para ignorar eventos de guiagem após a conclusão de um dithering. Os fotogramas de guiagem pós-dithering carregam erro de estabilização residual que pode inflar o RMS.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

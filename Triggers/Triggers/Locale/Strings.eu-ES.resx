@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Segundoak gida-gertaerak alde batera uzteko dither bat osatu ondoren. Dither ondorengo gida-fotogramek egonkortze-errore hondarrak daramatzate, RMS-a handitu dezaketenak.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Sekunder å ignorere guiderhendelser etter at en dither er fullført. Guiderbilder etter dithering bærer gjenværende stabiliseringsfeil som kan blåse opp RMS-verdien.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

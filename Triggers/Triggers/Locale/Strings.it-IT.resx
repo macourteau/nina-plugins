@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Secondi per ignorare gli eventi di guida dopo il completamento di un dithering. I fotogrammi di guida successivi al dithering portano un errore di stabilizzazione residuo che può gonfiare il RMS.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

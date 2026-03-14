@@ -52,5 +52,6 @@ namespace Triggers.Locale {
         public static string LblDitherSettle => GetString("LblDitherSettle");
         public static string LblSec => GetString("LblSec");
         public static string TooltipDitherSettle => GetString("TooltipDitherSettle");
+        public static string LblRms => GetString("LblRms");
     }
 }

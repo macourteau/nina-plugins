@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Počet sekund ignorování událostí guideru po dokončení ditheringu. Snímky guideru po ditheringu nesou reziduální chybu ustálení, která může nafouknout RMS.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

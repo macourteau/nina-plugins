@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Liczba sekund ignorowania zdarzeń guidera po zakończeniu ditheringu. Klatki guidera po ditheringu niosą resztkowy błąd stabilizacji, który może zawyżać RMS.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

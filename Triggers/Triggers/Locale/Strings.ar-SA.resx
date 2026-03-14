@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>عدد الثواني لتجاهل أحداث الدليل بعد اكتمال الديثر. إطارات الدليل بعد الديثر تحمل خطأ استقرار متبقي يمكن أن يضخّم قيمة RMS.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

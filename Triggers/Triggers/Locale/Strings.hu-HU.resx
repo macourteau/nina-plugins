@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Ennyi másodpercig figyelmen kívül hagyja a guider eseményeket a dither befejezése után. A dither utáni guider képkockák maradék stabilizálási hibát hordoznak, ami felduzzaszthatja az RMS-t.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

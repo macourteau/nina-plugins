@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>Количество секунд игнорирования событий гида после завершения дизеринга. Кадры гида после дизеринга несут остаточную ошибку стабилизации, которая может завышать RMS.</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

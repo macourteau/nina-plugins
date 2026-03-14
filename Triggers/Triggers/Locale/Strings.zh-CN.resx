@@ -147,4 +147,7 @@
   <data name="TooltipDitherSettle" xml:space="preserve">
     <value>抖动完成后忽略导星事件的秒数。抖动后的导星帧携带残余稳定误差，可能会使 RMS 虚高。</value>
   </data>
+  <data name="LblRms" xml:space="preserve">
+    <value>RMS</value>
+  </data>
 </root>

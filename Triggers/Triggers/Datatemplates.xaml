@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Triggers"
     xmlns:loc="clr-namespace:Triggers.Locale"
+    xmlns:mini="clr-namespace:NINA.View.Sequencer.MiniSequencer;assembly=NINA.Sequencer"
     xmlns:ns="clr-namespace:NINA.Core.Locale;assembly=NINA.Core"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:view="clr-namespace:NINA.View.Sequencer;assembly=NINA.Sequencer">
@@ -135,5 +136,18 @@
                 </StackPanel>
             </view:SequenceBlockView.SequenceItemProgressContent>
         </view:SequenceBlockView>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Triggers.RecalibrateGuider_Mini">
+        <mini:MiniTrigger>
+            <mini:MiniTrigger.TriggerProgressContent>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{x:Static loc:Loc.LblRms}" />
+                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding CurrentRms, StringFormat='{}{0:F2}'}" />
+                    <TextBlock VerticalAlignment="Center" Text="/" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding RmsThresholdArcsec, StringFormat='{}{0:F2}'}" />
+                </StackPanel>
+            </mini:MiniTrigger.TriggerProgressContent>
+        </mini:MiniTrigger>
     </DataTemplate>
 </ResourceDictionary>
