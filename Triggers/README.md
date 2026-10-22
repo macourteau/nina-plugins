@@ -95,6 +95,39 @@ flowchart TD
 - If using slew-to-optimal mode, keep the meridian offset small (5–10°) to avoid unnecessary pier flips on a GEM.
 - The cooldown prevents cascading recalibrations if guiding is persistently poor — it gives the new calibration time to take effect.
 
+### Set Dec Guide Mode
+
+Sets the PHD2 Dec guide mode (Auto, North, South or Off) according to the side of pier reported by the mount. This is useful when Dec is guided in one direction only, for example on a mount with large Dec backlash. After a meridian flip, or after a slew to a target on the other side of the meridian, the direction that the Dec drift needs to be corrected in can reverse. A single fixed direction then stops correcting it.
+
+#### How It Works
+
+Before each light exposure, the trigger reads the mount's side of pier and looks up the mode configured for that side. If that mode differs from the one the trigger last sent, it sends it to PHD2 with `set_dec_guide_mode`. The mode is always sent once at the start of the sequence block, so the PHD2 setting matches the configuration even if it was changed by hand beforehand. If the side of pier is unknown, the trigger leaves the mode unchanged.
+
+```mermaid
+flowchart TD
+    A[Before each light exposure] --> B{Guider and<br/>telescope connected?}
+    B -- No --> Z[Skip]
+    B -- Yes --> C{Side of pier known?}
+    C -- No --> Z
+    C -- Yes --> D[Look up mode<br/>for side of pier]
+    D --> E{Same as last<br/>mode sent?}
+    E -- Yes --> Z
+    E -- No --> F[Send set_dec_guide_mode<br/>to PHD2]
+```
+
+#### Settings
+
+| Setting | Default | Description |
+|---|---|---|
+| **Pier East** | Auto | Dec guide mode used while the mount reports the east side of the pier |
+| **Pier West** | Auto | Dec guide mode used while the mount reports the west side of the pier |
+
+#### Tips
+
+- To find the right direction for each side, look at a PHD2 guide log with Dec in Auto mode. Note which direction PHD2 corrects in most of the time on each side of the pier.
+- The side of pier comes from the mount's ASCOM driver. Some drivers derive it from the hour angle instead of the physical pier side. With those drivers, the mode switches when the target crosses the meridian, not when the mount flips.
+- Requires PHD2 as the guider. Other guiders are reported as a validation issue.
+
 ## Localization
 
 The plugin UI and messages support 28 locales. The language is automatically selected based on N.I.N.A.'s UI culture setting.
@@ -111,7 +144,7 @@ Arabic (ar-SA), Basque (eu-ES), Catalan (ca-ES), Chinese Simplified (zh-CN), Chi
 1. Build the project or download the release DLL
 2. Copy `Triggers.dll` to `%localappdata%\NINA\Plugins\3.0.0\Triggers\`
 3. Restart N.I.N.A.
-4. The trigger will appear in the Advanced Sequencer under the Guider category
+4. The triggers appear in the Advanced Sequencer under the Guider category
 
 ## Building
 

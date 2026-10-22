@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Pilar Est</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Pilar Oest</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>Mode de guiatge Dec de PHD2 quan la muntura indica el costat est del pilar</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>Mode de guiatge Dec de PHD2 quan la muntura indica el costat oest del pilar</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Aplicat:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Establint el mode de guiatge Dec a {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>El guiatge no és PHD2</value>
+  </data>
 </root>

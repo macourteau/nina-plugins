@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 // [MANDATORY] The name of your plugin
 [assembly: AssemblyTitle("Triggers")]
 // [MANDATORY] A short description of your plugin
-[assembly: AssemblyDescription("Sequencer triggers for automated guider recalibration")]
+[assembly: AssemblyDescription("Sequencer triggers for automated guider recalibration and Dec guide mode management")]
 
 // Your name
 [assembly: AssemblyCompany("Marc-Antoine Courteau")]
@@ -39,7 +39,9 @@ Features:
 - Configurable arcsecond threshold and time window
 - In-place calibration or slew to optimal sky position
 - Plate-solve re-centering after returning from calibration position
-- Cooldown timer to prevent excessive recalibrations")]
+- Cooldown timer to prevent excessive recalibrations
+
+Also adds a ""Set Dec Guide Mode"" trigger that sets the PHD2 Dec guide mode (Auto, North, South or Off) according to the mount's side of pier.")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.

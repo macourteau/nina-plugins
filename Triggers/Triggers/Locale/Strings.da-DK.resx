@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Pillerside øst</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Pillerside vest</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>PHD2 Dec-guidetilstand, når monteringen melder østsiden af pilleren</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>PHD2 Dec-guidetilstand, når monteringen melder vestsiden af pilleren</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Anvendt:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Indstiller Dec-guidetilstand til {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Guider er ikke PHD2</value>
+  </data>
 </root>

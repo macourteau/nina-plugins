@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Pilastro Est</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Pilastro Ovest</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>Modalità di guida Dec di PHD2 quando la montatura indica il lato est del pilastro</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>Modalità di guida Dec di PHD2 quando la montatura indica il lato ovest del pilastro</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Applicato:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Impostazione della modalità di guida Dec su {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>La guida non è PHD2</value>
+  </data>
 </root>

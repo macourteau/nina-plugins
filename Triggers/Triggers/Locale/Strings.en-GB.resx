@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Pier East</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Pier West</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>PHD2 Dec guide mode to use while the mount reports the east side of the pier</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>PHD2 Dec guide mode to use while the mount reports the west side of the pier</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Applied:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Setting Dec guide mode to {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Guider is not PHD2</value>
+  </data>
 </root>

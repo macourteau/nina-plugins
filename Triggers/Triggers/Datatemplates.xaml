@@ -18,6 +18,15 @@
         </ObjectDataProvider.MethodParameters>
     </ObjectDataProvider>
 
+    <ObjectDataProvider
+        x:Key="DecGuideModeOptions"
+        MethodName="GetValues"
+        ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="local:DecGuideModeOption" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
     <BooleanToVisibilityConverter x:Key="BoolToVis" />
 
     <DataTemplate DataType="{x:Type local:RecalibrateGuider}">
@@ -146,6 +155,48 @@
                     <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding CurrentRms, StringFormat='{}{0:F2}'}" />
                     <TextBlock VerticalAlignment="Center" Text="/" />
                     <TextBlock VerticalAlignment="Center" Text="{Binding RmsThresholdArcsec, StringFormat='{}{0:F2}'}" />
+                </StackPanel>
+            </mini:MiniTrigger.TriggerProgressContent>
+        </mini:MiniTrigger>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:SetDecGuideMode}">
+        <view:SequenceBlockView>
+            <view:SequenceBlockView.SequenceItemContent>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{x:Static loc:Loc.LblPierEast}" />
+                    <ComboBox
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        ToolTip="{x:Static loc:Loc.TooltipPierEastMode}"
+                        ItemsSource="{Binding Source={StaticResource DecGuideModeOptions}}"
+                        SelectedItem="{Binding PierEastMode}" />
+                    <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Text="{x:Static loc:Loc.LblPierWest}" />
+                    <ComboBox
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        ToolTip="{x:Static loc:Loc.TooltipPierWestMode}"
+                        ItemsSource="{Binding Source={StaticResource DecGuideModeOptions}}"
+                        SelectedItem="{Binding PierWestMode}" />
+                </StackPanel>
+            </view:SequenceBlockView.SequenceItemContent>
+            <view:SequenceBlockView.SequenceItemProgressContent>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{x:Static loc:Loc.LblApplied}" />
+                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding AppliedMode, TargetNullValue=-}" />
+                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="(" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding AppliedPierSide}" />
+                    <TextBlock VerticalAlignment="Center" Text=")" />
+                </StackPanel>
+            </view:SequenceBlockView.SequenceItemProgressContent>
+        </view:SequenceBlockView>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Triggers.SetDecGuideMode_Mini">
+        <mini:MiniTrigger>
+            <mini:MiniTrigger.TriggerProgressContent>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="Dec" />
+                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding AppliedMode, TargetNullValue=-}" />
                 </StackPanel>
             </mini:MiniTrigger.TriggerProgressContent>
         </mini:MiniTrigger>

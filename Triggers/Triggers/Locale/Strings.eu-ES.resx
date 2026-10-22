@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Zutabea Ekialdea</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Zutabea Mendebaldea</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>PHD2ren Dec gidatze modua muntaiak zutabearen ekialdeko aldea adierazten duenean</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>PHD2ren Dec gidatze modua muntaiak zutabearen mendebaldeko aldea adierazten duenean</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Aplikatua:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Dec gidatze modua {0} gisa ezartzen</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Gidaria ez da PHD2</value>
+  </data>
 </root>

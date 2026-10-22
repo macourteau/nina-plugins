@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>墩東側</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>墩西側</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>赤道儀回報位於墩東側時使用的 PHD2 赤緯導星模式</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>赤道儀回報位於墩西側時使用的 PHD2 赤緯導星模式</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>已套用：</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>正在將赤緯導星模式設定為 {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>導星器不是 PHD2</value>
+  </data>
 </root>

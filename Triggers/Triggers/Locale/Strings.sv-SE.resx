@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Pelarsida öst</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Pelarsida väst</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>PHD2 Dec-guidningsläge när monteringen rapporterar pelarens östra sida</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>PHD2 Dec-guidningsläge när monteringen rapporterar pelarens västra sida</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Tillämpat:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Ställer in Dec-guidningsläge till {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Guidern är inte PHD2</value>
+  </data>
 </root>

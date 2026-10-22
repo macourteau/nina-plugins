@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>جانب الركيزة شرق</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>جانب الركيزة غرب</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>وضع توجيه Dec في PHD2 عندما يبلغ الحامل عن الجانب الشرقي من الركيزة</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>وضع توجيه Dec في PHD2 عندما يبلغ الحامل عن الجانب الغربي من الركيزة</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>المطبق:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>تعيين وضع توجيه Dec إلى {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>المرشد ليس PHD2</value>
+  </data>
 </root>

@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Pilier Est</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Pilier Ouest</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>Mode de guidage Dec de PHD2 à utiliser lorsque la monture indique le côté est du pilier</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>Mode de guidage Dec de PHD2 à utiliser lorsque la monture indique le côté ouest du pilier</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Appliqué :</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Réglage du mode de guidage Dec à {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Le guideur n’est pas PHD2</value>
+  </data>
 </root>

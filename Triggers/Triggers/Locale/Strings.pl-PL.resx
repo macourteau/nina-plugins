@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Strona filara wsch.</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Strona filara zach.</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>Tryb prowadzenia Dec w PHD2, gdy montaż zgłasza wschodnią stronę filara</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>Tryb prowadzenia Dec w PHD2, gdy montaż zgłasza zachodnią stronę filara</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Zastosowano:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Ustawianie trybu prowadzenia Dec na {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Guider to nie PHD2</value>
+  </data>
 </root>

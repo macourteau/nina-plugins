@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>피어 동쪽</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>피어 서쪽</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>마운트가 피어 동쪽을 보고할 때 사용할 PHD2 Dec 가이드 모드</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>마운트가 피어 서쪽을 보고할 때 사용할 PHD2 Dec 가이드 모드</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>적용됨:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Dec 가이드 모드를 {0}(으)로 설정 중</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>가이더가 PHD2가 아닙니다</value>
+  </data>
 </root>

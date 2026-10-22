@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Pilar Este</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Pilar Oeste</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>Modo de guiado Dec de PHD2 que se usa cuando la montura indica el lado este del pilar</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>Modo de guiado Dec de PHD2 que se usa cuando la montura indica el lado oeste del pilar</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Aplicado:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Estableciendo el modo de guiado Dec en {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>El guiado no es PHD2</value>
+  </data>
 </root>
