@@ -53,5 +53,12 @@ namespace Triggers.Locale {
         public static string LblSec => GetString("LblSec");
         public static string TooltipDitherSettle => GetString("TooltipDitherSettle");
         public static string LblRms => GetString("LblRms");
+        public static string LblPierEast => GetString("LblPierEast");
+        public static string LblPierWest => GetString("LblPierWest");
+        public static string TooltipPierEastMode => GetString("TooltipPierEastMode");
+        public static string TooltipPierWestMode => GetString("TooltipPierWestMode");
+        public static string LblApplied => GetString("LblApplied");
+        public static string SettingDecGuideMode => GetString("SettingDecGuideMode");
+        public static string GuiderNotPhd2 => GetString("GuiderNotPhd2");
     }
 }

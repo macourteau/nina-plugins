@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Πλευρά βάθρου Ανατολή</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Πλευρά βάθρου Δύση</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>Λειτουργία οδήγησης Dec του PHD2 όταν η βάση αναφέρει την ανατολική πλευρά του βάθρου</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>Λειτουργία οδήγησης Dec του PHD2 όταν η βάση αναφέρει τη δυτική πλευρά του βάθρου</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Εφαρμόστηκε:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Ορισμός λειτουργίας οδήγησης Dec σε {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Ο οδηγός δεν είναι PHD2</value>
+  </data>
 </root>

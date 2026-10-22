@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>ピア東側</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>ピア西側</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>架台がピアの東側を報告しているときに使用する PHD2 の Dec ガイドモード</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>架台がピアの西側を報告しているときに使用する PHD2 の Dec ガイドモード</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>適用中:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Dec ガイドモードを {0} に設定中</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>ガイダーが PHD2 ではありません</value>
+  </data>
 </root>

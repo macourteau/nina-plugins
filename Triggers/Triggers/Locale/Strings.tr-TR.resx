@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Ayak tarafı Doğu</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Ayak tarafı Batı</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>Kundak ayağın doğu tarafını bildirdiğinde kullanılacak PHD2 Dec rehberlik modu</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>Kundak ayağın batı tarafını bildirdiğinde kullanılacak PHD2 Dec rehberlik modu</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Uygulanan:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Dec rehberlik modu {0} olarak ayarlanıyor</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Rehber PHD2 değil</value>
+  </data>
 </root>

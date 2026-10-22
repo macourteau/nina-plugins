@@ -150,4 +150,25 @@
   <data name="LblRms" xml:space="preserve">
     <value>RMS</value>
   </data>
+  <data name="LblPierEast" xml:space="preserve">
+    <value>Pierzijde Oost</value>
+  </data>
+  <data name="LblPierWest" xml:space="preserve">
+    <value>Pierzijde West</value>
+  </data>
+  <data name="TooltipPierEastMode" xml:space="preserve">
+    <value>PHD2 Dec-guidemodus wanneer de montering de oostzijde van de pier meldt</value>
+  </data>
+  <data name="TooltipPierWestMode" xml:space="preserve">
+    <value>PHD2 Dec-guidemodus wanneer de montering de westzijde van de pier meldt</value>
+  </data>
+  <data name="LblApplied" xml:space="preserve">
+    <value>Toegepast:</value>
+  </data>
+  <data name="SettingDecGuideMode" xml:space="preserve">
+    <value>Dec-guidemodus instellen op {0}</value>
+  </data>
+  <data name="GuiderNotPhd2" xml:space="preserve">
+    <value>Guider is geen PHD2</value>
+  </data>
 </root>
